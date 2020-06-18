@@ -6,6 +6,18 @@ from io import BytesIO
 
 
 class Description(dict):
+    """
+    Class for easing the access of multilingual content.
+
+    Base class: dict
+      keys: language codes
+      values: single language description
+
+    Attributes:
+
+      lang : list of languages. Equivalent to .keys()
+
+    """
 
     def __init__(self,desc,**kw):
         super(Description, self).__init__(desc, **kw)

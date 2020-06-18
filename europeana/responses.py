@@ -14,7 +14,7 @@ class SearchResponse:
         api_response : dict, Original Search API response
         
         num_items : int, Number of items returned by the response
-        edm_items : int, Items modeled with the Europeana Data Model
+        edm_items : list, Items modeled with the Europeana Data Model
         totalResults : int, Total number of items that match with the query 
 
     """
