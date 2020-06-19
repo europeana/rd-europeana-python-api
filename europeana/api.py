@@ -178,10 +178,10 @@ class EuropeanaAPI:
           'newspaper','photography','sport','ww1']
 
 
-        sort : dict {'term':'score','order':'asc'}
-            'term' : 
-            'order' : 
-\
+        sort : dict {'term':value,'order':value}
+            'term' value : str in ['score', 'timestamp_created', 'timestamp_update', 'europeana_id', 'COMPLETENESS', 'is_fulltext', 'has_thumbnails', 'has_media']
+            'order' value : str in ['asc','desc']
+
           
 
         """
@@ -255,8 +255,8 @@ class EuropeanaAPI:
                 params.update({key:validation_dict[key](kwargs[key])})
 
             response = self._search_page(query, **params)
-            print(response.keys())
-            print(response['success'])
+            #print(response.keys())
+            #print(response['success'])
             return SearchResponse(response,query,**params)
 
 

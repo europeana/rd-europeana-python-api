@@ -1,7 +1,6 @@
 from europeana.api import EuropeanaAPI
 from europeana.edm import *
 from europeana.utils import url2img
-#from EuAPI.EuropeanaAPI import EuropeanaAPI
 
 
 def main():
@@ -10,15 +9,10 @@ def main():
 
 
   
-  #print(help(eu.search))
-  #r = eu.search('Amsterdam',  n = 249, sort = 'score',  theme = 'nature')
   
-  #r = eu.search('Amsterdam',  n = 249, sort = {'term':'score','order':'asc'},  theme = 'nature')
 
-  r = eu.search('Amsterdam')
 
   r = eu.search('Amsterdam', n = 500,sort = {'term':'score','order':'asc'},  theme = 'nature')
-  #print(r['success'])
   print(r.success)
 
   if r.success:

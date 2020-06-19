@@ -28,7 +28,7 @@ class SearchResponse:
         self.api_response = response
         self.success = response['success']
 
-        print('in search response {}'.format(response['success']))
+        #print('in search response {}'.format(response['success']))
 
         self.num_items = None
         self.edm_items = None
