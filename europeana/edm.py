@@ -80,6 +80,7 @@ class EDM:
     self.id = None
     self.edmPlaceLabelLangAware = None
     self.year = None
+    self.score = None
 
     # own attributes
     self.media_url = None
@@ -116,6 +117,9 @@ class EDM:
 
     if 'type' in edm_object:
       self.type = edm_object['type']
+
+    if 'score' in edm_object:
+      self.score = edm_object['score']
 
     # own attributes
     if 'edmIsShownBy' in edm_object:
