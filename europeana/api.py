@@ -210,6 +210,8 @@ class EuropeanaAPI:
                 params.update({key:self.validate_theme(kwargs[key])})
             if key == 'sort':
                 params.update({key:validation_dict[key](kwargs[key])})
+            if key == 'landingpage':
+                params.update({key:validation_dict[key](kwargs[key])})
 
             # refined search parameters
             if key == 'where':
