@@ -56,9 +56,9 @@ class EDM:
     provider_url : str
     thumbnail_url : str
     rights_url : str
-    description : MultiLingual class object. 
-    title : MultiLingual class object.
-    place : MultiLingual class object.
+    description : MultiLingual class object
+    title : MultiLingual class object
+    place : MultiLingual class object
     lang : list
 
   """

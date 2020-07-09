@@ -40,8 +40,8 @@ class EuropeanaAPI:
     def __init__(self,wskey):
         self.wskey = wskey
         self.search_API_url = 'https://www.europeana.eu/api/v2/search.json?'
-        self.accepted_arguments = ['n','rows', 'start', 'media', 'where', 'who', 'range','lat','lon','reusability','thumbnail','landingpage', 'theme','sort']
-        self.refined_search_arguments = ['where','who','lat','lon','range']
+        self.accepted_arguments = ['n','rows', 'start', 'media', 'what', 'where', 'who', 'range','lat','lon','reusability','thumbnail','landingpage', 'theme','sort']
+        self.refined_search_arguments = ['what','where','who','lat','lon','range']
         self.themes = ['archaeology','art','fashion','industrial','manuscript','map','migration','music','nature','newspaper','photography','sport','ww1']
 
 
@@ -57,6 +57,7 @@ class EuropeanaAPI:
             'sort': validate_sort,
 
             # refined search parameters
+            'what':format_what,
             'where':format_where,
             'who':format_who,
             'lat':format_lat,

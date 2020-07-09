@@ -5,14 +5,14 @@ from europeana.utils import url2img
 
 def main():
 
-  eu = EuropeanaAPI('your_API_key')
+  eu = EuropeanaAPI('api2demo')
 
 
   
   
 
 
-  r = eu.search('Amsterdam', n = 500,sort = {'term':'score','order':'asc'},  theme = 'nature')
+  r = eu.search('Amsterdam', n = 5, what='painting',sort = {'term':'score','order':'asc'})
   print(r.success)
 
   if r.success:
@@ -22,8 +22,7 @@ def main():
       if edm.title:
         print(edm.title.lang)
 
-  # if edm.description:
-  #   print(edm.description.lang)
+
 
   # if edm.place:
   #   print(edm.place.lang)
