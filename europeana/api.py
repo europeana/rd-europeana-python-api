@@ -215,6 +215,8 @@ class EuropeanaAPI:
                 params.update({key:validation_dict[key](kwargs[key])})
 
             # refined search parameters
+            if key == 'what':
+                qf_list.append(validation_dict[key](kwargs[key]))
             if key == 'where':
                 qf_list.append(validation_dict[key](kwargs[key]))
             if key == 'who':
