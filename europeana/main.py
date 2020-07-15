@@ -12,7 +12,8 @@ def main():
   
 
 
-  r = eu.search('Amsterdam', n = 5, what='painting',sort = {'term':'score','order':'asc'})
+  r = eu.search('Amsterdam', n = 220, what='painting',sort = {'term':'score','order':'asc'})
+  
   print(r.success)
 
   if r.success:

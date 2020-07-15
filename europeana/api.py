@@ -96,8 +96,11 @@ class EuropeanaAPI:
         req_num = kwargs['n']
         # number of pages to search and number of items in the last page
         n_pages, rest = req_num//100+1, req_num%100
-        start_list = [i for i in range(1,n_pages)]+[n_pages]
-        rows_list = [100 for i in range(1,n_pages)]+[rest]
+        # start_list = [i for i in range(1,n_pages)]+[n_pages]
+        # rows_list = [100 for i in range(1,n_pages)]+[rest]
+        start_list = [1+i*100 for i in range(n_pages)]
+        rows_list = [100 for i in range(n_pages-1)]+[rest]
+
         #initialize the search results
         #results = {'items':[]}
         item_list = []
