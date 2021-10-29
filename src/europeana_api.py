@@ -14,8 +14,8 @@ def europeana_id2uri(ID):
   return 'http://data.europeana.eu/item'+ID
 
 
-def showimg(img):
-  fig,ax = plt.subplots()
+def showimg(img,figsize=(10,10)):
+  fig,ax = plt.subplots(figsize = figsize)
   ax.imshow(img)
   ax.axis('off')
   plt.show()
