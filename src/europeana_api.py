@@ -1,3 +1,4 @@
+#@title Python interface implementation
 
 import requests
 from PIL import Image
@@ -7,6 +8,8 @@ from pprint import pprint
 import pandas as pd
 import numpy as np
 
+# to do: add option to dataframe
+
 def europeana_id2filename(europeana_id):
   return europeana_id.replace("/","[ph]")+'.jpg'
 
@@ -14,8 +17,8 @@ def europeana_id2uri(ID):
   return 'http://data.europeana.eu/item'+ID
 
 
-def showimg(img,figsize=(10,10)):
-  fig,ax = plt.subplots(figsize = figsize)
+def showimg(img):
+  fig,ax = plt.subplots()
   ax.imshow(img)
   ax.axis('off')
   plt.show()
@@ -116,9 +119,11 @@ class SearchResponse:
     self.CHO_list = kwargs.get('CHO_list')
     self.params = kwargs.get('params')
     self.response = kwargs.get('response')
-  def dataframe(self):
+  def dataframe(self, full = False):
     if not self.CHO_list:
       return None
+    if full:
+      return pd.json_normalize(self.CHO_list)
     columns = [k for k in list(self.CHO_list[0].keys()) if k not in ['raw_metadata']]
     return pd.DataFrame(self.CHO_list)[columns]
 
