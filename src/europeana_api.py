@@ -146,7 +146,8 @@ class EuropeanaAPI:
         'rows':kwargs.get('rows',12),
         'start':kwargs.get('start',1),
         'cursor':kwargs.get('cursor','*'),
-        'callback':kwargs.get('callback'),        
+        'callback':kwargs.get('callback'),   
+        'facet':kwargs.get('facet'),
     }
     response, CHO_list = cursor_search(params)
     return SearchResponse(
