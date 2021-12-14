@@ -16,7 +16,7 @@ pip install .
 
 ```
 
-pip install https://github.com/europeana/rd-europeana-python-api/archive/master.zip
+pip install https://github.com/europeana/rd-europeana-python-api/archive/testing.zip
 
 
 
