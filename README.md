@@ -12,9 +12,12 @@ cd rd-europeana-python-api
 ```
 Install dependencies and package
 ```
-pip install -r requirements.txt
+pip install .
 
 ```
+
+pip install https://github.com/europeana/rd-europeana-python-api/archive/master.zip
+
 
 
 ## Usage
@@ -22,11 +25,11 @@ pip install -r requirements.txt
 Get your API key [here](https://pro.europeana.eu/pages/get-api)
 
 ```
-from europeana_api import EuropeanaAPI
+from pyeuropeana.apis import Search
 
-api = EuropeanaAPI('YOUR_API_KEY')
+search_api = Search('YOUR_API_KEY')
 
-response = api.search(
+df = search_api(
   query = 'Rome',
   qf = '(skos_concept:"http://data.europeana.eu/concept/base/48" AND TYPE:IMAGE)'
   reusability = 'open',
@@ -41,12 +44,8 @@ response = api.search(
   start = 1,
   cursor = '*',
   callback = None
-)
+).dataframe()
 
-for CHO in response.CHO_list:
-  print('europeana_id: ', CHO['europeana_id'])
-  print('uri: ', CHO['uri'])
-  print('title: ', CHO['title'])
 
 ```
 

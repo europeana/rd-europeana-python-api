@@ -1,34 +1,7 @@
-#@title Python interface implementation
-
 import requests
-from PIL import Image
-import urllib.request as urllibrec
-import matplotlib.pyplot as plt
-from pprint import pprint
 import pandas as pd
-import numpy as np
 
-# to do: add option to dataframe
-
-def europeana_id2filename(europeana_id):
-  return europeana_id.replace("/","[ph]")+'.jpg'
-
-def europeana_id2uri(ID):
-  return 'http://data.europeana.eu/item'+ID
-
-
-def showimg(img):
-  fig,ax = plt.subplots()
-  ax.imshow(img)
-  ax.axis('off')
-  plt.show()
-
-def url2img(url):
-    try:
-        return Image.open(urllibrec.urlopen(url)).convert('RGB')
-    except:
-        print('Failed to get image')
-        return None
+from utils import europeana_id2uri
 
 def get_value_lang(lang_dict):
     if 'en' in lang_dict.keys():
@@ -127,10 +100,10 @@ class SearchResponse:
     columns = [k for k in list(self.CHO_list[0].keys()) if k not in ['raw_metadata']]
     return pd.DataFrame(self.CHO_list)[columns]
 
-class EuropeanaAPI:
+class Search:
   def __init__(self,wskey):
     self.wskey = wskey
-  def search(self,**kwargs):
+  def __call__(self,**kwargs):
     params = {
         'wskey':self.wskey,
         'query':kwargs.get('query','*'), 
@@ -155,7 +128,11 @@ class EuropeanaAPI:
         response = response,
         )
      
-  def record(self,id):
+
+class Record:
+  def __init__(self,wskey):
+    self.wskey = wskey
+  def __call__(self,id):
     params = {'wskey':self.wskey}
     response = requests.get(f'https://api.europeana.eu/record/v2/{id}.json',params=params).json()  
     return process_CHO_record(response)
