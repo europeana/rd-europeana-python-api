@@ -1,7 +1,7 @@
 import requests
 import pandas as pd
 
-from utils import europeana_id2uri
+from .utils import europeana_id2uri
 
 def get_value_lang(lang_dict):
     if 'en' in lang_dict.keys():
