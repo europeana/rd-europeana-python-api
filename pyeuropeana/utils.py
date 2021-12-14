@@ -24,12 +24,12 @@ def download_images(df, saving_path,time_limit = 20):
 
     #saving_path = '/home/jcejudo/projects/apis'
 
-    images_path = Path(saving_path).joinpath('images')
-    images_path.mkdir(exist_ok = True, parents=True)
+    saving_path = Path(saving_path)
+    saving_path.mkdir(exist_ok = True, parents=True)
 
-    metadata_path = Path(saving_path).joinpath('metadata.csv')
+    #metadata_path = Path(saving_path).joinpath('metadata.csv')
 
-    df.to_csv(metadata_path)
+    #df.to_csv(metadata_path)
 
 
     def worker(image_url,data_dict):
@@ -58,12 +58,14 @@ def download_images(df, saving_path,time_limit = 20):
         europeana_id = row['europeana_id']
 
         fname = europeana_id2filename(europeana_id)
-        fpath = images_path.joinpath(fname)
+        fpath = saving_path.joinpath(fname)
 
 
         img.save(fpath)
 
-    valid_df.to_csv(metadata_path)
+    return valid_df
+
+    #valid_df.to_csv(metadata_path)
 
 
 
