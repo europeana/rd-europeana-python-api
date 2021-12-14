@@ -41,7 +41,7 @@ def download_images(df, saving_path,time_limit = 20):
     valid_df = pd.DataFrame()
     for i,row in df.iterrows():
         print(i)
-        if row['image_url'] is None:
+        if not row['image_url']:
             continue
 
         action_process = Process(target=worker,args=(row['image_url'],data_dict))
@@ -50,7 +50,7 @@ def download_images(df, saving_path,time_limit = 20):
         action_process.terminate()
         img = data_dict['image']
 
-        if img is None:
+        if not img:
             continue
 
         valid_df = valid_df.append(row)
