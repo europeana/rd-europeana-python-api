@@ -5,20 +5,7 @@ This package is a python wrapper for Europeana's [Search](https://pro.europeana.
 
 ## Installation
 
-Clone repository
-```
-git clone https://github.com/europeana/rd-europeana-python-api.git
-cd rd-europeana-python-api
-```
-Install dependencies and package
-```
-pip install .
-
-```
-
-pip install https://github.com/europeana/rd-europeana-python-api/archive/testing.zip
-
-
+pip install https://github.com/europeana/rd-europeana-python-api/archive/master.zip
 
 ## Usage
 
@@ -32,7 +19,7 @@ search_api = Search('YOUR_API_KEY')
 df = search_api(
   query = 'Rome',
   qf = '(skos_concept:"http://data.europeana.eu/concept/base/48" AND TYPE:IMAGE)'
-  reusability = 'open',
+  reusability = 'open AND permission',
   media = True,
   thumbnail = True,
   landingpage = True,

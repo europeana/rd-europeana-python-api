@@ -58,12 +58,5 @@ def main(**kwargs):
         d = time() - start
         print(d,'seconds')
 
-
-    
-
-
-
-
-
 if __name__ == "__main__":
     fire.Fire(main)
