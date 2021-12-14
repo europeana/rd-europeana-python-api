@@ -48,12 +48,16 @@ def download_images(df, saving_path,time_limit = 20):
         action_process.start()
         action_process.join(timeout=time_limit) 
         action_process.terminate()
+        
+        if 'image' not in data_dict.keys():
+            continue
+
         img = data_dict['image']
 
         if not img:
             continue
 
-        valid_df = valid_df.append(row)
+        valid_df.append(row)
 
         europeana_id = row['europeana_id']
 
