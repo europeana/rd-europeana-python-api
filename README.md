@@ -26,10 +26,9 @@ df = search_api(
   landingpage = True,
   colourpalette = '#0000FF',
   theme = 'photography',
-  sort = 'random+asc',
+  sort = 'europeana_id',
   profile = 'rich',
   rows = 100,
-  start = 1,
   cursor = '*',
   callback = None
 ).dataframe()
