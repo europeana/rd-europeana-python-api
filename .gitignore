@@ -4,3 +4,4 @@ notebooks
 .ipynb*
 comments.txt
 timing.py
+*__pycache__*
