@@ -18,7 +18,7 @@ from pyeuropeana.apis import Search
 search_api = Search('YOUR_API_KEY')
 
 df = search_api(
-  query = 'Rome',
+  query = '*',
   qf = '(skos_concept:"http://data.europeana.eu/concept/base/48" AND TYPE:IMAGE)',
   reusability = 'open AND permission',
   media = True,
