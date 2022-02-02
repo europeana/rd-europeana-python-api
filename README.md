@@ -28,9 +28,7 @@ df = search_api(
   theme = 'photography',
   sort = 'europeana_id',
   profile = 'rich',
-  rows = 100,
-  cursor = '*',
-  callback = None
+  rows = 1000,
 ).dataframe()
 ```
 
