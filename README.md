@@ -8,6 +8,16 @@ As this package is not published on PyPI currently, the only way to install it i
 
 `pip install https://github.com/europeana/rd-europeana-python-api/archive/master.zip`
 
+From source
+
+`git clone https://github.com/europeana/rd-europeana-python-api.git`
+
+`cd rd-europeana-python-api`
+
+`pip install -e .`
+
+
+
 ## Usage
 
 Get your API key [here](https://pro.europeana.eu/pages/get-api)
