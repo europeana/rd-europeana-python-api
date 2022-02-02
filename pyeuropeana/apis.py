@@ -78,22 +78,30 @@ def process_CHO_record(response):
 def cursor_search(params):
     CHO_list = []
     response = {'nextCursor':'*'}
+    url = None
     while 'nextCursor' in response:
       if len(CHO_list)>params['rows']:
         break
       params.update({'cursor':response['nextCursor']})
-      #print(response['nextCursor'])
-      response = requests.get('https://api.europeana.eu/record/v2/search.json', params = params).json()  
-      #print(response['nextCursor'])
+      response = requests.get('https://api.europeana.eu/record/v2/search.json', params = params) 
+      if url is None:
+        url = response.url
+
+      
+      response = response.json()
+
+      totalResults = response['totalResults']
+
       # to do: return if response is false
       CHO_list += response['items']
-    return response, CHO_list[:params['rows']]
+    return response, url, totalResults, CHO_list[:params['rows']]
 
 class SearchResponse:
   def __init__(self,**kwargs):
     self.CHO_list = kwargs.get('CHO_list')
     self.params = kwargs.get('params')
-    self.response = kwargs.get('response')
+    self.totalResults = kwargs.get('totalResults')
+    self.url = kwargs.get('url')
   def dataframe(self, full = False):
     if not self.CHO_list:
       return None
@@ -126,11 +134,12 @@ class Search:
         'callback':kwargs.get('callback'),   
         'facet':kwargs.get('facet'),
     }
-    response, CHO_list = cursor_search(params)
+    response, url,totalResults, CHO_list = cursor_search(params)
     return SearchResponse(
         CHO_list = [process_CHO_search(item) for item in CHO_list], 
         params = params,
-        response = response,
+        totalResults = totalResults,
+        url = url
         )
      
 

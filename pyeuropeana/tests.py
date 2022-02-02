@@ -23,11 +23,17 @@ def main(**kwargs):
     start = time()
 
     # Search API
-    df = search_api(
+    response = search_api(
         query = '*',
         qf = 'TYPE:IMAGE',
         rows = n_objects
-    ).dataframe()
+    )
+
+    print(response.url)
+    print(response.params)
+    print(response.totalResults)
+
+    df = response.dataframe()
 
     d = time() - start
     print(d,'seconds')
