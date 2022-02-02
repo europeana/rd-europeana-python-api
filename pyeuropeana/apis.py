@@ -82,7 +82,9 @@ def cursor_search(params):
       if len(CHO_list)>params['rows']:
         break
       params.update({'cursor':response['nextCursor']})
+      #print(response['nextCursor'])
       response = requests.get('https://api.europeana.eu/record/v2/search.json', params = params).json()  
+      #print(response['nextCursor'])
       # to do: return if response is false
       CHO_list += response['items']
     return response, CHO_list[:params['rows']]
@@ -114,10 +116,12 @@ class Search:
         'landingpage':kwargs.get('landingpage'),
         'colourpalette':kwargs.get('colourpalette'),
         'theme':kwargs.get('theme'),
-        'sort':kwargs.get('sort','random,europeana_id'),
+        #using random sorting results in duplicate items
+        'sort':kwargs.get('sort','europeana_id'),
         'profile':kwargs.get('profile'),
         'rows':kwargs.get('rows',12),
-        'start':kwargs.get('start',1),
+        #In combination with the use of cursor better not to use start parameter
+        #'start':kwargs.get('start',1),
         'cursor':kwargs.get('cursor','*'),
         'callback':kwargs.get('callback'),   
         'facet':kwargs.get('facet'),
