@@ -10,29 +10,6 @@ def get_value_lang(lang_dict):
       _ , value = list(lang_dict.items())[0]
     return value
 
-def process_CHO_search(item):
-  europeana_id = item['id'] if 'id' in item.keys() else None
-  return {
-      'raw_metadata': item,
-      'europeana_id': europeana_id,
-      'uri': europeana_id2uri(europeana_id),
-      'type': item['type'] if 'type' in item.keys() else None,
-      'image_url': item['edmIsShownBy'][0] if 'edmIsShownBy' in item.keys() else None,
-      'country': item['country'][0] if 'country' in item.keys() else None,
-      'description': item['dcDescription'][0] if 'dcDescription' in item.keys() else None,
-      'title': item['title'][0] if 'title' in item.keys() else None,
-      'creator': item['dcCreator'][0] if 'dcCreator' in item.keys() else None,
-      'language': item['language'][0] if 'language' in item.keys() else None,
-      'rights': item['rights'][0] if 'rights' in item.keys() else None,
-      'provider': item['dataProvider'][0] if 'dataProvider' in item.keys() else None,
-      'dataset_name': item['edmDatasetName'][0] if 'edmDatasetName' in item.keys() else None,
-      'concept': item['edmConcept'][0] if 'edmConcept' in item.keys() else None,
-      'concept_lang': {k:v[0] for k,v in item['edmConceptPrefLabelLangAware'].items()} if 'edmConceptPrefLabelLangAware' in item.keys() else None,
-      'description_lang': {k:v[0] for k,v in item['dcDescriptionLangAware'].items()} if 'dcDescriptionLangAware' in item.keys() else None,
-      'title_lang': {k:v[0] for k,v in item['dcTitleLangAware'].items()} if 'dcTitleLangAware' in item.keys() else None, 
-  }
-
-
 def process_CHO_record(response):
     obj = response['object']
     europeana_id = obj['about']
@@ -78,37 +55,25 @@ def process_CHO_record(response):
 def cursor_search(params):
     CHO_list = []
     response = {'nextCursor':'*'}
-    url = None
+    #url = None
     while 'nextCursor' in response:
       if len(CHO_list)>params['rows']:
         break
       params.update({'cursor':response['nextCursor']})
-      response = requests.get('https://api.europeana.eu/record/v2/search.json', params = params) 
-      if url is None:
-        url = response.url
+      raw_response = requests.get('https://api.europeana.eu/record/v2/search.json', params = params) 
+      #if url is None:
+      #  url = raw_response.url
 
-      
-      response = response.json()
-
-      totalResults = response['totalResults']
+      raw_response = raw_response.json()
+      #totalResults = raw_response['totalResults']
 
       # to do: return if response is false
-      CHO_list += response['items']
-    return response, url, totalResults, CHO_list[:params['rows']]
+      CHO_list += raw_response['items']
 
-class SearchResponse:
-  def __init__(self,**kwargs):
-    self.CHO_list = kwargs.get('CHO_list')
-    self.params = kwargs.get('params')
-    self.totalResults = kwargs.get('totalResults')
-    self.url = kwargs.get('url')
-  def dataframe(self, full = False):
-    if not self.CHO_list:
-      return None
-    if full:
-      return pd.json_normalize(self.CHO_list)
-    columns = [k for k in list(self.CHO_list[0].keys()) if k not in ['raw_metadata']]
-    return pd.DataFrame(self.CHO_list)[columns]
+    CHO_list = CHO_list[:params['rows']]
+    raw_response['items'] = CHO_list
+    return raw_response
+
 
 class Search:
   def __init__(self,wskey):
@@ -124,23 +89,26 @@ class Search:
         'landingpage':kwargs.get('landingpage'),
         'colourpalette':kwargs.get('colourpalette'),
         'theme':kwargs.get('theme'),
-        #using random sorting results in duplicate items
         'sort':kwargs.get('sort','europeana_id'),
         'profile':kwargs.get('profile'),
         'rows':kwargs.get('rows',12),
-        #In combination with the use of cursor better not to use start parameter
-        #'start':kwargs.get('start',1),
         'cursor':kwargs.get('cursor','*'),
         'callback':kwargs.get('callback'),   
         'facet':kwargs.get('facet'),
     }
-    response, url,totalResults, CHO_list = cursor_search(params)
-    return SearchResponse(
-        CHO_list = [process_CHO_search(item) for item in CHO_list], 
-        params = params,
-        totalResults = totalResults,
-        url = url
-        )
+
+    url = requests.get('https://api.europeana.eu/record/v2/search.json', params = params).url
+    response =  cursor_search(params)
+    response.update({'url':url,'params':params})
+    return response
+
+    # return SearchResponse(
+    #     CHO_list = [process_CHO_search(item) for item in CHO_list], 
+    #     params = params,
+    #     url = url,
+    #     totalResults = totalResults,
+    #     raw_response = raw_response
+    #     )
      
 
 class Record:

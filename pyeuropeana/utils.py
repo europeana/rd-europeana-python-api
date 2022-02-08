@@ -18,6 +18,37 @@ def url2img(url):
         print('Failed to get image')
         return None
 
+def resp2df(response, full = False):
+    if not response['items']:
+        return None
+    if full:
+        return pd.json_normalize(response['items'])
+    obj_list = [process_CHO_search(obj) for obj in response['items']]
+    columns = [k for k in list(obj_list[0].keys()) if k not in ['raw_metadata']]
+    return pd.DataFrame(obj_list)[columns]
+
+def process_CHO_search(item):
+  europeana_id = item['id'] if 'id' in item.keys() else None
+  return {
+      'raw_metadata': item,
+      'europeana_id': europeana_id,
+      'uri': europeana_id2uri(europeana_id),
+      'type': item['type'] if 'type' in item.keys() else None,
+      'image_url': item['edmIsShownBy'][0] if 'edmIsShownBy' in item.keys() else None,
+      'country': item['country'][0] if 'country' in item.keys() else None,
+      'description': item['dcDescription'][0] if 'dcDescription' in item.keys() else None,
+      'title': item['title'][0] if 'title' in item.keys() else None,
+      'creator': item['dcCreator'][0] if 'dcCreator' in item.keys() else None,
+      'language': item['language'][0] if 'language' in item.keys() else None,
+      'rights': item['rights'][0] if 'rights' in item.keys() else None,
+      'provider': item['dataProvider'][0] if 'dataProvider' in item.keys() else None,
+      'dataset_name': item['edmDatasetName'][0] if 'edmDatasetName' in item.keys() else None,
+      'concept': item['edmConcept'][0] if 'edmConcept' in item.keys() else None,
+      'concept_lang': {k:v[0] for k,v in item['edmConceptPrefLabelLangAware'].items()} if 'edmConceptPrefLabelLangAware' in item.keys() else None,
+      'description_lang': {k:v[0] for k,v in item['dcDescriptionLangAware'].items()} if 'dcDescriptionLangAware' in item.keys() else None,
+      'title_lang': {k:v[0] for k,v in item['dcTitleLangAware'].items()} if 'dcTitleLangAware' in item.keys() else None, 
+  }
+
 # download images
 
 def download_images(df, saving_path,time_limit = 20):
