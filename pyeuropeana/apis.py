@@ -54,7 +54,7 @@ def process_CHO_record(response):
 
 def cursor_search(params):
     CHO_list = []
-    response = {'nextCursor':'*'}
+    response = {'nextCursor':params['cursor']}
     #url = None
     while 'nextCursor' in response:
       if len(CHO_list)>params['rows']:
