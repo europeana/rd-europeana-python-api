@@ -60,19 +60,19 @@ def cursor_search(params):
       if len(CHO_list)>params['rows']:
         break
       params.update({'cursor':response['nextCursor']})
-      raw_response = requests.get('https://api.europeana.eu/record/v2/search.json', params = params) 
+      response = requests.get('https://api.europeana.eu/record/v2/search.json', params = params) 
       #if url is None:
       #  url = raw_response.url
 
-      raw_response = raw_response.json()
+      response = response.json()
       #totalResults = raw_response['totalResults']
 
       # to do: return if response is false
-      CHO_list += raw_response['items']
+      CHO_list += response['items']
 
     CHO_list = CHO_list[:params['rows']]
-    raw_response['items'] = CHO_list
-    return raw_response
+    response['items'] = CHO_list
+    return response
 
 
 class Search:
