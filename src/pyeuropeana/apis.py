@@ -57,7 +57,6 @@ class Entity():
     TYPE = kwargs.get('TYPE')
     text = kwargs.get('text')
     return requests.get(f'https://api.europeana.eu/entity/suggest',params = {'wskey':self.wskey,'text':text,'type':TYPE}).json()
-    return resp
   def retrieve(self,**kwargs):
     TYPE = kwargs.get('TYPE')
     IDENTIFIER = kwargs.get('IDENTIFIER')
