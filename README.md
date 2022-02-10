@@ -6,7 +6,7 @@ This package is a Python wrapper for Europeana's [Search](https://pro.europeana.
 
 As this package is not published on PyPI currently, the only way to install it is through its Git repository host using pip:
 
-`pip install https://github.com/europeana/rd-europeana-python-api/archive/master.zip`
+`pip install https://github.com/europeana/rd-europeana-python-api/archive/stable.zip`
 
 From source
 
