@@ -76,6 +76,7 @@ def cursor_search(params):
 
 
 class Search:
+  # to do: allow for arbitrary arguments such as facet limits
   def __init__(self,wskey):
     self.wskey = wskey
   def __call__(self,**kwargs):
