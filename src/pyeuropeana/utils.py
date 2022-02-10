@@ -27,6 +27,14 @@ def resp2df(response, full = False):
     columns = [k for k in list(obj_list[0].keys()) if k not in ['raw_metadata']]
     return pd.DataFrame(obj_list)[columns]
 
+
+def get_value_lang(lang_dict):
+    if 'en' in lang_dict.keys():
+      value = lang_dict['en']
+    else:
+      _ , value = list(lang_dict.items())[0]
+    return value
+
 def process_CHO_search(item):
   europeana_id = item['id'] if 'id' in item.keys() else None
   return {
@@ -48,6 +56,48 @@ def process_CHO_search(item):
       'description_lang': {k:v[0] for k,v in item['dcDescriptionLangAware'].items()} if 'dcDescriptionLangAware' in item.keys() else None,
       'title_lang': {k:v[0] for k,v in item['dcTitleLangAware'].items()} if 'dcTitleLangAware' in item.keys() else None, 
   }
+
+def process_CHO_record(response):
+    obj = response['object']
+    europeana_id = obj['about']
+
+    try:
+      image_url = obj['aggregations'][0]['edmIsShownBy']
+    except:
+      image_url = None
+
+    # getting title
+    proxy_list = obj['proxies']
+    proxy_dict = {}
+    for proxy in proxy_list:
+      proxy_dict.update(proxy)
+
+    title_lang = proxy_dict['dcTitle'] if 'dcTitle' in proxy_dict else None
+    title = None
+    if title_lang:
+      title_lang = {k:v[0] for k,v in title_lang.items()}
+      title = get_value_lang(title_lang)
+      
+    # getting provider
+    provider_lang = obj['aggregations'][0]['edmProvider']
+    provider_lang = {k:v[0] for k,v in provider_lang.items()}
+    provider = get_value_lang(provider_lang)
+
+    return {
+        'raw_metadata': response,
+        'europeana_id': europeana_id,
+        'image_url': image_url,
+        'uri': europeana_id2uri(europeana_id),
+        'dataset_name': obj['edmDatasetName'][0],
+        'country': obj['europeanaAggregation']['edmCountry']['def'][0],
+        'language': obj['europeanaAggregation']['edmLanguage']['def'][0],
+        'type': obj['type'],
+        'title': title,
+        'title_lang': title_lang,
+        'rights': obj['aggregations'][0]['edmRights']['def'][0],
+        'provider': provider,
+        'provider_lang': provider_lang,
+    }
 
 # download images
 
