@@ -27,7 +27,7 @@ from pyeuropeana.apis import Search
 
 search_api = Search('YOUR_API_KEY')
 
-df = search_api(
+result = search_api(
   query = '*',
   qf = '(skos_concept:"http://data.europeana.eu/concept/base/48" AND TYPE:IMAGE)',
   reusability = 'open AND permission',
@@ -39,7 +39,11 @@ df = search_api(
   sort = 'europeana_id',
   profile = 'rich',
   rows = 1000,
-).dataframe()
+) # this gives you full response metadata along with cultural heritage object metadata
+
+# use this utility function to transform a subset of the cultural heritage object metadata
+# into a readable Pandas DataFrame
+dataframe = res2df(result, full=False)
 ```
 
 [Colab tutorial](https://colab.research.google.com/drive/1VZJn9JKqziSF2jVQz1HRsvgbUZ0FM7qD?usp=sharing)
