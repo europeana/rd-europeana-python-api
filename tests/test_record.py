@@ -1,5 +1,5 @@
-from pyeuropeana.apis import Record
-from pyeuropeana.utils import process_CHO_record
+from pyeuropeana.apis.apis import Record
+from pyeuropeana.utils.utils import process_CHO_record
 
 if __name__ == "__main__":
 

@@ -1,7 +1,7 @@
 import requests
 import pandas as pd
 
-from .utils import europeana_id2uri
+from pyeuropeana.utils.edm_utils import europeana_id2uri
 
 def cursor_search(params):
     CHO_list = []
@@ -41,24 +41,4 @@ class Search:
     url = requests.get('https://api.europeana.eu/record/v2/search.json', params = params).url
     response =  cursor_search(params)
     response.update({'url':url,'params':params})
-    return response
-
-class Record:
-  def __init__(self,wskey):
-    self.wskey = wskey
-  def __call__(self,id):
-    params = {'wskey':self.wskey}
-    return requests.get(f'https://api.europeana.eu/record/v2/{id}.json',params=params).json()  
-    
-class Entity():
-  def __init__(self,wskey):
-    self.wskey = wskey
-  def suggest(self,**kwargs):
-    TYPE = kwargs.get('TYPE')
-    text = kwargs.get('text')
-    return requests.get(f'https://api.europeana.eu/entity/suggest',params = {'wskey':self.wskey,'text':text,'type':TYPE}).json()
-  def retrieve(self,**kwargs):
-    TYPE = kwargs.get('TYPE')
-    IDENTIFIER = kwargs.get('IDENTIFIER')
-    return requests.get(f'https://api.europeana.eu/entity/{TYPE}/base/{IDENTIFIER}.json',params = {'wskey':self.wskey}).json()
-  
+    return response  

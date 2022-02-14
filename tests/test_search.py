@@ -1,5 +1,5 @@
-from pyeuropeana.apis import Search, Record
-from pyeuropeana.utils import resp2df
+from pyeuropeana.apis.apis import Search, Record
+from pyeuropeana.utils.utils import resp2df
 
 if __name__ == "__main__":
 
