@@ -6,7 +6,11 @@ import pyeuropeana.utils.edm_utils as edm_utils
 
 if __name__ == "__main__":
 
-    search_api = search_api.Search('api2demo')
+    # test for wrong api key
+
+    
+
+    search_api = search_api.Search('api2demo2')
 
     n_objects = 200
 

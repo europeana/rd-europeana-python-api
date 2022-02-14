@@ -19,6 +19,10 @@ def cursor_search(params):
 class Search:
   def __init__(self,wskey):
     self.wskey = wskey
+    response = requests.get('https://api.europeana.eu/record/v2/search.json', params = {'wskey':wskey,'query':'*'}).json()
+    if not response['success']:
+      raise ValueError(response['error'])
+      
   def __call__(self,**kwargs):
     params = {
         'wskey':self.wskey,
