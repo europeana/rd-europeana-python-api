@@ -43,7 +43,7 @@ if __name__ == "__main__":
     # )
     # print(r['totalResults'])
 
-    # to do: throw a warning when reusability is not in ['open','permission','restricted']
+    # to do: throw a warning when reusability is not in ['open','permission','restricted']. Caution, logic needs to be taken into account
     # to do: enforce media, thumnail and landing page as boolean
     # to do: enforce rows to be a number
     # to do: enforce other variables to be strings
