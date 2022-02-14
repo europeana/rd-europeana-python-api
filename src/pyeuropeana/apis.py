@@ -1,8 +1,6 @@
 import requests
 import pandas as pd
 
-from .utils import europeana_id2uri
-
 def cursor_search(params):
     CHO_list = []
     response = {'nextCursor':params['cursor']}
@@ -50,7 +48,7 @@ class Record:
     params = {'wskey':self.wskey}
     return requests.get(f'https://api.europeana.eu/record/v2/{id}.json',params=params).json()  
     
-class Entity():
+class Entity:
   def __init__(self,wskey):
     self.wskey = wskey
   def suggest(self,**kwargs):
