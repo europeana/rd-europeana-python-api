@@ -1,9 +1,12 @@
-from pyeuropeana.apis import Search, Record
-from pyeuropeana.utils import resp2df
+# from pyeuropeana.apis.apis import Search, Record
+# from pyeuropeana.utils.utils import resp2df
+
+import pyeuropeana.apis.search as search_api
+import pyeuropeana.utils.edm_utils as edm_utils
 
 if __name__ == "__main__":
 
-    search_api = Search('api2demo')
+    search_api = search_api.Search('api2demo')
 
     n_objects = 200
 
@@ -14,7 +17,7 @@ if __name__ == "__main__":
         rows = n_objects
     )
 
-    df = resp2df(response)
+    df = edm_utils.resp2df(response)
 
     facets = response['facets'][0]['fields']
     print(facets)

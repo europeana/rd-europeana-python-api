@@ -1,4 +1,4 @@
-from pyeuropeana.apis import Entity
+from pyeuropeana.apis.entity import Entity
 
 if __name__ == '__main__':
 
