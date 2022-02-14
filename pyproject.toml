@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "pyeuropeana"
+version = "0.1.0"
+description = "A Python wrapper around Europeana APIs"
+authors = ["José Eduardo Cejudo Grano de Oro <joseed.cejudo@europeana.eu>" ]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/europeana/rd-europeana-python-api"
+repository = "https://github.com/europeana/rd-europeana-python-api"
+keywords = ["GLAM", "europeana", "cultural heritage"]
+classifiers = [
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research"
+]
+packages = [
+    { include = "pyeuropeana", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+requests = "^2.27"
+pillow = "^9.0.0"
+pandas = "^1.3"
+fire = "^0.4"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
