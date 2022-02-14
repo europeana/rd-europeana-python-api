@@ -1,7 +1,6 @@
 import requests
 
-
-class Entity():
+class EntityAPI:
   def __init__(self,wskey):
     self.wskey = wskey
   def suggest(self,**kwargs):
