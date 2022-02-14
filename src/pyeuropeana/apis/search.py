@@ -1,7 +1,7 @@
 import requests
 import pandas as pd
 
-from pyeuropeana.utils.edm_utils import europeana_id2uri
+import warnings
 
 def cursor_search(params):
     CHO_list = []
@@ -16,9 +16,13 @@ def cursor_search(params):
     response['items'] = CHO_list
     return response
 
-class Search:
+class SearchAPI:
   def __init__(self,wskey):
     self.wskey = wskey
+    response = requests.get('https://api.europeana.eu/record/v2/search.json', params = {'wskey':wskey,'query':'*'}).json()
+    if not response['success']:
+      raise ValueError(response['error'])
+      
   def __call__(self,**kwargs):
     params = {
         'wskey':self.wskey,
@@ -37,6 +41,22 @@ class Search:
         'callback':kwargs.get('callback'),   
         'facet':kwargs.get('facet'),
     }
+
+    if not kwargs:
+      raise ValueError('No arguments passed')
+
+    # careful with this: are we expecting arguments other than the ones in params?
+    wrong_args = [args for args in kwargs.keys() if args not in params]
+    if wrong_args:
+      raise ValueError(f"Invalid arguments detected: {wrong_args}")
+
+
+    # to do: enforce media, thumnail and landing page as boolean
+    # to do: enforce rows to be a number
+    # to do: enforce other variables to be strings
+    # to do: test for facets
+    # to do: throw a warning when reusability is not in ['open','permission','restricted']
+    # to do: test utils
 
     url = requests.get('https://api.europeana.eu/record/v2/search.json', params = params).url
     response =  cursor_search(params)
