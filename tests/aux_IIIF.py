@@ -1,6 +1,5 @@
 from pyeuropeana.apis import IIIFAPI
 
-
 if __name__ == '__main__':
 
     IIIF_api = IIIFAPI('api2demo')
@@ -13,7 +12,6 @@ if __name__ == '__main__':
         PAGE_ID = 1
         )
     print(resp.keys())
-
 
     resp = IIIF_api.fulltext(
         RECORD_ID = '/9200396/BibliographicResource_3000118435063', 
