@@ -3,6 +3,8 @@ import unittest
 from pyeuropeana.apis import RecordAPI
 from pyeuropeana.utils.edm_utils import process_CHO_record
 
+# caution: avoid that the exceptions depend on the error messages of the api
+
 class TestRecord(unittest.TestCase):
     def test_api_key(self):
         """
