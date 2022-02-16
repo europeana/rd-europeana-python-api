@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Record API" href="recordapi.html" /><link rel="prev" title="Usage" href="usage.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Record API" href="recordapi.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.02.14.1"/>
-        <title>Search API - Europeana python interface 0.1 documentation</title>
+        <title>Entity API - Europeana python interface 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=a8f031f701c6af50c9919b48f173a5785af06fac" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -152,9 +152,9 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Search API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searchapi.html">Search API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recordapi.html">Record API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="entityapi.html">Entity API</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Entity API</a></li>
 </ul>
 
 </div>
@@ -181,51 +181,13 @@
           </label>
         </div>
         <article role="main">
-          <section id="search-api">
-<h1>Search API<a class="headerlink" href="#search-api" title="Permalink to this headline">#</a></h1>
-<p>you can use the <code class="docutils literal notranslate"><span class="pre">pyeuropeana.apis.SearchAPI()</span></code> function:</p>
+          <section id="entity-api">
+<h1>Entity API<a class="headerlink" href="#entity-api" title="Permalink to this headline">#</a></h1>
+<p>you can use the <code class="docutils literal notranslate"><span class="pre">pyeuropeana.apis.EntityAPI()</span></code> function:</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="pyeuropeana.apis.search.SearchWrapper">
-<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.search.</span></span><span class="sig-name descname"><span class="pre">SearchWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.search.SearchWrapper" title="Permalink to this definition">#</a></dt>
-<dd><p>Wrapper for the Search API</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyeuropeana.apis</span> <span class="kn">import</span> <span class="n">SearchWrapper</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">SearchWrapper</span><span class="p">(</span>
-<span class="gp">&gt;&gt;&gt; </span>   <span class="n">query</span> <span class="o">=</span> <span class="s1">'Paris'</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>   <span class="n">qf</span> <span class="o">=</span> <span class="s1">'TYPE:IMAGE'</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>   <span class="n">rows</span> <span class="o">=</span> <span class="mi">150</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
-</pre></div>
-</div>
-<dl class="simple">
-<dt>query<span class="classifier">str</span></dt><dd><p>The search term(s). See Query Syntax [?] for information on forming complex queries and examples.</p>
-</dd>
-<dt>qf<span class="classifier">int, optional</span></dt><dd><p>Query Refinement. This parameter can be defined more than once. See Query Syntax [?] page for more information.</p>
-</dd>
-<dt>reusability<span class="classifier">str, optional</span></dt><dd><p>Filter by copyright status. Possible values are open, restricted or permission.</p>
-</dd>
-<dt>media<span class="classifier">bool, optional</span></dt><dd><p>Filter by records where an URL to the full media file is present in the edm:isShownBy or edm:hasView metadata and is resolvable.</p>
-</dd>
-<dt>thumbnail<span class="classifier">bool, optional</span></dt><dd><p>Filter by records where a thumbnail image has been generated for any of the WebResource media resources (thumbnail available in the edmPreview field).</p>
-</dd>
-<dt>landingpage<span class="classifier">bool, optional</span></dt><dd><p>Filter by records where the link to the original object on the providers website (edm:isShownAt) is present and verified to be working.</p>
-</dd>
-<dt>colourpalette<span class="classifier">str, optional</span></dt><dd><p>Filter by images where one of the colours (see colour palette) of an image matches the provided colour code. You can provide this parameter multiple times, the search will then do an ‘AND’ search on all the provided colours.</p>
-</dd>
-<dt>theme<span class="classifier">str, optional</span></dt><dd><p>Restrict the query over one of the Europeana Thematic Collections. The possible values are: archaelogy, art, fashion, industrial, manuscript, map, migration, music, nature, newspaper, photography, sport, ww1.</p>
-</dd>
-<dt>sort<span class="classifier">str, optional</span></dt><dd><p>Sorting records in ascending or descending order of search fields. The following fields are supported: score (relenvancy of the search result), timestamp_created, timestamp_update, europeana_id, COMPLETENESS, is_fulltext, has_thumbnails, and has_media. Sorting on more than one field is possible by supplying as comma separated values. It is also possible to randomly order items by using the keyword “random” instead of a field name. You can also request for a fixed random order by indicating a seed “random_SEED” which is useful when paginating along the same randomized order.</p>
-</dd>
-<dt>profile<span class="classifier">str, optional</span></dt><dd><p>A profile parameter which controls the format and richness of the response.</p>
-</dd>
-<dt>rows<span class="classifier">int, optional</span></dt><dd><p>The number of records to return. Maximum is 100. Defaults to 12. See pagination.</p>
-</dd>
-<dt>cursor<span class="classifier">str, optional</span></dt><dd><p>A cursor mark from where to start the search result set when using deep pagination. Set to * to start cursor-based pagination.</p>
-</dd>
-<dt>callback<span class="classifier">str, optional</span></dt><dd><p>Name of a client side callback function, see JSONP.</p>
-</dd>
-<dt>facet<span class="classifier">str, optional</span></dt><dd><p>A name of an individual field or a comma separated list of fields</p>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="pyeuropeana.apis.entity.EntityAPI.suggest">
+<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.entity.EntityAPI.</span></span><span class="sig-name descname"><span class="pre">suggest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.entity.EntityAPI.suggest" title="Permalink to this definition">#</a></dt>
+<dd><p>Suggest method</p>
 </dd></dl>
 </section>
 
@@ -234,23 +196,15 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="recordapi.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">Record API</div>
-              </div>
-              <svg><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="usage.html">
+          
+          <a class="prev-page" href="recordapi.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Usage</div>
+                <div class="title">Record API</div>
                 
               </div>
             </a>

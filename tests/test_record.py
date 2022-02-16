@@ -13,35 +13,30 @@ class TestRecord(unittest.TestCase):
         """
         with self.assertRaises(ValueError) as context:
             RecordWrapper(
-                wskey = 'api2demo',
                 record_id = 2,
                 )
         self.assertTrue("the input id should be a string" in str(context.exception))
 
         with self.assertRaises(ValueError) as context:
           RecordWrapper(
-                wskey = 'api2demo',
                 record_id = True,
                 )
         self.assertTrue("the input id should be a string" in str(context.exception))
 
         with self.assertRaises(ValueError) as context:
           RecordWrapper(
-                wskey = 'api2demo',
                 record_id = 'asfd',
                 )
         self.assertTrue("Not valid Europeana id" in str(context.exception))
 
         with self.assertRaises(ValueError) as context:
             RecordWrapper(
-                    wskey = 'api2demo',
                     record_id = '/asdfa345sdf',
                     )
         self.assertTrue("Not valid Europeana id" in str(context.exception))
 
         with self.assertRaises(ValueError) as context:
             RecordWrapper(
-                        wskey = 'api2demo',
                         record_id = 'asdfa/345sdf',
                         )
         self.assertTrue("Not valid Europeana id" in str(context.exception))

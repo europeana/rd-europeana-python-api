@@ -31,3 +31,4 @@ Contents
    usage
    searchapi
    recordapi
+   entityapi

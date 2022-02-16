@@ -18,7 +18,6 @@ class TestSearch(unittest.TestCase):
         
         with self.assertRaises(ValueError) as context:
             SearchWrapper(
-                wskey = 'api2demo',
                 queryf = '',
                 row = 12
             )

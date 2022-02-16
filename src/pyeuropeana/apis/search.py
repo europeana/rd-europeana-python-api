@@ -1,21 +1,17 @@
 import requests
-import pandas as pd
-
-import warnings
 
 from ..utils.auth import get_api_key
-
-
-# to do: enforce media, thumnail and landing page as boolean
-# to do: enforce rows to be a number
-# to do: enforce other variables to be strings
-# to do: test for facets
-# to do: throw a warning when reusability is not in ['open','permission','restricted']
-# to do: test utils
 
 def SearchWrapper(**kwargs):
   """
   Wrapper for the Search API
+
+  >>> from pyeuropeana.apis import SearchWrapper
+  >>> resp = SearchWrapper(
+  >>>    query = 'Paris',
+  >>>    qf = 'TYPE:IMAGE',
+  >>>    rows = 150,
+  >>>     )
 
   Parameters
   ----------
@@ -74,11 +70,6 @@ def SearchWrapper(**kwargs):
   response = requests.get('https://api.europeana.eu/record/v2/search.json', params = {'wskey':params['wskey'],'query':'*'}).json()
   if not response['success']:
     raise ValueError(response['error'])
-
-  # careful with this: are we expecting arguments other than the ones in params?
-  wrong_args = [args for args in kwargs.keys() if args not in params]
-  if wrong_args:
-    raise ValueError(f"Invalid arguments detected: {wrong_args}")
 
   url = requests.get('https://api.europeana.eu/record/v2/search.json', params = params).url
   response =  cursor_search(params)

@@ -184,18 +184,37 @@
 <h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">#</a></h1>
 <section id="installation">
 <span id="id1"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h2>
-<p>To use Lumache, first install it using pip:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>pip install lumache
+<p>Install the package using pip:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>pip install https://github.com/europeana/rd-europeana-python-api/archive/stable.zip
+</pre></div>
+</div>
+<p>Or from source:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>git clone https://github.com/europeana/rd-europeana-python-api.git
+<span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span><span class="nb">cd</span> rd-europeana-python-api
+<span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>pip install .
+</pre></div>
+</div>
+</section>
+<section id="authentication">
+<span id="id2"></span><h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">#</a></h2>
+<p>Obtain your API key here</p>
+<p>Set <cite>EUROPEANA_API_KEY</cite> as an environment variable running</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span><span class="nb">export</span> <span class="nv">EUROPEANA_API_KEY</span><span class="o">=</span>yourapikey
+</pre></div>
+</div>
+<p>in the terminal.</p>
+<p>You can also set it from python as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'EUROPEANA_API_KEY'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'yourapikey'</span>
 </pre></div>
 </div>
 </section>
 <section id="quickstart">
-<span id="id2"></span><h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">#</a></h2>
+<span id="id3"></span><h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyeuropeana.apis</span> <span class="kn">import</span> <span class="n">SearchWrapper</span>
 <span class="kn">from</span> <span class="nn">pyeuropeana.utils.edm_tools</span> <span class="kn">import</span> <span class="n">resp2df</span>
 
 <span class="n">resp</span> <span class="o">=</span> <span class="n">SearchWrapper</span><span class="p">(</span>
-    <span class="n">wskey</span> <span class="o">=</span> <span class="s1">'your key'</span><span class="p">,</span>
     <span class="n">query</span> <span class="o">=</span> <span class="s1">'Paris'</span><span class="p">,</span>
     <span class="n">rows</span> <span class="o">=</span> <span class="mi">150</span>
 <span class="p">)</span>
@@ -265,6 +284,7 @@
             <ul>
 <li><a class="reference internal" href="#">Usage</a><ul>
 <li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#authentication">Authentication</a></li>
 <li><a class="reference internal" href="#quickstart">Quickstart</a></li>
 </ul>
 </li>

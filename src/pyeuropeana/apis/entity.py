@@ -1,6 +1,28 @@
 import requests
 from ..utils.auth import get_api_key
 
+def Suggest(**kwargs):
+    """
+    Suggest method
+
+    """
+    wskey = get_api_key()
+    language = kwargs.get('language','en')
+    TYPE = kwargs.get('TYPE')
+    text = kwargs.get('text')
+    if not kwargs:
+      raise ValueError('No arguments passed')
+    if not text:
+      raise ValueError('Argument "text" is needed')
+    return requests.get(f'https://api.europeana.eu/entity/suggest',params = {'wskey':wskey,'text':text,'type':TYPE,'language':language}).json()
+
+
+def Retrieve(**kwargs):
+  return 
+
+def Resolve(**kwargs):
+  return 
+
 
 class EntityAPI:
   def __init__(self,wskey):
@@ -10,6 +32,9 @@ class EntityAPI:
       raise ValueError(response['error'])
 
   def suggest(self,**kwargs):
+    """
+    Suggest method
+    """
     language = kwargs.get('language','en')
     TYPE = kwargs.get('TYPE')
     text = kwargs.get('text')
