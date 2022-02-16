@@ -7,18 +7,19 @@ def record(record_id):
   """
   Wrapper for the Record API [1]
 
-  >>> from pyeuropeana.apis import RecordWrapper
-  >>> resp = RecordWrapper(
-  >>>    record_id = '/79/resource_document_museumboerhaave_V35167',
-  >>>     )
+  >>> import pyeuropeana.apis as apis
+  >>> resp = apis.record('/79/resource_document_museumboerhaave_V35167')
   
-  Parameters
-  ----------
-  record_id : str
-      The identifier of the record which is composed of the dataset identifier \\
-      plus a local identifier within the dataset in the form of "/DATASET_ID/LOCAL_ID", for more detail see Europeana ID [2]
+  Args:
+    record_id (:obj:`str`)
+        The identifier of the record which is composed of the dataset identifier \\
+        plus a local identifier within the dataset in the form of "/DATASET_ID/LOCAL_ID", for more detail see Europeana ID [2]
 
-  References
+  Returns: :obj:`dict`
+    Response
+
+
+  References:
     1. https://pro.europeana.eu/page/record
     2. https://pro.europeana.eu/page/intro#identifying-records
   """

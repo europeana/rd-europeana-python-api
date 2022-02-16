@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="utils" href="utils.html" />
-    <link rel="prev" title="Usage" href="usage.html" /> 
+    <link rel="prev" title="Getting started" href="usage.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -38,7 +38,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Getting started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">apis</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#search">search</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#record">record</a></li>
@@ -90,9 +90,9 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="pyeuropeana.apis.search.search">
 <span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.search.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.search.search" title="Permalink to this definition"></a></dt>
-<dd><p>Wrapper for the Search API</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyeuropeana.apis</span> <span class="kn">import</span> <span class="n">SearchWrapper</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">SearchWrapper</span><span class="p">(</span>
+<dd><p>Wrapper for the Search API [1]</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
 <span class="gp">&gt;&gt;&gt; </span>   <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;Paris&#39;</span><span class="p">,</span>
 <span class="gp">&gt;&gt;&gt; </span>   <span class="n">qf</span> <span class="o">=</span> <span class="s1">&#39;TYPE:IMAGE&#39;</span><span class="p">,</span>
 <span class="gp">&gt;&gt;&gt; </span>   <span class="n">rows</span> <span class="o">=</span> <span class="mi">150</span><span class="p">,</span>
@@ -100,33 +100,42 @@
 </pre></div>
 </div>
 <dl class="simple">
-<dt>query<span class="classifier">str</span></dt><dd><p>The search term(s). See Query Syntax [?] for information on forming complex queries and examples.</p>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>query (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>The search term(s). See Query Syntax [?] for information on forming complex queries and examples.</p>
 </dd>
-<dt>qf<span class="classifier">int, optional</span></dt><dd><p>Query Refinement. This parameter can be defined more than once. See Query Syntax [?] page for more information.</p>
+<dt>rows (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>,optional)</dt><dd><p>The number of records to return. Maximum is 100. Defaults to 12. See pagination.</p>
 </dd>
-<dt>reusability<span class="classifier">str, optional</span></dt><dd><p>Filter by copyright status. Possible values are open, restricted or permission.</p>
+<dt>qf (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>,optional)</dt><dd><p>Query Refinement. This parameter can be defined more than once. See Query Syntax [?] page for more information.</p>
 </dd>
-<dt>media<span class="classifier">bool, optional</span></dt><dd><p>Filter by records where an URL to the full media file is present in the edm:isShownBy or edm:hasView metadata and is resolvable.</p>
+<dt>reusability (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>,optional)</dt><dd><p>Filter by copyright status. Possible values are open, restricted or permission.</p>
 </dd>
-<dt>thumbnail<span class="classifier">bool, optional</span></dt><dd><p>Filter by records where a thumbnail image has been generated for any of the WebResource media resources (thumbnail available in the edmPreview field).</p>
+<dt>media (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>,optional)</dt><dd><p>Filter by records where an URL to the full media file is present in the edm:isShownBy or edm:hasView metadata and is resolvable.</p>
 </dd>
-<dt>landingpage<span class="classifier">bool, optional</span></dt><dd><p>Filter by records where the link to the original object on the providers website (edm:isShownAt) is present and verified to be working.</p>
+<dt>thumbnail (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>,optional)</dt><dd><p>Filter by records where a thumbnail image has been generated for any of the WebResource media resources (thumbnail available in the edmPreview field).</p>
 </dd>
-<dt>colourpalette<span class="classifier">str, optional</span></dt><dd><p>Filter by images where one of the colours (see colour palette) of an image matches the provided colour code. You can provide this parameter multiple times, the search will then do an ‘AND’ search on all the provided colours.</p>
+<dt>landingpage (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>,optional)</dt><dd><p>Filter by records where the link to the original object on the providers website (edm:isShownAt) is present and verified to be working.</p>
 </dd>
-<dt>theme<span class="classifier">str, optional</span></dt><dd><p>Restrict the query over one of the Europeana Thematic Collections. The possible values are: archaelogy, art, fashion, industrial, manuscript, map, migration, music, nature, newspaper, photography, sport, ww1.</p>
+<dt>colourpalette (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>,optional)</dt><dd><p>Filter by images where one of the colours (see colour palette) of an image matches the provided colour code. You can provide this parameter multiple times, the search will then do an ‘AND’ search on all the provided colours.</p>
 </dd>
-<dt>sort<span class="classifier">str, optional</span></dt><dd><p>Sorting records in ascending or descending order of search fields. The following fields are supported: score (relenvancy of the search result), timestamp_created, timestamp_update, europeana_id, COMPLETENESS, is_fulltext, has_thumbnails, and has_media. Sorting on more than one field is possible by supplying as comma separated values. It is also possible to randomly order items by using the keyword “random” instead of a field name. You can also request for a fixed random order by indicating a seed “random_SEED” which is useful when paginating along the same randomized order.</p>
+<dt>theme (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>,optional)</dt><dd><p>Restrict the query over one of the Europeana Thematic Collections. The possible values are: archaelogy, art, fashion, industrial, manuscript, map, migration, music, nature, newspaper, photography, sport, ww1.</p>
 </dd>
-<dt>profile<span class="classifier">str, optional</span></dt><dd><p>A profile parameter which controls the format and richness of the response.</p>
+<dt>sort (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>,optional)</dt><dd><p>Sorting records in ascending or descending order of search fields. The following fields are supported: score (relenvancy of the search result), timestamp_created, timestamp_update, europeana_id, COMPLETENESS, is_fulltext, has_thumbnails, and has_media. Sorting on more than one field is possible by supplying as comma separated values. It is also possible to randomly order items by using the keyword “random” instead of a field name. You can also request for a fixed random order by indicating a seed “random_SEED” which is useful when paginating along the same randomized order.</p>
 </dd>
-<dt>rows<span class="classifier">int, optional</span></dt><dd><p>The number of records to return. Maximum is 100. Defaults to 12. See pagination.</p>
+<dt>profile (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>,optional)</dt><dd><p>A profile parameter which controls the format and richness of the response.</p>
 </dd>
-<dt>cursor<span class="classifier">str, optional</span></dt><dd><p>A cursor mark from where to start the search result set when using deep pagination. Set to * to start cursor-based pagination.</p>
+<dt>cursor (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>,optional)</dt><dd><p>A cursor mark from where to start the search result set when using deep pagination. Set to * to start cursor-based pagination.</p>
 </dd>
-<dt>callback<span class="classifier">str, optional</span></dt><dd><p>Name of a client side callback function, see JSONP.</p>
+<dt>callback (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>,optional)</dt><dd><p>Name of a client side callback function, see JSONP.</p>
 </dd>
-<dt>facet<span class="classifier">str, optional</span></dt><dd><p>A name of an individual field or a comma separated list of fields</p>
+<dt>facet (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>,optional)</dt><dd><p>A name of an individual field or a comma separated list of fields</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: <code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></dt><dd><p>Response</p>
+</dd>
+<dt>References:</dt><dd><ol class="arabic simple">
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/search">https://pro.europeana.eu/page/search</a></p></li>
+</ol>
 </dd>
 </dl>
 </dd></dl>
@@ -136,18 +145,21 @@
 <h2>record<a class="headerlink" href="#record" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="pyeuropeana.apis.record.record">
-<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.record.</span></span><span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.record.record" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.record.</span></span><span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.record.record" title="Permalink to this definition"></a></dt>
 <dd><p>Wrapper for the Record API [1]</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyeuropeana.apis</span> <span class="kn">import</span> <span class="n">RecordWrapper</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">RecordWrapper</span><span class="p">(</span>
-<span class="gp">&gt;&gt;&gt; </span>   <span class="n">record_id</span> <span class="o">=</span> <span class="s1">&#39;/79/resource_document_museumboerhaave_V35167&#39;</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="s1">&#39;/79/resource_document_museumboerhaave_V35167&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="simple">
-<dt>record_id<span class="classifier">str</span></dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>record_id (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
 </dd>
-<dt>References</dt><dd><ol class="arabic simple">
+</dl>
+</dd>
+<dt>Returns: <code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></dt><dd><p>Response</p>
+</dd>
+<dt>References:</dt><dd><ol class="arabic simple">
 <li><p><a class="reference external" href="https://pro.europeana.eu/page/record">https://pro.europeana.eu/page/record</a></p></li>
 <li><p><a class="reference external" href="https://pro.europeana.eu/page/intro#identifying-records">https://pro.europeana.eu/page/intro#identifying-records</a></p></li>
 </ol>
@@ -163,7 +175,34 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="pyeuropeana.apis.entity.suggest">
 <span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.entity.</span></span><span class="sig-name descname"><span class="pre">suggest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.entity.suggest" title="Permalink to this definition"></a></dt>
-<dd><p>Suggest method</p>
+<dd><p>Autosuggest method of the Entity API [1]</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">entity</span><span class="o">.</span><span class="n">suggest</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;leonardo&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">TYPE</span> <span class="o">=</span> <span class="s1">&#39;agent&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">language</span> <span class="o">=</span> <span class="s1">&#39;de&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>text (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>The search term(s)</p>
+</dd>
+<dt>TYPE (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, optional)</dt><dd><p>Used to restrict search for a specific entity type (agents, places, concepts and time spans), otherwise all.</p>
+</dd>
+<dt>language (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, optional)</dt><dd><p>The language (two or three letters ISO639 language code) in which the text is written. If omitted, defaults to English (“en”).</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: <code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></dt><dd><p>The suggest method returns a list of 10 suggest entities. For some entities (in particular people/agents) it returns some contextual
+information is known such as the profession, date of birth and date of death. For other entities it just returns the label (prefLabel) 
+in the given language, the entity type and the entity identifier. For a full list of data fields, please see the Entity context definition.</p>
+</dd>
+<dt>References: </dt><dd><ol class="arabic simple">
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/entity">https://pro.europeana.eu/page/entity</a></p></li>
+</ol>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -172,7 +211,31 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="pyeuropeana.apis.entity.retrieve">
 <span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.entity.</span></span><span class="sig-name descname"><span class="pre">retrieve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.entity.retrieve" title="Permalink to this definition"></a></dt>
-<dd><p>Retrieve method</p>
+<dd><p>Retrieve method of the Entity API [1]</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">entity</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">TYPE</span> <span class="o">=</span> <span class="s1">&#39;agent&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">IDENTIFIER</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>TYPE (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>The type of the entity, either: “agent”, “concept”, “place” or “timespan”.</p>
+</dd>
+<dt>IDENTIFIER (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>)</dt><dd><p>The local identifier for the entity.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: <code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></dt><dd><p>The retrieve method returns all known information about an entity in all languages in which the information is available.
+This includes all localised labels (prefLabel), contextual information such as biography and all references of the same entity
+in other external data sources (sameAs). For a full list of data fields, please see the Entity context definition.</p>
+</dd>
+<dt>References:</dt><dd><ol class="arabic simple">
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/entity">https://pro.europeana.eu/page/entity</a></p></li>
+</ol>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -181,7 +244,24 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="pyeuropeana.apis.entity.resolve">
 <span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.entity.</span></span><span class="sig-name descname"><span class="pre">resolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uri</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.entity.resolve" title="Permalink to this definition"></a></dt>
-<dd><p>Resolve method</p>
+<dd><p>Resolve method of the Entity API [1]</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">entity</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Leonardo_da_Vinci&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>uri (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>The external identifier (as an URI) for the entity.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: <code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></dt><dd><p>On success, the method returns a HTTP 301 with the Europeana URI within the Location Header field.</p>
+</dd>
+<dt>References:</dt><dd><ol class="arabic simple">
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/entity">https://pro.europeana.eu/page/entity</a></p></li>
+</ol>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -194,18 +274,20 @@
 <dt class="sig sig-object py" id="pyeuropeana.apis.iiif.manifest">
 <span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.iiif.</span></span><span class="sig-name descname"><span class="pre">manifest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">RECORD_ID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.iiif.manifest" title="Permalink to this definition"></a></dt>
 <dd><p>Wrapper for the IIIF API [1], method manifest</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyeuropeana.apis</span> <span class="kn">import</span> <span class="n">RecordWrapper</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">RecordWrapper</span><span class="p">(</span>
-<span class="gp">&gt;&gt;&gt; </span>   <span class="n">record_id</span> <span class="o">=</span> <span class="s1">&#39;/79/resource_document_museumboerhaave_V35167&#39;</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">iiif</span><span class="o">.</span><span class="n">manifest</span><span class="p">(</span><span class="s1">&#39;/9200356/BibliographicResource_3000118390149&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="simple">
-<dt>record_id<span class="classifier">str</span></dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>record_id (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
 </dd>
-<dt>References</dt><dd><ol class="arabic simple">
-<li><p><a class="reference external" href="https://pro.europeana.eu/page/record">https://pro.europeana.eu/page/record</a></p></li>
-<li><p><a class="reference external" href="https://pro.europeana.eu/page/intro#identifying-records">https://pro.europeana.eu/page/intro#identifying-records</a></p></li>
+</dl>
+</dd>
+<dt>Returns <code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></dt><dd><p>Response</p>
+</dd>
+<dt>References:</dt><dd><ol class="arabic simple">
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/iiif">https://pro.europeana.eu/page/iiif</a></p></li>
 </ol>
 </dd>
 </dl>
@@ -218,18 +300,20 @@
 <dt class="sig sig-object py" id="id0">
 <span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.iiif.</span></span><span class="sig-name descname"><span class="pre">manifest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">RECORD_ID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
 <dd><p>Wrapper for the IIIF API [1], method manifest</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyeuropeana.apis</span> <span class="kn">import</span> <span class="n">RecordWrapper</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">RecordWrapper</span><span class="p">(</span>
-<span class="gp">&gt;&gt;&gt; </span>   <span class="n">record_id</span> <span class="o">=</span> <span class="s1">&#39;/79/resource_document_museumboerhaave_V35167&#39;</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">iiif</span><span class="o">.</span><span class="n">manifest</span><span class="p">(</span><span class="s1">&#39;/9200356/BibliographicResource_3000118390149&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="simple">
-<dt>record_id<span class="classifier">str</span></dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>record_id (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
 </dd>
-<dt>References</dt><dd><ol class="arabic simple">
-<li><p><a class="reference external" href="https://pro.europeana.eu/page/record">https://pro.europeana.eu/page/record</a></p></li>
-<li><p><a class="reference external" href="https://pro.europeana.eu/page/intro#identifying-records">https://pro.europeana.eu/page/intro#identifying-records</a></p></li>
+</dl>
+</dd>
+<dt>Returns <code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></dt><dd><p>Response</p>
+</dd>
+<dt>References:</dt><dd><ol class="arabic simple">
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/iiif">https://pro.europeana.eu/page/iiif</a></p></li>
 </ol>
 </dd>
 </dl>
@@ -242,18 +326,20 @@
 <dt class="sig sig-object py" id="id1">
 <span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.iiif.</span></span><span class="sig-name descname"><span class="pre">manifest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">RECORD_ID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
 <dd><p>Wrapper for the IIIF API [1], method manifest</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyeuropeana.apis</span> <span class="kn">import</span> <span class="n">RecordWrapper</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">RecordWrapper</span><span class="p">(</span>
-<span class="gp">&gt;&gt;&gt; </span>   <span class="n">record_id</span> <span class="o">=</span> <span class="s1">&#39;/79/resource_document_museumboerhaave_V35167&#39;</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">iiif</span><span class="o">.</span><span class="n">manifest</span><span class="p">(</span><span class="s1">&#39;/9200356/BibliographicResource_3000118390149&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="simple">
-<dt>record_id<span class="classifier">str</span></dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>record_id (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
 </dd>
-<dt>References</dt><dd><ol class="arabic simple">
-<li><p><a class="reference external" href="https://pro.europeana.eu/page/record">https://pro.europeana.eu/page/record</a></p></li>
-<li><p><a class="reference external" href="https://pro.europeana.eu/page/intro#identifying-records">https://pro.europeana.eu/page/intro#identifying-records</a></p></li>
+</dl>
+</dd>
+<dt>Returns <code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></dt><dd><p>Response</p>
+</dd>
+<dt>References:</dt><dd><ol class="arabic simple">
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/iiif">https://pro.europeana.eu/page/iiif</a></p></li>
 </ol>
 </dd>
 </dl>
@@ -267,7 +353,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usage.html" class="btn btn-neutral float-left" title="Getting started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="utils.html" class="btn btn-neutral float-right" title="utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
