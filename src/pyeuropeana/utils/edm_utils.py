@@ -1,15 +1,25 @@
 import urllib.request as urllibrec
 from pathlib import Path
-
 import pandas as pd
 
-def europeana_id2filename(europeana_id):
-  return europeana_id.replace("/","11placeholder11")+'.jpg'
+from typing import Optional
 
-def europeana_id2uri(ID):
-  return 'http://data.europeana.eu/item'+ID
+def resp2df(response: dict, full: Optional[bool] = False) -> pd.DataFrame:
+    """
 
-def resp2df(response, full = False):
+    Utility for transforming the output of the search api into a dataframe
+
+    Args:
+      response 
+        Description
+
+      full
+        Description
+
+    Returns: :obj:`pd.DataFrame`
+      Dataframe with columns ...
+
+    """
     if not response['items']:
         return None
     if full:
@@ -18,6 +28,11 @@ def resp2df(response, full = False):
     columns = [k for k in list(obj_list[0].keys()) if k not in ['raw_metadata']]
     return pd.DataFrame(obj_list)[columns]
 
+def europeana_id2filename(europeana_id):
+  return europeana_id.replace("/","11placeholder11")+'.jpg'
+
+def europeana_id2uri(ID):
+  return 'http://data.europeana.eu/item'+ID
 
 def get_value_lang(lang_dict):
     if 'en' in lang_dict.keys():

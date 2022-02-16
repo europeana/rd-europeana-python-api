@@ -297,16 +297,22 @@ in other external data sources (sameAs). For a full list of data fields, please 
 <section id="annopage">
 <h3>annopage<a class="headerlink" href="#annopage" title="Permalink to this headline"></a></h3>
 <dl class="py function">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.iiif.</span></span><span class="sig-name descname"><span class="pre">manifest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">RECORD_ID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
-<dd><p>Wrapper for the IIIF API [1], method manifest</p>
+<dt class="sig sig-object py" id="pyeuropeana.apis.iiif.annopage">
+<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.iiif.</span></span><span class="sig-name descname"><span class="pre">annopage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.iiif.annopage" title="Permalink to this definition"></a></dt>
+<dd><p>Wrapper for the IIIF API [1], method annopage</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">iiif</span><span class="o">.</span><span class="n">manifest</span><span class="p">(</span><span class="s1">&#39;/9200356/BibliographicResource_3000118390149&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">iiif</span><span class="o">.</span><span class="n">annopage</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">RECORD_ID</span> <span class="o">=</span> <span class="s1">&#39;/9200356/BibliographicResource_3000118390149&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">PAGE_ID</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
 </pre></div>
 </div>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
-<dt>record_id (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
+<dt>RECORD_ID (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
+</dd>
+<dt>PAGE_ID (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>)</dt><dd><p>The number of the page in logical sequence starting with 1 for the first page. 
+There can be pages that do not contain any text which will mean that the request will return a HTTP 404.</p>
 </dd>
 </dl>
 </dd>
@@ -323,16 +329,21 @@ in other external data sources (sameAs). For a full list of data fields, please 
 <section id="fulltext">
 <h3>fulltext<a class="headerlink" href="#fulltext" title="Permalink to this headline"></a></h3>
 <dl class="py function">
-<dt class="sig sig-object py" id="id1">
-<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.iiif.</span></span><span class="sig-name descname"><span class="pre">manifest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">RECORD_ID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
-<dd><p>Wrapper for the IIIF API [1], method manifest</p>
+<dt class="sig sig-object py" id="pyeuropeana.apis.iiif.fulltext">
+<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.iiif.</span></span><span class="sig-name descname"><span class="pre">fulltext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.iiif.fulltext" title="Permalink to this definition"></a></dt>
+<dd><p>Wrapper for the IIIF API [1], method fulltext</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">iiif</span><span class="o">.</span><span class="n">manifest</span><span class="p">(</span><span class="s1">&#39;/9200356/BibliographicResource_3000118390149&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">iiif</span><span class="o">.</span><span class="n">fulltext</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">RECORD_ID</span> <span class="o">=</span> <span class="s1">&#39;/9200356/BibliographicResource_3000118390149&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">FULLTEXT_ID</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
 </pre></div>
 </div>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
-<dt>record_id (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
+<dt>RECORD_ID (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
+</dd>
+<dt>FULLTEXT_ID (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>The identifier of the full text resource.</p>
 </dd>
 </dl>
 </dd>

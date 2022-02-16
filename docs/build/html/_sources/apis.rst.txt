@@ -39,8 +39,8 @@ manifest
 
 annopage
 ^^^^^^^^
-.. autofunction:: pyeuropeana.apis.iiif.manifest
+.. autofunction:: pyeuropeana.apis.iiif.annopage
 
 fulltext
 ^^^^^^^^
-.. autofunction:: pyeuropeana.apis.iiif.manifest
+.. autofunction:: pyeuropeana.apis.iiif.fulltext
