@@ -16,18 +16,22 @@ From source
 
 `pip install -e .`
 
-
-
-## Usage
+## Authentication
 
 Get your API key [here](https://pro.europeana.eu/pages/get-api)
 
+Set `EUROPEANA_API_KEY` as an environment variable running `export EUROPEANA_API_KEY=yourapikey` in the terminal.
+
+If running in Google Colab use `os.environ['EUROPEANA_API_KEY'] = 'yourapikey'`
+
+## Usage
+
+
 ```python
-from pyeuropeana.apis import Search
+from pyeuropeana.apis import SearchWrapper
+from pyeuropeana.utils.edm_utils import res2df
 
-search_api = Search('YOUR_API_KEY')
-
-result = search_api(
+result = SearchWrapper(
   query = '*',
   qf = '(skos_concept:"http://data.europeana.eu/concept/base/48" AND TYPE:IMAGE)',
   reusability = 'open AND permission',

@@ -1,32 +1,30 @@
 import requests
 import re
 
+from ..utils.auth import get_api_key
+
 def RecordWrapper(**kwargs):
   """
   Wrapper for the Record API [1]
 
   >>> from pyeuropeana.apis import RecordWrapper
   >>> resp = RecordWrapper(
-  >>>    wskey = 'your_api_key',
   >>>    record_id = '/79/resource_document_museumboerhaave_V35167',
   >>>     )
   
   Parameters
   ----------
-  wskey : str
-      The api key. Get an api key here [2]
   record_id : str
       The identifier of the record which is composed of the dataset identifier \\
-      plus a local identifier within the dataset in the form of "/DATASET_ID/LOCAL_ID", for more detail see Europeana ID [3]
+      plus a local identifier within the dataset in the form of "/DATASET_ID/LOCAL_ID", for more detail see Europeana ID [2]
 
   References
     1. https://pro.europeana.eu/page/record
-    2. https://pro.europeana.eu/pages/get-api
-    3. https://pro.europeana.eu/page/intro#identifying-records
+    2. https://pro.europeana.eu/page/intro#identifying-records
   """
 
   params = {
-    'wskey':kwargs.get('wskey'),
+    'wskey':get_api_key(),
     }
   
   record_id = kwargs.get('record_id')

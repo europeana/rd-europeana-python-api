@@ -1,4 +1,6 @@
 import requests
+from ..utils.auth import get_api_key
+
 
 class EntityAPI:
   def __init__(self,wskey):

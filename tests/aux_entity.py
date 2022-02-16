@@ -1,5 +1,5 @@
 from pyeuropeana.apis import EntityAPI
-
+import os
 
 if __name__ == '__main__':
 
@@ -12,6 +12,9 @@ if __name__ == '__main__':
     )
 
     print(resp)
+
+    API_KEY = os.environ.get('API_KEY')
+    print(API_KEY)
 
     # resp = entity_api.retrieve(
     #     TYPE = 'agent',
