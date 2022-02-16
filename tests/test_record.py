@@ -1,6 +1,6 @@
 import unittest
 
-from pyeuropeana.apis import RecordWrapper
+from pyeuropeana.apis import record
 from pyeuropeana.utils.edm_utils import process_CHO_record
 
 # caution: avoid that the exceptions depend on the error messages of the api
@@ -12,33 +12,23 @@ class TestRecord(unittest.TestCase):
         Test valid id
         """
         with self.assertRaises(ValueError) as context:
-            RecordWrapper(
-                record_id = 2,
-                )
+            record(2)
         self.assertTrue("the input id should be a string" in str(context.exception))
 
         with self.assertRaises(ValueError) as context:
-          RecordWrapper(
-                record_id = True,
-                )
+          record(True)
         self.assertTrue("the input id should be a string" in str(context.exception))
 
         with self.assertRaises(ValueError) as context:
-          RecordWrapper(
-                record_id = 'asfd',
-                )
+          record('asfd')
         self.assertTrue("Not valid Europeana id" in str(context.exception))
 
         with self.assertRaises(ValueError) as context:
-            RecordWrapper(
-                    record_id = '/asdfa345sdf',
-                    )
+            record('/asdfa345sdf')
         self.assertTrue("Not valid Europeana id" in str(context.exception))
 
         with self.assertRaises(ValueError) as context:
-            RecordWrapper(
-                        record_id = 'asdfa/345sdf',
-                        )
+            record('asdfa/345sdf')
         self.assertTrue("Not valid Europeana id" in str(context.exception))
 
 
