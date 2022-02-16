@@ -1,11 +1,11 @@
-from pyeuropeana.apis import EntityAPI
+import pyeuropeana.apis as apis
 import os
 
 if __name__ == '__main__':
 
-    entity_api = EntityAPI('wrong_key')
+    #entity_api = EntityAPI('wrong_key')
 
-    resp = entity_api.retrieve(
+    resp = apis.entity.suggest(
         text = 'leonardo',
         TYPE = 'agent',
         language = 'es'
@@ -13,8 +13,20 @@ if __name__ == '__main__':
 
     print(resp)
 
-    API_KEY = os.environ.get('API_KEY')
-    print(API_KEY)
+    resp = apis.entity.retrieve(
+        TYPE = 'agent',
+        IDENTIFIER = 2
+    )
+
+    print(resp)
+
+    resp = apis.entity.resolve('http://dbpedia.org/resource/Leonardo_da_Vinci')
+
+
+    print(resp)
+
+    #API_KEY = os.environ.get('API_KEY')
+    #print(API_KEY)
 
     # resp = entity_api.retrieve(
     #     TYPE = 'agent',

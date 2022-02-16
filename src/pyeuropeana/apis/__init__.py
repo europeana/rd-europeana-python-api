@@ -1,4 +1,2 @@
-from .entity import EntityAPI
-from .search import SearchAPI, SearchWrapper
-from .record import RecordAPI, RecordWrapper
-from .IIIF import IIIFAPI
+from .search import search
+from .record import record

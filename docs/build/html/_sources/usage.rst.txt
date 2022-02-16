@@ -1,4 +1,4 @@
-Usage
+Getting started
 =====
 
 .. _installation:
@@ -46,7 +46,7 @@ You can also set it from python as
 
 .. _quickstart:
 
-Quickstart
+Examples
 ------------
 
 .. code-block:: python

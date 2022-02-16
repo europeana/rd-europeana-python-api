@@ -29,6 +29,6 @@ Contents
 .. toctree::
 
    usage
-   searchapi
-   recordapi
-   entityapi
+   apis
+   utils
+   

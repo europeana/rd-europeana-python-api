@@ -2,7 +2,7 @@ import requests
 
 from ..utils.auth import get_api_key
 
-def SearchWrapper(**kwargs):
+def search(**kwargs):
   """
   Wrapper for the Search API
 

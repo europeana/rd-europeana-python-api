@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>apis &mdash; Europeana python interface 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="utils" href="utils.html" />
+    <link rel="prev" title="Usage" href="usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Europeana python interface
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">apis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#search">search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#record">record</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#entity">entity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#suggest">suggest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#retrieve">retrieve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resolve">resolve</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#iiif">iiif</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#manifest">manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#annopage">annopage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fulltext">fulltext</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">utils</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Europeana python interface</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>apis</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/apis.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="apis">
+<h1>apis<a class="headerlink" href="#apis" title="Permalink to this headline"></a></h1>
+<section id="search">
+<h2>search<a class="headerlink" href="#search" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyeuropeana.apis.search.search">
+<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.search.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.search.search" title="Permalink to this definition"></a></dt>
+<dd><p>Wrapper for the Search API</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyeuropeana.apis</span> <span class="kn">import</span> <span class="n">SearchWrapper</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">SearchWrapper</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;Paris&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">qf</span> <span class="o">=</span> <span class="s1">&#39;TYPE:IMAGE&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">rows</span> <span class="o">=</span> <span class="mi">150</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>query<span class="classifier">str</span></dt><dd><p>The search term(s). See Query Syntax [?] for information on forming complex queries and examples.</p>
+</dd>
+<dt>qf<span class="classifier">int, optional</span></dt><dd><p>Query Refinement. This parameter can be defined more than once. See Query Syntax [?] page for more information.</p>
+</dd>
+<dt>reusability<span class="classifier">str, optional</span></dt><dd><p>Filter by copyright status. Possible values are open, restricted or permission.</p>
+</dd>
+<dt>media<span class="classifier">bool, optional</span></dt><dd><p>Filter by records where an URL to the full media file is present in the edm:isShownBy or edm:hasView metadata and is resolvable.</p>
+</dd>
+<dt>thumbnail<span class="classifier">bool, optional</span></dt><dd><p>Filter by records where a thumbnail image has been generated for any of the WebResource media resources (thumbnail available in the edmPreview field).</p>
+</dd>
+<dt>landingpage<span class="classifier">bool, optional</span></dt><dd><p>Filter by records where the link to the original object on the providers website (edm:isShownAt) is present and verified to be working.</p>
+</dd>
+<dt>colourpalette<span class="classifier">str, optional</span></dt><dd><p>Filter by images where one of the colours (see colour palette) of an image matches the provided colour code. You can provide this parameter multiple times, the search will then do an ‘AND’ search on all the provided colours.</p>
+</dd>
+<dt>theme<span class="classifier">str, optional</span></dt><dd><p>Restrict the query over one of the Europeana Thematic Collections. The possible values are: archaelogy, art, fashion, industrial, manuscript, map, migration, music, nature, newspaper, photography, sport, ww1.</p>
+</dd>
+<dt>sort<span class="classifier">str, optional</span></dt><dd><p>Sorting records in ascending or descending order of search fields. The following fields are supported: score (relenvancy of the search result), timestamp_created, timestamp_update, europeana_id, COMPLETENESS, is_fulltext, has_thumbnails, and has_media. Sorting on more than one field is possible by supplying as comma separated values. It is also possible to randomly order items by using the keyword “random” instead of a field name. You can also request for a fixed random order by indicating a seed “random_SEED” which is useful when paginating along the same randomized order.</p>
+</dd>
+<dt>profile<span class="classifier">str, optional</span></dt><dd><p>A profile parameter which controls the format and richness of the response.</p>
+</dd>
+<dt>rows<span class="classifier">int, optional</span></dt><dd><p>The number of records to return. Maximum is 100. Defaults to 12. See pagination.</p>
+</dd>
+<dt>cursor<span class="classifier">str, optional</span></dt><dd><p>A cursor mark from where to start the search result set when using deep pagination. Set to * to start cursor-based pagination.</p>
+</dd>
+<dt>callback<span class="classifier">str, optional</span></dt><dd><p>Name of a client side callback function, see JSONP.</p>
+</dd>
+<dt>facet<span class="classifier">str, optional</span></dt><dd><p>A name of an individual field or a comma separated list of fields</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="record">
+<h2>record<a class="headerlink" href="#record" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyeuropeana.apis.record.record">
+<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.record.</span></span><span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.record.record" title="Permalink to this definition"></a></dt>
+<dd><p>Wrapper for the Record API [1]</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyeuropeana.apis</span> <span class="kn">import</span> <span class="n">RecordWrapper</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">RecordWrapper</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">record_id</span> <span class="o">=</span> <span class="s1">&#39;/79/resource_document_museumboerhaave_V35167&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>record_id<span class="classifier">str</span></dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
+</dd>
+<dt>References</dt><dd><ol class="arabic simple">
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/record">https://pro.europeana.eu/page/record</a></p></li>
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/intro#identifying-records">https://pro.europeana.eu/page/intro#identifying-records</a></p></li>
+</ol>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="entity">
+<h2>entity<a class="headerlink" href="#entity" title="Permalink to this headline"></a></h2>
+<section id="suggest">
+<h3>suggest<a class="headerlink" href="#suggest" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyeuropeana.apis.entity.suggest">
+<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.entity.</span></span><span class="sig-name descname"><span class="pre">suggest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.entity.suggest" title="Permalink to this definition"></a></dt>
+<dd><p>Suggest method</p>
+</dd></dl>
+
+</section>
+<section id="retrieve">
+<h3>retrieve<a class="headerlink" href="#retrieve" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyeuropeana.apis.entity.retrieve">
+<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.entity.</span></span><span class="sig-name descname"><span class="pre">retrieve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.entity.retrieve" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieve method</p>
+</dd></dl>
+
+</section>
+<section id="resolve">
+<h3>resolve<a class="headerlink" href="#resolve" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyeuropeana.apis.entity.resolve">
+<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.entity.</span></span><span class="sig-name descname"><span class="pre">resolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uri</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.entity.resolve" title="Permalink to this definition"></a></dt>
+<dd><p>Resolve method</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="iiif">
+<h2>iiif<a class="headerlink" href="#iiif" title="Permalink to this headline"></a></h2>
+<section id="manifest">
+<h3>manifest<a class="headerlink" href="#manifest" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyeuropeana.apis.iiif.manifest">
+<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.iiif.</span></span><span class="sig-name descname"><span class="pre">manifest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">RECORD_ID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.iiif.manifest" title="Permalink to this definition"></a></dt>
+<dd><p>Wrapper for the IIIF API [1], method manifest</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyeuropeana.apis</span> <span class="kn">import</span> <span class="n">RecordWrapper</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">RecordWrapper</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">record_id</span> <span class="o">=</span> <span class="s1">&#39;/79/resource_document_museumboerhaave_V35167&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>record_id<span class="classifier">str</span></dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
+</dd>
+<dt>References</dt><dd><ol class="arabic simple">
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/record">https://pro.europeana.eu/page/record</a></p></li>
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/intro#identifying-records">https://pro.europeana.eu/page/intro#identifying-records</a></p></li>
+</ol>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="annopage">
+<h3>annopage<a class="headerlink" href="#annopage" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.iiif.</span></span><span class="sig-name descname"><span class="pre">manifest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">RECORD_ID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd><p>Wrapper for the IIIF API [1], method manifest</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyeuropeana.apis</span> <span class="kn">import</span> <span class="n">RecordWrapper</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">RecordWrapper</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">record_id</span> <span class="o">=</span> <span class="s1">&#39;/79/resource_document_museumboerhaave_V35167&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>record_id<span class="classifier">str</span></dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
+</dd>
+<dt>References</dt><dd><ol class="arabic simple">
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/record">https://pro.europeana.eu/page/record</a></p></li>
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/intro#identifying-records">https://pro.europeana.eu/page/intro#identifying-records</a></p></li>
+</ol>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="fulltext">
+<h3>fulltext<a class="headerlink" href="#fulltext" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.iiif.</span></span><span class="sig-name descname"><span class="pre">manifest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">RECORD_ID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<dd><p>Wrapper for the IIIF API [1], method manifest</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyeuropeana.apis</span> <span class="kn">import</span> <span class="n">RecordWrapper</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">RecordWrapper</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">record_id</span> <span class="o">=</span> <span class="s1">&#39;/79/resource_document_museumboerhaave_V35167&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>record_id<span class="classifier">str</span></dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
+</dd>
+<dt>References</dt><dd><ol class="arabic simple">
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/record">https://pro.europeana.eu/page/record</a></p></li>
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/intro#identifying-records">https://pro.europeana.eu/page/intro#identifying-records</a></p></li>
+</ol>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="utils.html" class="btn btn-neutral float-right" title="utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Jose Eduardo Cejudo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

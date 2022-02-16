@@ -3,7 +3,7 @@ import re
 
 from ..utils.auth import get_api_key
 
-def RecordWrapper(**kwargs):
+def record(**kwargs):
   """
   Wrapper for the Record API [1]
 
