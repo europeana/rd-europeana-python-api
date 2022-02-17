@@ -14,7 +14,7 @@ From source
 
 `cd rd-europeana-python-api`
 
-`pip install -e .`
+`pip install .`
 
 ## Authentication
 
