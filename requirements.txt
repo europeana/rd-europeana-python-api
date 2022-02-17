@@ -5,4 +5,4 @@ pandas
 fire
 sphinx_rtd_theme
 furo
-git+https://github.com/europeana/rd-europeana-python-api/archive/documentation.zip
+.
