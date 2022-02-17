@@ -1,6 +1,5 @@
 *.egg-info
 Pipfile*
-notebooks
 .ipynb*
 comments.txt
 timing.py
@@ -8,3 +7,4 @@ timing.py
 poetry.lock
 dist
 tests/aux*
+notebooks/tmp

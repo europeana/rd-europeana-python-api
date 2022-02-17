@@ -5,3 +5,5 @@ pandas
 fire
 sphinx_rtd_theme
 furo
+numpy
+matplotlib
