@@ -3,6 +3,8 @@ import pyeuropeana.apis as apis
 
 if __name__ == "__main__":
 
+    utils.img_utils.url2img
+
 
     # Search
     apis.search(
@@ -42,6 +44,8 @@ if __name__ == "__main__":
     )
 
     df = utils.edm_utils.resp2df(resp)
+
+
 
 
 
