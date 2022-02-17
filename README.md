@@ -116,7 +116,7 @@ data = apis.iiif.fulltext(
 
 ## Documentation
 
-The documentation is available at [Read the Docs](https://rd-europeana-python-api.readthedocs.io/en/stable/apis.html)
+The documentation is available at [Read the Docs](https://rd-europeana-python-api.readthedocs.io/en/stable/index.html)
 
 You can also [build the docs](docs/README.md)
 
