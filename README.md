@@ -72,9 +72,7 @@ import pyeuropeana.apis as apis
 data = apis.record('/79/resource_document_museumboerhaave_V35167')
 ```
 
-### Entity API
-
-[Entity API](https://pro.europeana.eu/page/entity)
+### [Entity API](https://pro.europeana.eu/page/entity)
 
 ```python
 import pyeuropeana.apis as apis
