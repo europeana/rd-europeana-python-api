@@ -33,9 +33,7 @@ If running in Google Colab use `os.environ['EUROPEANA_API_KEY'] = 'yourapikey'`
 
 ## Usage
 
-### Search API
-
-[Search API](https://pro.europeana.eu/page/search)
+### [Search API](https://pro.europeana.eu/page/search)
 
 ```python
 import pyeuropeana.apis as apis
@@ -61,9 +59,7 @@ result = apis.search(
 dataframe = utils.edm_utils.resp2df(result)
 ```
 
-### Record API
-
-[Record API](https://pro.europeana.eu/page/record)
+### [Record API](https://pro.europeana.eu/page/record)
 
 ```python
 import pyeuropeana.apis as apis
@@ -94,9 +90,7 @@ data = apis.entity.retrieve(
 data = apis.entity.resolve('http://dbpedia.org/resource/Leonardo_da_Vinci')
 ```
 
-### IIIF API
-
-[IIIF API](https://pro.europeana.eu/page/iiif)
+### [IIIF API](https://pro.europeana.eu/page/iiif)
 
 ```python
 import pyeuropeana.apis as apis
