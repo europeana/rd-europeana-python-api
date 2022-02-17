@@ -3,3 +3,5 @@ requests
 pillow
 pandas
 fire
+sphinx_rtd_theme
+furo
