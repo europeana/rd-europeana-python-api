@@ -5,7 +5,8 @@ from ..utils.auth import get_api_key
 
 def manifest(RECORD_ID):
   """
-  Wrapper for the IIIF API [1], method manifest
+  
+  Manifest method of the IIIF API [1]. Returns a minimal set of metadata for an object
 
   >>> import pyeuropeana.apis as apis
   >>> resp = apis.iiif.manifest('/9200356/BibliographicResource_3000118390149')
@@ -29,7 +30,7 @@ def manifest(RECORD_ID):
 
 def annopage(**kwargs):
   """
-  Wrapper for the IIIF API [1], method annopage
+  Annopage method of the IIIF API [1]. Returns text and annotations for a given page of an object
 
   >>> import pyeuropeana.apis as apis
   >>> resp = apis.iiif.annopage(
@@ -65,7 +66,7 @@ def annopage(**kwargs):
 
 def fulltext(**kwargs):
   """
-  Wrapper for the IIIF API [1], method fulltext
+  Fulltext method of the IIIF API [1]. Returns the transciption of a single page of a newspaper
 
   >>> import pyeuropeana.apis as apis
   >>> resp = apis.iiif.fulltext(

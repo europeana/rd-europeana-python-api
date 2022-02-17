@@ -3,7 +3,7 @@ from ..utils.auth import get_api_key
 
 def suggest(**kwargs):
   """
-  Autosuggest method of the Entity API [1]
+  Suggest method of the Entity API [1]. Returns entities based on a text query
 
   >>> import pyeuropeana.apis as apis
   >>> resp = apis.entity.suggest(
@@ -42,7 +42,7 @@ def suggest(**kwargs):
 
 def retrieve(**kwargs):
   """
-  Retrieve method of the Entity API [1]
+  Retrieve method of the Entity API [1]. Returns information about a particular entity
 
   >>> import pyeuropeana.apis as apis
   >>> resp = apis.entity.retrieve(
@@ -74,7 +74,7 @@ def retrieve(**kwargs):
 
 def resolve(uri):
   """
-  Resolve method of the Entity API [1]
+  Resolve method of the Entity API [1]. Searches for an entity given an input URI
 
   >>> import pyeuropeana.apis as apis
   >>> resp = apis.entity.resolve('http://dbpedia.org/resource/Leonardo_da_Vinci')

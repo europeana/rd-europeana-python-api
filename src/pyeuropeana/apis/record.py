@@ -5,7 +5,7 @@ from ..utils.auth import get_api_key
 
 def record(record_id):
   """
-  Wrapper for the Record API [1]
+  Wrapper for the Record API [1]. Returns the information of an object specified by the Europeana ID
 
   >>> import pyeuropeana.apis as apis
   >>> resp = apis.record('/79/resource_document_museumboerhaave_V35167')

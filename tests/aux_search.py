@@ -42,3 +42,23 @@ if __name__ == "__main__":
     )
 
     df = utils.edm_utils.resp2df(resp)
+
+
+
+    result = apis.search(
+        query = '*',
+        qf = '(skos_concept:"http://data.europeana.eu/concept/base/48" AND TYPE:IMAGE)',
+        reusability = 'open AND permission',
+        media = True,
+        thumbnail = True,
+        landingpage = True,
+        colourpalette = '#0000FF',
+        theme = 'photography',
+        sort = 'europeana_id',
+        profile = 'rich',
+        rows = 1000,
+        ) # this gives you full response metadata along with cultural heritage object metadata
+
+        # use this utility function to transform a subset of the cultural heritage object metadata
+        # into a readable Pandas DataFrame
+    dataframe = utils.edm_utils.resp2df(result)

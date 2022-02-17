@@ -4,13 +4,20 @@ from ..utils.auth import get_api_key
 
 def search(**kwargs):
   """
-  Wrapper for the Search API [1]
+  Wrapper for the Search API [1]. Returns objects matching a query with several parameters
 
   >>> import pyeuropeana.apis as apis
   >>> resp = apis.search(
-  >>>    query = 'Paris',
+  >>>    query = '*',
   >>>    qf = 'TYPE:IMAGE',
-  >>>    rows = 150,
+  >>>    reusability = 'open AND permission',
+  >>>    media = True,
+  >>>    thumbnail = True,
+  >>>    colourpalette = '#0000FF',
+  >>>    theme = 'photography',
+  >>>    sort = 'europeana_id',
+  >>>    profile = 'rich',
+  >>>    rows = 1000,
   >>>     )
 
   Args:
