@@ -1,35 +1,38 @@
 import pyeuropeana.utils as utils
 import pyeuropeana.apis as apis
 
+
 if __name__ == "__main__":
 
-    utils.url2img('https://mmb-web.adlibhosting.com/ais6/webapi/wwwopac.ashx?command=getcontent&server=images&value=bruiklenen/herinrichting/HM14-minigrail.jpg')
+    # utils.url2img('https://asdfmmb-web.adlibhosting.com/ais6/webapi/wwwopac.ashx?command=getcontent&server=images&value=bruiklenen/herinrichting/HM14-minigrail.jpg')
 
 
-    def get_facet_fields(response):
-        return response['facets'][0]['fields']
+    # def get_facet_fields(response):
+    #     return response['facets'][0]['fields']
 
-    def get_aggregators_count():
-        response = apis.search(
-            query = f'*',
-            profile = 'facets',
-            facet = 'PROVIDER&f.PROVIDER.facet.limit=30&f.PROVIDER.facet.offset=10',
-            rows = 1
-        )
-        print(response.keys())
-        facet_dict = get_facet_fields(response)
-        return facet_dict
+    # def get_aggregators_count():
+    #     response = apis.search(
+    #         query = f'*',
+    #         profile = 'facets',
+    #         facet = 'PROVIDER&f.PROVIDER.facet.limit=30&f.PROVIDER.facet.offset=10',
+    #         rows = 1
+    #     )
+    #     print(response.keys())
+    #     facet_dict = get_facet_fields(response)
+    #     return facet_dict
 
-    aggregators_count = get_aggregators_count()
+    # aggregators_count = get_aggregators_count()
 
     # utils.url2img
 
 
-    # # Search
-    # apis.search(
-    # query = 'leonardo',
-    # rows = 150
-    # )
+    # Search
+    resp = apis.search(
+    query = 'leonardo',
+    rows = 150
+    )
+
+    utils.search2df(resp['items'])
 
     # # Record
     # apis.record('/79/resource_document_museumboerhaave_V35167')

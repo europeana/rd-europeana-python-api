@@ -75,7 +75,7 @@ Quickstart
 
       # use this utility function to transform a subset of the cultural heritage object metadata
       # into a readable Pandas DataFrame
-   dataframe = utils.edm_utils.resp2df(result)
+   dataframe = utils.search2df(result)
 
 `Record API <https://pro.europeana.eu/page/record>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

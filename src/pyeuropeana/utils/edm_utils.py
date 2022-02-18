@@ -4,7 +4,7 @@ import pandas as pd
 
 from typing import Optional
 
-def resp2df(response: dict, full: Optional[bool] = False) -> pd.DataFrame:
+def search2df(CHO_list: list, full: Optional[bool] = False) -> pd.DataFrame:
     """
 
     Utility for transforming the output of the search api into a dataframe
@@ -20,13 +20,12 @@ def resp2df(response: dict, full: Optional[bool] = False) -> pd.DataFrame:
       Dataframe with columns ...
 
     """
-    if not response['items']:
+    if not CHO_list:
         return None
     if full:
-        return pd.json_normalize(response['items'])
-    obj_list = [process_CHO_search(obj) for obj in response['items']]
-    columns = [k for k in list(obj_list[0].keys()) if k not in ['raw_metadata']]
-    return pd.DataFrame(obj_list)[columns]
+        return pd.json_normalize(CHO_list)
+    CHO_list = [process_CHO_search(obj) for obj in CHO_list]
+    return pd.DataFrame(CHO_list)
 
 def europeana_id2filename(europeana_id):
   return europeana_id.replace("/","11placeholder11")+'.jpg'
