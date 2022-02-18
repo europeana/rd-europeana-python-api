@@ -3,6 +3,8 @@ import pyeuropeana.apis as apis
 
 if __name__ == "__main__":
 
+    utils.url2img('https://mmb-web.adlibhosting.com/ais6/webapi/wwwopac.ashx?command=getcontent&server=images&value=bruiklenen/herinrichting/HM14-minigrail.jpg')
+
 
     def get_facet_fields(response):
         return response['facets'][0]['fields']

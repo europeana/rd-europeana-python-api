@@ -60,7 +60,7 @@ def search(**kwargs):
   """
   params = {
       'wskey':get_api_key(),
-      'query':kwargs.get('query'), 
+      'query':kwargs.get('query','*'), 
       'qf':kwargs.get('qf'),
       'reusability':kwargs.get('reusability'),
       'media':kwargs.get('media'),

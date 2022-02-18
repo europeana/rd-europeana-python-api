@@ -44,7 +44,7 @@ def get_value_lang(lang_dict):
 def process_CHO_search(item):
   europeana_id = item['id'] if 'id' in item.keys() else None
   return {
-      'raw_metadata': item,
+      #'raw_metadata': item,
       'europeana_id': europeana_id,
       'uri': europeana_id2uri(europeana_id),
       'type': item['type'] if 'type' in item.keys() else None,
@@ -90,7 +90,7 @@ def process_CHO_record(response):
     provider = get_value_lang(provider_lang)
 
     return {
-        'raw_metadata': response,
+        #'raw_metadata': response,
         'europeana_id': europeana_id,
         'image_url': image_url,
         'uri': europeana_id2uri(europeana_id),
