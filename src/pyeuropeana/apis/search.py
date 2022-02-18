@@ -84,8 +84,16 @@ def search(**kwargs):
   if not response['success']:
     raise ValueError(response['error'])
 
-  url = requests.get('https://api.europeana.eu/record/v2/search.json', params = params).url
-  response =  cursor_search(params)
+  # Necessary for handling facets of the type 'PROVIDER&f.PROVIDER.facet.limit=30&f.PROVIDER.facet.offset=10'
+  _params = params.copy()
+  if params['facet']:
+    facet_list = params['facet'].split('&')
+    if len(facet_list)>1:
+      _params.update({'facet':facet_list[0]})
+      _params.update({item.split('=')[0]:item.split('=')[1] for item in facet_list[1:]})
+
+  url = requests.get('https://api.europeana.eu/record/v2/search.json', params = _params).url
+  response =  cursor_search(_params)
   response.update({'url':url,'params':params})
   return response  
  
