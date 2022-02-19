@@ -1,8 +1,0 @@
-IIIF API
-=============
-
-you can use the ``pyeuropeana.apis.RecordWrapper()`` function:
-
-.. autofunction:: pyeuropeana.apis.iiif.manifest
-
-.. autofunction:: pyeuropeana.apis.iiif.fulltext

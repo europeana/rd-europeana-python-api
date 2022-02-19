@@ -7,6 +7,10 @@
   <title>apis &mdash; Europeana python interface 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery-rendered-html.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -15,11 +19,13 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="utils" href="utils.html" />
-    <link rel="prev" title="Getting started" href="usage.html" /> 
+    <link rel="prev" title="Package" href="package.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,24 +45,28 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Getting started</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">apis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#search">search</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#record">record</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#entity">entity</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#suggest">suggest</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#retrieve">retrieve</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#resolve">resolve</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="package.html">Package</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">apis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#search">search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#record">record</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#entity">entity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#suggest">suggest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#retrieve">retrieve</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resolve">resolve</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#iiif">iiif</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#manifest">manifest</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#annopage">annopage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fulltext">fulltext</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#iiif">iiif</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#manifest">manifest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#annopage">annopage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fulltext">fulltext</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 </ul>
 
         </div>
@@ -73,6 +83,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="package.html">Package</a> &raquo;</li>
       <li>apis</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/apis.rst.txt" rel="nofollow"> View page source</a>
@@ -83,19 +94,50 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="apis">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="apis">
 <h1>apis<a class="headerlink" href="#apis" title="Permalink to this headline"></a></h1>
 <section id="search">
 <h2>search<a class="headerlink" href="#search" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="pyeuropeana.apis.search.search">
 <span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.search.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.search.search" title="Permalink to this definition"></a></dt>
-<dd><p>Wrapper for the Search API [1]</p>
+<dd><p>Wrapper for the Search API [1]. Returns objects matching a query with several parameters</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-<span class="gp">&gt;&gt;&gt; </span>   <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;Paris&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
 <span class="gp">&gt;&gt;&gt; </span>   <span class="n">qf</span> <span class="o">=</span> <span class="s1">&#39;TYPE:IMAGE&#39;</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>   <span class="n">rows</span> <span class="o">=</span> <span class="mi">150</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">reusability</span> <span class="o">=</span> <span class="s1">&#39;open AND permission&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">media</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">thumbnail</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">colourpalette</span> <span class="o">=</span> <span class="s1">&#39;#0000FF&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">theme</span> <span class="o">=</span> <span class="s1">&#39;photography&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">sort</span> <span class="o">=</span> <span class="s1">&#39;europeana_id&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">profile</span> <span class="o">=</span> <span class="s1">&#39;rich&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">rows</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
 </pre></div>
 </div>
@@ -146,7 +188,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="pyeuropeana.apis.record.record">
 <span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.record.</span></span><span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.record.record" title="Permalink to this definition"></a></dt>
-<dd><p>Wrapper for the Record API [1]</p>
+<dd><p>Wrapper for the Record API [1]. Returns the information of an object specified by the Europeana ID</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="s1">&#39;/79/resource_document_museumboerhaave_V35167&#39;</span><span class="p">)</span>
 </pre></div>
@@ -175,7 +217,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="pyeuropeana.apis.entity.suggest">
 <span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.entity.</span></span><span class="sig-name descname"><span class="pre">suggest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.entity.suggest" title="Permalink to this definition"></a></dt>
-<dd><p>Autosuggest method of the Entity API [1]</p>
+<dd><p>Suggest method of the Entity API [1]. Returns entities based on a text query</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">entity</span><span class="o">.</span><span class="n">suggest</span><span class="p">(</span>
 <span class="gp">&gt;&gt;&gt; </span>   <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;leonardo&#39;</span><span class="p">,</span>
@@ -211,7 +253,7 @@ in the given language, the entity type and the entity identifier. For a full lis
 <dl class="py function">
 <dt class="sig sig-object py" id="pyeuropeana.apis.entity.retrieve">
 <span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.entity.</span></span><span class="sig-name descname"><span class="pre">retrieve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.entity.retrieve" title="Permalink to this definition"></a></dt>
-<dd><p>Retrieve method of the Entity API [1]</p>
+<dd><p>Retrieve method of the Entity API [1]. Returns information about a particular entity</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">entity</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span>
 <span class="gp">&gt;&gt;&gt; </span>   <span class="n">TYPE</span> <span class="o">=</span> <span class="s1">&#39;agent&#39;</span><span class="p">,</span>
@@ -244,7 +286,7 @@ in other external data sources (sameAs). For a full list of data fields, please 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyeuropeana.apis.entity.resolve">
 <span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.entity.</span></span><span class="sig-name descname"><span class="pre">resolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uri</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.entity.resolve" title="Permalink to this definition"></a></dt>
-<dd><p>Resolve method of the Entity API [1]</p>
+<dd><p>Resolve method of the Entity API [1]. Searches for an entity given an input URI</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">entity</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Leonardo_da_Vinci&#39;</span><span class="p">)</span>
 </pre></div>
@@ -273,7 +315,7 @@ in other external data sources (sameAs). For a full list of data fields, please 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyeuropeana.apis.iiif.manifest">
 <span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.iiif.</span></span><span class="sig-name descname"><span class="pre">manifest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">RECORD_ID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.iiif.manifest" title="Permalink to this definition"></a></dt>
-<dd><p>Wrapper for the IIIF API [1], method manifest</p>
+<dd><p>Manifest method of the IIIF API [1]. Returns a minimal set of metadata for an object</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">iiif</span><span class="o">.</span><span class="n">manifest</span><span class="p">(</span><span class="s1">&#39;/9200356/BibliographicResource_3000118390149&#39;</span><span class="p">)</span>
 </pre></div>
@@ -299,7 +341,7 @@ in other external data sources (sameAs). For a full list of data fields, please 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyeuropeana.apis.iiif.annopage">
 <span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.iiif.</span></span><span class="sig-name descname"><span class="pre">annopage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.iiif.annopage" title="Permalink to this definition"></a></dt>
-<dd><p>Wrapper for the IIIF API [1], method annopage</p>
+<dd><p>Annopage method of the IIIF API [1]. Returns text and annotations for a given page of an object</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">iiif</span><span class="o">.</span><span class="n">annopage</span><span class="p">(</span>
 <span class="gp">&gt;&gt;&gt; </span>   <span class="n">RECORD_ID</span> <span class="o">=</span> <span class="s1">&#39;/9200356/BibliographicResource_3000118390149&#39;</span><span class="p">,</span>
@@ -331,7 +373,7 @@ There can be pages that do not contain any text which will mean that the request
 <dl class="py function">
 <dt class="sig sig-object py" id="pyeuropeana.apis.iiif.fulltext">
 <span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.iiif.</span></span><span class="sig-name descname"><span class="pre">fulltext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.iiif.fulltext" title="Permalink to this definition"></a></dt>
-<dd><p>Wrapper for the IIIF API [1], method fulltext</p>
+<dd><p>Fulltext method of the IIIF API [1]. Returns the transciption of a single page of a newspaper</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">iiif</span><span class="o">.</span><span class="n">fulltext</span><span class="p">(</span>
 <span class="gp">&gt;&gt;&gt; </span>   <span class="n">RECORD_ID</span> <span class="o">=</span> <span class="s1">&#39;/9200356/BibliographicResource_3000118390149&#39;</span><span class="p">,</span>
@@ -364,7 +406,7 @@ There can be pages that do not contain any text which will mean that the request
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="usage.html" class="btn btn-neutral float-left" title="Getting started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="package.html" class="btn btn-neutral float-left" title="Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="utils.html" class="btn btn-neutral float-right" title="utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

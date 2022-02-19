@@ -6,6 +6,10 @@
   <title>Index &mdash; Europeana python interface 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery-rendered-html.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -14,7 +18,9 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
@@ -35,9 +41,10 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About Europeana</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Getting started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apis.html">apis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package.html">Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 </ul>
 
         </div>
@@ -103,11 +110,9 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="apis.html#pyeuropeana.apis.record.record">record() (in module pyeuropeana.apis.record)</a>
 </li>
-      <li><a href="apis.html#pyeuropeana.apis.entity.resolve">resolve() (in module pyeuropeana.apis.entity)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="utils.html#pyeuropeana.utils.edm_utils.resp2df">resp2df() (in module pyeuropeana.utils.edm_utils)</a>
+      <li><a href="apis.html#pyeuropeana.apis.entity.resolve">resolve() (in module pyeuropeana.apis.entity)</a>
 </li>
       <li><a href="apis.html#pyeuropeana.apis.entity.retrieve">retrieve() (in module pyeuropeana.apis.entity)</a>
 </li>
@@ -121,6 +126,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="utils.html#pyeuropeana.utils.edm_utils.search2df">search2df() (in module pyeuropeana.utils.edm_utils)</a>
+</li>
       <li><a href="apis.html#pyeuropeana.apis.entity.suggest">suggest() (in module pyeuropeana.apis.entity)</a>
 </li>
   </ul></td>

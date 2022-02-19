@@ -28,7 +28,8 @@ Contents
 
 .. toctree::
 
+   about
    usage
-   apis
-   utils
+   package
+   tutorials
    

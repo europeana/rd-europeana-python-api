@@ -2,8 +2,8 @@ schema
 requests
 pillow
 pandas
-fire
+numpy
 sphinx_rtd_theme
 furo
-numpy
 matplotlib
+sphinx-gallery

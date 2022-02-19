@@ -7,6 +7,10 @@
   <title>Welcome to Europeana python interface’s documentation! &mdash; Europeana python interface 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery-rendered-html.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -15,10 +19,12 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Getting started" href="usage.html" /> 
+    <link rel="next" title="About Europeana" href="about.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -37,9 +43,10 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About Europeana</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Getting started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apis.html">apis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package.html">Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 </ul>
 
         </div>
@@ -66,7 +73,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="welcome-to-europeana-python-interface-s-documentation">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="welcome-to-europeana-python-interface-s-documentation">
 <h1>Welcome to Europeana python interface’s documentation!<a class="headerlink" href="#welcome-to-europeana-python-interface-s-documentation" title="Permalink to this headline"></a></h1>
 <p>Check out the <a class="reference internal" href="usage.html"><span class="doc">Getting started</span></a> section for further information, including how to
 <a class="reference internal" href="usage.html#installation"><span class="std std-ref">install</span></a> the project and a <a class="reference internal" href="usage.html#quickstart"><span class="std std-ref">Quickstart</span></a></p>
@@ -82,6 +113,7 @@
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About Europeana</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Getting started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="usage.html#installation">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="usage.html#using-pip">Using pip</a></li>
@@ -98,25 +130,40 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="apis.html">apis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="apis.html#search">search</a></li>
-<li class="toctree-l2"><a class="reference internal" href="apis.html#record">record</a></li>
-<li class="toctree-l2"><a class="reference internal" href="apis.html#entity">entity</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="apis.html#suggest">suggest</a></li>
-<li class="toctree-l3"><a class="reference internal" href="apis.html#retrieve">retrieve</a></li>
-<li class="toctree-l3"><a class="reference internal" href="apis.html#resolve">resolve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package.html">Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apis.html">apis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="apis.html#search">search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apis.html#record">record</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apis.html#entity">entity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="apis.html#suggest">suggest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="apis.html#retrieve">retrieve</a></li>
+<li class="toctree-l4"><a class="reference internal" href="apis.html#resolve">resolve</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="apis.html#iiif">iiif</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="apis.html#manifest">manifest</a></li>
-<li class="toctree-l3"><a class="reference internal" href="apis.html#annopage">annopage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="apis.html#fulltext">fulltext</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apis.html#iiif">iiif</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="apis.html#manifest">manifest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="apis.html#annopage">annopage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="apis.html#fulltext">fulltext</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">utils</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="utils.html#edm-utils">edm_utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#edm-utils">edm_utils</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/tutorial_1.html">Tutorial 1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/tutorial_1.html#imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/tutorial_1.html#search-api">Search API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/tutorial_2.html">Tutorial 2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/tutorial_2.html#imports">Imports</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -128,7 +175,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="usage.html" class="btn btn-neutral float-right" title="Getting started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="about.html" class="btn btn-neutral float-right" title="About Europeana" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

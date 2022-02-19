@@ -4,5 +4,5 @@ utils
 edm_utils
 ----------
 
-.. autofunction:: pyeuropeana.utils.edm_utils.resp2df
+.. autofunction:: pyeuropeana.utils.edm_utils.search2df
 
