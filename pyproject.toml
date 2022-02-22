@@ -2,8 +2,11 @@
 name = "pyeuropeana"
 version = "0.1.6"
 description = "A Python wrapper around Europeana APIs"
-authors = ["José Eduardo Cejudo Grano de Oro <joseed.cejudo@europeana.eu>" ]
-license = "MIT"
+authors = [
+    "José Eduardo Cejudo Grano de Oro <joseed.cejudo@europeana.eu>",
+    "Eren Janberk Genç <erenjanberk.genc@europeana.eu>",
+]
+license = "European Union Public Licence v. 1.2"
 readme = "README.md"
 homepage = "https://github.com/europeana/rd-europeana-python-api"
 repository = "https://github.com/europeana/rd-europeana-python-api"
