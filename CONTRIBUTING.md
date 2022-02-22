@@ -63,7 +63,11 @@ With this said, here's a list of tips and best practices that can help you in ge
    6. *general-enhancement*
    7. *feature-enhancement*
    8. *documentation-enhancement*
-
+4. If you are reporting a potential bug, provide context and code. Stating the exact conditions under which you encountered a problem will help you get to a solution faster. By stating the exact conditions, we mean:
+   1. Briefly explaining what the bug you encountered is. Is it an error? Is it a mismatch of expectations?
+   2. Listing the details of the computational environment you encountered the bug in. What version of the package? Which Python version? Which operating system?
+   3. A minimally reproducible code snippet that can be used to replicate the error. Try to tidy up your code beforehand so that we can understand it better.
+5. If you are proposing or requesting an enhancement of any kind, try to explain the reasoning behind your request or proposal. Why was this enhancement needed? What problems does it solve?
 
 ## Development workflow
 
