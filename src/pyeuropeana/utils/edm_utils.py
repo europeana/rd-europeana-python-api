@@ -4,14 +4,22 @@ import pandas as pd
 
 from typing import Optional
 
-def search2df(CHO_list: list, full: Optional[bool] = False) -> pd.DataFrame:
+def search2df(response: dict, full: Optional[bool] = False) -> pd.DataFrame:
     """
 
     Utility for transforming the output of the search API into a dataframe
 
+    >>> import pyeuropeana.apis as apis
+    >>> import pyeuropeana.utils as utils
+    >>> resp = apis.search(
+    >>>    query = 'Rome',
+    >>>    rows = 10,
+    >>> )
+    >>> df = utils.search2df(resp)
+
     Args:
-      response (:obj:`str`)
-        Description
+      response (:obj:`dict`)
+        Response from apis.search
 
       full (:obj:`bool`)
         Description
@@ -20,6 +28,7 @@ def search2df(CHO_list: list, full: Optional[bool] = False) -> pd.DataFrame:
       Dataframe with columns ...
 
     """
+    CHO_list = response['items']
     if not CHO_list:
         return None
     if full:

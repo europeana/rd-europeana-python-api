@@ -11,6 +11,16 @@ def url2img(url,time_limit = 10):
     """
     Utility for obtaining a PIL Image object from an image url
 
+    >>> import pyeuropeana.apis as apis
+    >>> import pyeuropeana.utils as utils
+    >>> resp = apis.search(
+    >>>    query = 'Madrid',
+    >>>    rows = 10,
+    >>> )
+    >>> df = utils.search2df(resp)
+    >>> url = df['image_url'].values[0]
+    >>> img = utils.url2img(url)
+
     Args:
       url (:obj:`str`)
         Image url
