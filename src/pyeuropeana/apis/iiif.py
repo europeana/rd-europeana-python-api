@@ -36,7 +36,7 @@ def annopage(**kwargs):
   >>> resp = apis.iiif.annopage(
   >>>    RECORD_ID = '/9200356/BibliographicResource_3000118390149',
   >>>    PAGE_ID = 1,
-  >>>     )
+  >>> )
   
   Args:
     RECORD_ID (:obj:`str`)
@@ -72,7 +72,7 @@ def fulltext(**kwargs):
   >>> resp = apis.iiif.fulltext(
   >>>    RECORD_ID = '/9200356/BibliographicResource_3000118390149',
   >>>    FULLTEXT_ID = '',
-  >>>     )
+  >>> )
   
   Args:
     RECORD_ID (:obj:`str`)
@@ -96,6 +96,47 @@ def fulltext(**kwargs):
   if not europeana_id:
     raise ValueError('Not valid RECORD_ID')
   return requests.get(f'https://www.europeana.eu/api/fulltext{RECORD_ID}/{FULLTEXT_ID}',params = {'wskey':wskey}).json()
+
+
+
+def search(**kwargs):
+
+  """
+  Search method of the IIIF API [1]. Allows to search newspapers by their text content
+
+  >>> import pyeuropeana.apis as apis
+  >>> resp = apis.iiif.search(
+  >>>    query = 'Paris',
+  >>>    profile = 'hits',
+  >>> )
+  
+  Args:
+    query (:obj:`str`)
+        The term to search
+    profile (:obj:`str`)
+        If profile is 'hits' the mentions in the transcribed text where the search keyword was found will be displayed
+
+  Returns :obj:`dict`
+    Response
+
+  References:
+    1. https://pro.europeana.eu/page/iiif
+  """
+
+  params = {
+      'wskey':get_api_key(),
+      'query':kwargs.get('query','*'), 
+      'profile':kwargs.get('profile'),
+  }
+
+  if not kwargs:
+    raise ValueError('No arguments passed')
+
+  response = requests.get('https://newspapers.eanadev.org/api/v2/search.json', params = params)
+  url = response.url
+  response = response.json()
+  response.update({'url':url})
+  return response
 
 
 

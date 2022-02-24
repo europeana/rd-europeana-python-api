@@ -3,7 +3,4 @@ requests
 pillow
 pandas
 numpy
-sphinx_rtd_theme
-furo
 matplotlib
-sphinx-gallery

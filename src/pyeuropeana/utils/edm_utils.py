@@ -7,13 +7,13 @@ from typing import Optional
 def search2df(CHO_list: list, full: Optional[bool] = False) -> pd.DataFrame:
     """
 
-    Utility for transforming the output of the search api into a dataframe
+    Utility for transforming the output of the search API into a dataframe
 
     Args:
-      response 
+      response (:obj:`str`)
         Description
 
-      full
+      full (:obj:`bool`)
         Description
 
     Returns: :obj:`pd.DataFrame`
@@ -28,7 +28,8 @@ def search2df(CHO_list: list, full: Optional[bool] = False) -> pd.DataFrame:
     return pd.DataFrame(CHO_list)
 
 def europeana_id2filename(europeana_id):
-  return europeana_id.replace("/","11placeholder11")+'.jpg'
+  return europeana_id.replace("/","[ph]")+'.jpg'
+
 
 def europeana_id2uri(ID):
   return 'http://data.europeana.eu/item'+ID
