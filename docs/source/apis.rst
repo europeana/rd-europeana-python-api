@@ -44,3 +44,7 @@ annopage
 fulltext
 ^^^^^^^^
 .. autofunction:: pyeuropeana.apis.iiif.fulltext
+
+search
+^^^^^^^^
+.. autofunction:: pyeuropeana.apis.iiif.search

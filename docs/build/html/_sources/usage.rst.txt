@@ -120,10 +120,16 @@ Quickstart
 
    # The IIIF API is mostly used to access newspapers collections at Europeana
 
-   # returns a minimal set of metadata for an object
+   # returns metadata about the newspapers with content matching the query
+   data = apis.iiif.search(
+   query = 'Paris',
+   profile = 'hits'
+   )
+
+   # returns a minimal set of metadata for a newspaper
    data = apis.iiif.manifest('/9200356/BibliographicResource_3000118390149')
 
-   # returns text and annotations for a given page of an object
+   # returns text and annotations for a given page of a newspaper
    data = apis.iiif.annopage(
    RECORD_ID = '/9200356/BibliographicResource_3000118390149',
    PAGE_ID = 1
@@ -134,6 +140,7 @@ Quickstart
    RECORD_ID = '/9200396/BibliographicResource_3000118435063',
    FULLTEXT_ID = '8ebb67ccf9f8a1dcc2ea119c60954111'
    )
+
 
 
 

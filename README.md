@@ -119,7 +119,3 @@ data = apis.iiif.fulltext(
 The documentation is available at [Read the Docs](https://rd-europeana-python-api.readthedocs.io/en/stable/index.html)
 
 You can also [build the docs](docs/README.md)
-
-## Tutorials
-
-[Colab tutorial](https://colab.research.google.com/drive/1VZJn9JKqziSF2jVQz1HRsvgbUZ0FM7qD?usp=sharing)

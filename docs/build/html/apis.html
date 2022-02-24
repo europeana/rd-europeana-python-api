@@ -44,6 +44,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About Europeana</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Getting started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="package.html">Package</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">apis</a><ul>
@@ -59,6 +60,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#manifest">manifest</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#annopage">annopage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#fulltext">fulltext</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">search</a></li>
 </ul>
 </li>
 </ul>
@@ -346,7 +348,7 @@ in other external data sources (sameAs). For a full list of data fields, please 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">iiif</span><span class="o">.</span><span class="n">annopage</span><span class="p">(</span>
 <span class="gp">&gt;&gt;&gt; </span>   <span class="n">RECORD_ID</span> <span class="o">=</span> <span class="s1">&#39;/9200356/BibliographicResource_3000118390149&#39;</span><span class="p">,</span>
 <span class="gp">&gt;&gt;&gt; </span>   <span class="n">PAGE_ID</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -378,7 +380,7 @@ There can be pages that do not contain any text which will mean that the request
 <span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">iiif</span><span class="o">.</span><span class="n">fulltext</span><span class="p">(</span>
 <span class="gp">&gt;&gt;&gt; </span>   <span class="n">RECORD_ID</span> <span class="o">=</span> <span class="s1">&#39;/9200356/BibliographicResource_3000118390149&#39;</span><span class="p">,</span>
 <span class="gp">&gt;&gt;&gt; </span>   <span class="n">FULLTEXT_ID</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -386,6 +388,37 @@ There can be pages that do not contain any text which will mean that the request
 <dt>RECORD_ID (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>The identifier of the record which is composed of the dataset identifier plus a local identifier within the dataset in the form of “/DATASET_ID/LOCAL_ID”, for more detail see Europeana ID [2]</p>
 </dd>
 <dt>FULLTEXT_ID (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>The identifier of the full text resource.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns <code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></dt><dd><p>Response</p>
+</dd>
+<dt>References:</dt><dd><ol class="arabic simple">
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/iiif">https://pro.europeana.eu/page/iiif</a></p></li>
+</ol>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="id1">
+<h3>search<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyeuropeana.apis.iiif.search">
+<span class="sig-prename descclassname"><span class="pre">pyeuropeana.apis.iiif.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.apis.iiif.search" title="Permalink to this definition"></a></dt>
+<dd><p>Search method of the IIIF API [1]. Allows to search newspapers by their text content</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">iiif</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;Paris&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="n">profile</span> <span class="o">=</span> <span class="s1">&#39;hits&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>query (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>The term to search</p>
+</dd>
+<dt>profile (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>If profile is ‘hits’ the mentions in the transcribed text where the search keyword was found will be displayed</p>
 </dd>
 </dl>
 </dd>
