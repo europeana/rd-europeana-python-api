@@ -1,4 +1,4 @@
-About Europeana
+About
 ================
 
 What is Europeana?

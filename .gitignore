@@ -10,3 +10,4 @@ tests/aux*
 notebooks/tmp
 docs/source/tutorials
 docs/build*
+notebooks
