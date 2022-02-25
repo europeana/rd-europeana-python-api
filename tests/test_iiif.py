@@ -15,12 +15,13 @@ if __name__ == "__main__":
     FULLTEXT_ID = '8ebb67ccf9f8a1dcc2ea119c60954111'
     )
 
-    apis.iiif.search(
+    resp = apis.iiif.search(
     query = 'leonardo',
-    profile = 'hits'
+    profile = 'hits',
+    rows = 50
     )
 
-    # df = utils.edm_utils.resp2df(resp)
+    len(resp['items'])
 
 
 
