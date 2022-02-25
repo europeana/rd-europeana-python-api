@@ -54,8 +54,9 @@ def search(**kwargs):
 
   # Necessary for handling facets of the type 'PROVIDER&f.PROVIDER.facet.limit=30&f.PROVIDER.facet.offset=10'
   _params = params.copy()
-  if 'hits' in params['profile']:
-    hits_list = params['profile'].split('&')
+
+  if _params['profile'] and 'hits' in _params['profile']:
+    hits_list = _params['profile'].split('&')
     if len(hits_list)>1:
       _params.update({'profile':hits_list[0]})
       _params.update({item.split('=')[0]:item.split('=')[1] for item in hits_list[1:]})
