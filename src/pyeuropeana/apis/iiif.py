@@ -52,11 +52,19 @@ def search(**kwargs):
   if not kwargs:
     raise ValueError('No arguments passed')
 
-  response = requests.get(endpoint, params = params)
+  # Necessary for handling facets of the type 'PROVIDER&f.PROVIDER.facet.limit=30&f.PROVIDER.facet.offset=10'
+  _params = params.copy()
+  if 'hits' in params['profile']:
+    hits_list = params['profile'].split('&')
+    if len(hits_list)>1:
+      _params.update({'profile':hits_list[0]})
+      _params.update({item.split('=')[0]:item.split('=')[1] for item in hits_list[1:]})
+
+  response = requests.get(endpoint, params = _params)
   url = response.url
 
-  response =  cursor_search(endpoint,params)
-  response.update({'url':url})
+  response =  cursor_search(endpoint,_params)
+  response.update({'url':url, 'parms':params})
   return response
 
 

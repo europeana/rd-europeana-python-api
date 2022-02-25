@@ -23,6 +23,14 @@ if __name__ == "__main__":
 
     print(len(resp['items']))
 
+    resp = apis.iiif.search(
+    query = 'leonardo',
+    profile = 'hits&hit.selectors=5',
+    rows = 250
+    )
+
+    print(resp['hits'])
+
 
 
 
