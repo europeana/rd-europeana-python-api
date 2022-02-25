@@ -18,10 +18,10 @@ if __name__ == "__main__":
     resp = apis.iiif.search(
     query = 'leonardo',
     profile = 'hits',
-    rows = 50
+    rows = 250
     )
 
-    len(resp['items'])
+    print(len(resp['items']))
 
 
 

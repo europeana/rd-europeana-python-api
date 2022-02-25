@@ -2,6 +2,63 @@ import requests
 import re
 
 from ..utils.auth import get_api_key
+from ..utils.edm_utils import cursor_search
+
+
+def search(**kwargs):
+
+  """
+  Search method of the IIIF API [1]. Allows to search newspapers by their text content
+
+  >>> import pyeuropeana.apis as apis
+  >>> resp = apis.iiif.search(
+  >>>    query = 'Paris',
+  >>>    profile = 'hits',
+  >>> )
+  
+  Args:
+    query (:obj:`str`)
+        The term to search
+    profile (:obj:`str`)
+        If profile is 'hits' the mentions in the transcribed text where the search keyword was found will be displayed
+
+  Returns :obj:`dict`
+    Response
+
+  References:
+    1. https://pro.europeana.eu/page/iiif
+  """
+
+  params = {
+      'wskey':get_api_key(),
+      'query':kwargs.get('query','*'), 
+      'qf':kwargs.get('qf'),
+      'reusability':kwargs.get('reusability'),
+      'media':kwargs.get('media'),
+      'thumbnail':kwargs.get('thumbnail'),
+      'landingpage':kwargs.get('landingpage'),
+      'colourpalette':kwargs.get('colourpalette'),
+      'theme':kwargs.get('theme'),
+      'sort':kwargs.get('sort','europeana_id'),
+      'profile':kwargs.get('profile'),
+      'rows':kwargs.get('rows',12),
+      'cursor':kwargs.get('cursor','*'),
+      'callback':kwargs.get('callback'),   
+      'facet':kwargs.get('facet'),
+  }
+
+  endpoint = 'https://newspapers.eanadev.org/api/v2/search.json'
+
+  if not kwargs:
+    raise ValueError('No arguments passed')
+
+  response = requests.get(endpoint, params = params)
+  url = response.url
+
+  response =  cursor_search(endpoint,params)
+  response.update({'url':url})
+  return response
+
 
 def manifest(RECORD_ID):
   """
@@ -99,44 +156,7 @@ def fulltext(**kwargs):
 
 
 
-def search(**kwargs):
 
-  """
-  Search method of the IIIF API [1]. Allows to search newspapers by their text content
-
-  >>> import pyeuropeana.apis as apis
-  >>> resp = apis.iiif.search(
-  >>>    query = 'Paris',
-  >>>    profile = 'hits',
-  >>> )
-  
-  Args:
-    query (:obj:`str`)
-        The term to search
-    profile (:obj:`str`)
-        If profile is 'hits' the mentions in the transcribed text where the search keyword was found will be displayed
-
-  Returns :obj:`dict`
-    Response
-
-  References:
-    1. https://pro.europeana.eu/page/iiif
-  """
-
-  params = {
-      'wskey':get_api_key(),
-      'query':kwargs.get('query','*'), 
-      'profile':kwargs.get('profile'),
-  }
-
-  if not kwargs:
-    raise ValueError('No arguments passed')
-
-  response = requests.get('https://newspapers.eanadev.org/api/v2/search.json', params = params)
-  url = response.url
-  response = response.json()
-  response.update({'url':url})
-  return response
 
 
 

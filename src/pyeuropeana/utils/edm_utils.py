@@ -1,6 +1,7 @@
 import urllib.request as urllibrec
 from pathlib import Path
 import pandas as pd
+import requests
 
 from typing import Optional
 
@@ -36,19 +37,29 @@ def search2df(response: dict, full: Optional[bool] = False) -> pd.DataFrame:
     CHO_list = [process_CHO_search(obj) for obj in CHO_list]
     return pd.DataFrame(CHO_list)
 
-def europeana_id2filename(europeana_id):
-  return europeana_id.replace("/","[ph]")+'.jpg'
+
+def cursor_search(endpoint,params):
+  """
+  Cursor search function
+  """
+  CHO_list = []
+  response = {'nextCursor':params['cursor']}
+  while 'nextCursor' in response:
+    if len(CHO_list)>params['rows']:
+      break
+    params.update({'cursor':response['nextCursor']})
+    response = requests.get(endpoint, params = params).json()
+    CHO_list += response['items']
+  CHO_list = CHO_list[:params['rows']]
+  response['items'] = CHO_list
+  return response
 
 
 def europeana_id2uri(ID):
   return 'http://data.europeana.eu/item'+ID
 
-def get_value_lang(lang_dict):
-    if 'en' in lang_dict.keys():
-      value = lang_dict['en']
-    else:
-      _ , value = list(lang_dict.items())[0]
-    return value
+
+
 
 def process_CHO_search(item):
   europeana_id = item['id'] if 'id' in item.keys() else None
@@ -113,3 +124,15 @@ def process_CHO_record(response):
         'provider': provider,
         'provider_lang': provider_lang,
     }
+
+
+def europeana_id2filename(europeana_id):
+  return europeana_id.replace("/","[ph]")+'.jpg'
+
+def get_value_lang(lang_dict):
+    if 'en' in lang_dict.keys():
+      value = lang_dict['en']
+    else:
+      _ , value = list(lang_dict.items())[0]
+    return value
+
