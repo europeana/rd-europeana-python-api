@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyeuropeana"
-version = "0.1.6"
+version = "0.1.7"
 description = "A Python wrapper around Europeana APIs"
 authors = [
     "José Eduardo Cejudo Grano de Oro <joseed.cejudo@europeana.eu>",

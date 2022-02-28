@@ -4,3 +4,4 @@ pillow
 pandas
 numpy
 matplotlib
+sphinx-gallery
