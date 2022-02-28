@@ -127,7 +127,47 @@ Below is a very brief list of Git commands that can be used to achieve the workf
 
 ## Setting up and using your development environment
 
-WIP
+In order to make code contributions to PyEuropeana, you need to set up a **development environment.**: a Python environment in which all the tools that you need to write, test and debug the Python code related to PyEuropeana can be found. This can be achieved by following these steps:
+
+1. Downloading all the files related to the project
+2. Creating a Python virtual environment
+3. Installing PyEuropeana and its dependencies
+4. Configuring local development tools
+
+### Prerequisites
+
+There are three prerequisites that you need to have on installed on your machine before setting up a development environment. Please check the links to learn how to install these three prerequisites if you do not already have them.
+
+- A working [Python (v3.7+)](https://www.python.org/downloads/) installation
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [Poetry](https://python-poetry.org/docs/)
+
+### Download all the files related to the project
+
+You can download the source code of the project by:
+
+1. Using the Git CLI
+2. Using the GitHub Desktop Client
+3. Downloading the repo as a .zip file through our GitHub repository
+
+**Since we use Git and GitHub to enable distributed development the options one and two are the preffered options.** A detailed description of how to use Git is beyond the scope of this document. Instead you can refer to [this article](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) for a specific guide on how to `git clone` a Git repository.
+
+### Create a Python virtual environment & Install PyEuropeana and its dependencies
+
+After obtaining a local copy of the PyEuropeana project, **you need to create a Python virtual environment so that the project and its dependencies have an isolated environment to live without conflicts.** Poetry automatically creates a new virtual environment for local installs, so this requires no extra step and can be achieved by installing the project locally.
+
+To install the project locally:
+
+1. Open any terminal that you can access Poetry from.
+2. Navigate to the folder that contains the PyEuropeana files
+3. Call `poetry shell` to spawn a Poetry shell and create a new virtual environment
+4. Call `poetry install` to install PyEuropeana along with its dependencies
+
+By default Poetry will install **both the dependencies that are needed to run the wrapper and the dependencies that are needed to develop it (dev dependencies).** 
+
+### Configure local development tools
+
+PRECOMMIT
 
 ## Style guide
 
