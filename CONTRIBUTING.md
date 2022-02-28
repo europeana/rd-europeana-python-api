@@ -5,6 +5,7 @@
 ## Table of contents
 
 - [**Different ways of contributing**](#different-ways-of-contributing)
+- [**Understanding our Git workflow**](#understanding-our-git-workflow)
 
 ## Different ways of contributing
 
@@ -54,7 +55,7 @@ With this said, here's a list of tips and best practices that can help you in ge
    3. *discussion:*...
    4. *bug:*...
    5. *enhancement:*...
-3. Add more context to prefixes by using labels. GitHub allows us to tag issues with labels while you are working on composing them. We've prepared a list of eight labels that can further add context to your issue. These labels are:
+3. Add more context to prefixes by using labels. GitHub allows us to tag issues with labels while you are working on composing them. We've prepared a list of eight labels that can further add context to your issue. You can access these labels in GitHub while you are preparing or editing an issue. These labels are:
    1. *feedback*
    2. *question*
    3. *discussion*
@@ -66,16 +67,63 @@ With this said, here's a list of tips and best practices that can help you in ge
 4. If you are reporting a potential bug, provide context and code. Stating the exact conditions under which you encountered a problem will help you get to a solution faster. By stating the exact conditions, we mean:
    1. Briefly explaining what the bug you encountered is. Is it an error? Is it a mismatch of expectations?
    2. Listing the details of the computational environment you encountered the bug in. What version of the package? Which Python version? Which operating system?
-   3. A minimally reproducible code snippet that can be used to replicate the error. Try to tidy up your code beforehand so that we can understand it better.
+   3. A minimally reproducible code snippet that can be used to replicate the error. Try to tidy up your code beforehand so that we can understand it better. Abstract away usecase-specific details and include only what is necessary.
 5. If you are proposing or requesting an enhancement of any kind, try to explain the reasoning behind your request or proposal. Why was this enhancement needed? What problems does it solve?
 
 ## Development workflow
 
-WIP
-
 ## Understanding our Git workflow
 
-WIP
+PyEuropeana uses the Git version control system to allow version controlling and facilitate distributed development. Our repository host of choice is GitHub and the following guidelines include some GitHub-specific sections. We try to stick to a pre-determined workflow to standardize how we use Git. The workflow that we use is a derivation of the workflow as explained [here](https://gist.github.com/digitaljhelms/4287848). Below you can find an overview of the current workflow.
+
+### Possible branches
+
+There are two evergreen branches that are present at any given time during project development:
+
+1. The **stable** branch: This branch is the branch that contains the code deployed to production.
+2. The **master** branch: This is the branch that most of the development efforts start with and end in.
+
+Besides these evergreen branches, three types of temporary branches can exist:
+
+1. The **feature-** branches: These branches are used to develop new features and implement minor/major overhauls.
+2. The **bug-** branches: These branches are used to fix non-critical bugs that are discovered in the codebase.
+3. The **hotfix-** branches: These branches are used to fix critical bugs that are discovered in the codebase. The main difference in between these branches and the **bug-** branches are urgency and branching rules (see below).
+
+### Branching rules
+
+The branches above not only differ in semantics but also in **how they are interacted with, where they stem from and where they terminate in.** The branching rules that govern how to interact with these branch types are as follows:
+
+- **origin/stable** is the production branch. Temporary branches do not stem from or merge to **origin/stable** with the exception of **hotfix-** branches.
+- **origin/master** is the development branch. It is in principle a branch of the **origin/stable** branch. **feature-** branches and **bug-** branches stem from and merge to this branch.
+- Once **origin/master** reaches a certain level of maturity and robustness after bugfixes and feature development, it is merged into **origin/stable**. This merge also constitutes a minor/major version increment.
+- **feature-** branches stem from and merge to **origin/master**.
+- **bug-** branches stem from and merge to **origin/master**.
+- **hotfix-** branches stem from and merge to **origin/stable**.
+- Once a **-hotfix-** branch is merged to master, master is retroactively updated from **origin/stable** and all of the merge conflicts are resolves in favor of the **origin/stable** branch.
+- It is up to the branch contributor to periodically check for and fetch changes from **origin/master** in order to keep the current branch updated.
+
+### General tips and guidelines
+
+There are a few more things to keep in mind while working with our Git workflow besides the interactions patterns outlined above.
+
+- Collaborators from outside Europeana do not have branch manipulation rights in the GitHub repo. As an external contributor, you need to make a fork of the project using the GitHub interface before making any branches.
+- Use the prefixes outlined above when naming your branches along with short but informative names. *fix-bug* is not a good branch name, but *bug-duplicate-search-results* is. You can alternatively use issue numbers, issue names or even ticket numbers after the prefixes.
+- Always make your branch remotely available. This allows you to reference your branch on GitHub and for other people to see the current development efforts. When other people can see the current progress on a branch and contribute to it, collaboration and troubleshooting becomes easier.
+
+### Git commands cheatsheet
+
+Below is a very brief list of Git commands that can be used to achieve the workflow described above. For a more in-depth reference and learning tutorial, you can check [**the Git documentation**](https://git-scm.com/doc) or the official [**ProGit**](https://git-scm.com/book/en/v2) book.
+
+- `git clone https://github.com/europeana/rd-europeana-python-api.git`: Create a local clone of the PyEuropeana repository or your personal fork of it.
+- `git checkout -b [BRANCH-NAME] [TARGET-BRANCH]`: Create a branch based on [TARGET-BRANCH] and immediately switch to it. When our Git workflow is considered only the following options are possible:
+  - `git checkout -b [FEATURE-[BRANCH-NAME]] master`
+  - `git checkout -b [BUG-[BRANCH-NAME]] master`
+  - `git checkout -b [HOTFIX-[BRANCH-NAME]] stable`
+- `git push origin [BRANCH-NAME]`: Push commited changes to origin. If used right after `git checkout`, this command makes [BRANCH-NAME] remotely available.
+- `git fetch --prune origin`: Fetch changes from the origin branch (most likely master). `--prune` option also updates the list of remote branches that is maintained locally. Used in conjunction with the command below.
+- `git merge origin [BRANCH-NAME]`: Merge the recently fetched changes. Used in conjunction with the command above.
+- `git branch -a`: To see all local and remote branches.
+
 
 ## Setting up and using your development environment
 
