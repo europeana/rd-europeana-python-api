@@ -24,13 +24,13 @@ However, **writing code is not the only way through which you can contribute to 
 - Adding tutorials and use cases
 - Increasing test coverage
 
-**All of these items are valuable to us as dealing directly with the codebase.** Do not hesitate to communicate with the maintainers if you have a question, an idea, or a proposal.
+**All of these items are as valuable to us as dealing directly with the codebase by means of writing Python code** Do not hesitate to communicate with the maintainers if you have a question, an idea, or a proposal.
 
 ## Communicating with the maintainers
 
 ### Who are the maintainers?
 
-The PyEuropeana project is maintained by a core group of developers from Europeana. . **This group of people from Europeana who are responsible for the development and maintenance of this project are called *the maintainers.***
+The PyEuropeana project is developed and maintained by a core group of developers from Europeana. **This group of people are called *the maintainers.***
 
 ### How do I initiate communication?
 
