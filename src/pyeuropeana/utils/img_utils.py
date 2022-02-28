@@ -6,7 +6,32 @@ import pandas as pd
 from PIL import Image
 from pyeuropeana.utils.edm_utils import europeana_id2filename
 
-def url2img(url,time_limit = 20):
+def url2img(url,time_limit = 10):
+
+    """
+    Utility for obtaining a PIL Image object from an image url
+
+    >>> import pyeuropeana.apis as apis
+    >>> import pyeuropeana.utils as utils
+    >>> resp = apis.search(
+    >>>    query = 'Madrid',
+    >>>    rows = 10,
+    >>> )
+    >>> df = utils.search2df(resp)
+    >>> url = df['image_url'].values[0]
+    >>> img = utils.url2img(url)
+
+    Args:
+      url (:obj:`str`)
+        Image url
+
+      time_limit (:obj:`int`, optional)
+        Maximum time in seconds for getting the image, if longer the function returns None . Default is 10 seconds
+
+    Returns: :obj:`PIL.Image`
+      Image
+
+    """
 
     def worker(image_url,data_dict):
         try:
@@ -21,8 +46,10 @@ def url2img(url,time_limit = 20):
     action_process.start()
     action_process.join(timeout=time_limit) 
     action_process.terminate()
-    img = data_dict['image']
-    return img
+    if 'image' in data_dict.keys():
+        return data_dict['image']
+    else:
+        return None
 
 
 

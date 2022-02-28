@@ -1,6 +1,7 @@
 import requests
 
 from ..utils.auth import get_api_key
+from ..utils.edm_utils import cursor_search
 
 def search(**kwargs):
   """
@@ -8,7 +9,7 @@ def search(**kwargs):
 
   >>> import pyeuropeana.apis as apis
   >>> resp = apis.search(
-  >>>    query = '*',
+  >>>    query = '*',s
   >>>    qf = 'TYPE:IMAGE',
   >>>    reusability = 'open AND permission',
   >>>    media = True,
@@ -76,11 +77,13 @@ def search(**kwargs):
       'facet':kwargs.get('facet'),
   }
 
+  endpoint = 'https://api.europeana.eu/record/v2/search.json'
+
   if not kwargs:
     raise ValueError('No arguments passed')
 
   # test key
-  response = requests.get('https://api.europeana.eu/record/v2/search.json', params = {'wskey':params['wskey'],'query':'*'}).json()
+  response = requests.get(endpoint, params = {'wskey':params['wskey'],'query':'*'}).json()
   if not response['success']:
     raise ValueError(response['error'])
 
@@ -92,25 +95,11 @@ def search(**kwargs):
       _params.update({'facet':facet_list[0]})
       _params.update({item.split('=')[0]:item.split('=')[1] for item in facet_list[1:]})
 
-  url = requests.get('https://api.europeana.eu/record/v2/search.json', params = _params).url
-  response =  cursor_search(_params)
+  url = requests.get(endpoint, params = _params).url
+  response =  cursor_search(endpoint,_params)
   response.update({'url':url,'params':params})
   return response  
  
 
-def cursor_search(params):
-  """
-  Cursor search function
-  """
-  CHO_list = []
-  response = {'nextCursor':params['cursor']}
-  while 'nextCursor' in response:
-    if len(CHO_list)>params['rows']:
-      break
-    params.update({'cursor':response['nextCursor']})
-    response = requests.get('https://api.europeana.eu/record/v2/search.json', params = params).json()
-    CHO_list += response['items']
-  CHO_list = CHO_list[:params['rows']]
-  response['items'] = CHO_list
-  return response
+
 

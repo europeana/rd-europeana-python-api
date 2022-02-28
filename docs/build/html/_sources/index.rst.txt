@@ -4,15 +4,17 @@
    contain the root `toctree` directive.
 
 
-Welcome to Europeana python interface's documentation!
+Welcome to Europeana Python interface's documentation!
 ======================================================
 
-Check out the :doc:`usage` section for further information, including how to
-:ref:`install <installation>` the project and a :ref:`Quickstart <quickstart>`
+With `PyEuropeana <https://github.com/europeana/rd-europeana-python-api>`_ you can interact with Europeana APIs in Python
+
+Start by looking at the :doc:`usage` section for more information on how to use it, including how to
+:ref:`install <installation>` the package and a :ref:`Quickstart <quickstart>`
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
 

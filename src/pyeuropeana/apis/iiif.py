@@ -2,6 +2,72 @@ import requests
 import re
 
 from ..utils.auth import get_api_key
+from ..utils.edm_utils import cursor_search
+
+
+def search(**kwargs):
+
+  """
+  Search method of the IIIF API [1]. Allows to search newspapers by their text content
+
+  >>> import pyeuropeana.apis as apis
+  >>> resp = apis.iiif.search(
+  >>>    query = 'Paris',
+  >>>    profile = 'hits',
+  >>> )
+  
+  Args:
+    query (:obj:`str`)
+        The term to search
+    profile (:obj:`str`)
+        If profile is 'hits' the mentions in the transcribed text where the search keyword was found will be displayed
+
+  Returns :obj:`dict`
+    Response
+
+  References:
+    1. https://pro.europeana.eu/page/iiif
+  """
+
+  params = {
+      'wskey':get_api_key(),
+      'query':kwargs.get('query','*'), 
+      'qf':kwargs.get('qf'),
+      'reusability':kwargs.get('reusability'),
+      'media':kwargs.get('media'),
+      'thumbnail':kwargs.get('thumbnail'),
+      'landingpage':kwargs.get('landingpage'),
+      'colourpalette':kwargs.get('colourpalette'),
+      'theme':kwargs.get('theme'),
+      'sort':kwargs.get('sort','europeana_id'),
+      'profile':kwargs.get('profile'),
+      'rows':kwargs.get('rows',12),
+      'cursor':kwargs.get('cursor','*'),
+      'callback':kwargs.get('callback'),   
+      'facet':kwargs.get('facet'),
+  }
+
+  endpoint = 'https://newspapers.eanadev.org/api/v2/search.json'
+
+  if not kwargs:
+    raise ValueError('No arguments passed')
+
+  # Necessary for handling facets of the type 'PROVIDER&f.PROVIDER.facet.limit=30&f.PROVIDER.facet.offset=10'
+  _params = params.copy()
+
+  if _params['profile'] and 'hits' in _params['profile']:
+    hits_list = _params['profile'].split('&')
+    if len(hits_list)>1:
+      _params.update({'profile':hits_list[0]})
+      _params.update({item.split('=')[0]:item.split('=')[1] for item in hits_list[1:]})
+
+  response = requests.get(endpoint, params = _params)
+  url = response.url
+
+  response =  cursor_search(endpoint,_params)
+  response.update({'url':url, 'parms':params})
+  return response
+
 
 def manifest(RECORD_ID):
   """
@@ -36,7 +102,7 @@ def annopage(**kwargs):
   >>> resp = apis.iiif.annopage(
   >>>    RECORD_ID = '/9200356/BibliographicResource_3000118390149',
   >>>    PAGE_ID = 1,
-  >>>     )
+  >>> )
   
   Args:
     RECORD_ID (:obj:`str`)
@@ -72,7 +138,7 @@ def fulltext(**kwargs):
   >>> resp = apis.iiif.fulltext(
   >>>    RECORD_ID = '/9200356/BibliographicResource_3000118390149',
   >>>    FULLTEXT_ID = '',
-  >>>     )
+  >>> )
   
   Args:
     RECORD_ID (:obj:`str`)
@@ -96,6 +162,10 @@ def fulltext(**kwargs):
   if not europeana_id:
     raise ValueError('Not valid RECORD_ID')
   return requests.get(f'https://www.europeana.eu/api/fulltext{RECORD_ID}/{FULLTEXT_ID}',params = {'wskey':wskey}).json()
+
+
+
+
 
 
 

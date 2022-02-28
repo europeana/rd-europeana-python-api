@@ -32,7 +32,7 @@ if __name__ == "__main__":
     rows = 150
     )
 
-    utils.search2df(resp['items'])
+    utils.search2df(resp)
 
     # # Record
     # apis.record('/79/resource_document_museumboerhaave_V35167')
