@@ -5,7 +5,20 @@
 ## Table of contents
 
 - [**Different ways of contributing**](#different-ways-of-contributing)
+- [**Communicating with the maintainers**](#communicating-with-the-maintainers)
+  - [**Who are the maintainers?**](#who-are-the-maintainers)
+  - [**How do I initiate communication?**](#how-do-i-initiate-communication)
+  - [**Writing a meaningful issue**](#writing-a-meaningful-issue)
 - [**Understanding our Git workflow**](#understanding-our-git-workflow)
+  - [**Possible branches**](#possible-branches)
+  - [**Branching rules**](#branching-rules)
+  - [**General tips and guidelines**](#general-tips-and-guidelines)
+  - [**Git commands cheatsheet**](#git-commands-cheatsheet)
+- [**Setting up and using your development environment**](#setting-up-and-using-your-development-environment)
+  - [**Prerequisites**](#prerequisites)
+  - [**Download all the files related to the project**](#download-all-the-files-related-to-the-project)
+  - [**Create a Python virtual environment & install PyEuropeana and its dependencies**](#create-a-python-virtual-environment--install-pyeuropeana-and-its-dependencies)
+  - [**Configure local development tools**](#configure-local-development-tools)
 
 ## Different ways of contributing
 
