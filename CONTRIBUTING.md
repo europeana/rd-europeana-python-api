@@ -163,11 +163,20 @@ To install the project locally:
 3. Call `poetry shell` to spawn a Poetry shell and create a new virtual environment
 4. Call `poetry install` to install PyEuropeana along with its dependencies
 
-By default Poetry will install **both the dependencies that are needed to run the wrapper and the dependencies that are needed to develop it (dev dependencies).** 
+By default Poetry will install **both the dependencies that are needed to run the wrapper and the dependencies that are needed to develop it (dev dependencies).**
+
+The Poetry shell that spawns after calling `poetry shell` also allows you to run any .py scripts or tests that are associated with the PyEuropeana project. For example, you can call `poetry run pytest` in the root of the project to run the tests. Alternatively, you can call `poetry run python [PATH_TO_PYTHON_SCRIPT]` to execute any individual .py file using the virtual environment we've created.
 
 ### Configure local development tools
 
-PRECOMMIT
+If you peek into the `pyproject.toml` file you might notice that we are listing several Python packages as development dependencies. We use Python packages such as **flake8**, **black** and **precommit** to speed up our development workflow while making improvements in code quality. flake8 is a linter that checks for code styleguide compliance, black is a formatter that formats your code according to a predefined guideline and precommit is a tool that allows you to run these two automatically each time you make a commit.
+
+**It is highly suggested that you as a contributor use these tools while developing locally.** We automatically check for code styleguide compliance in our CI/CD pipeline. Therefore, using these tools while developing will help you contribute to the PyEuropeana project in a better way.
+
+Configuration files that customize our local development tools are already present in the repo you've downloaded. The only thing you need to do in order to configure your local development tools is to do the following:
+
+- If you haven't already: open any terminal you can run Poetry from, navigate to the root of the PyEuropeana project, run `poetry shell`
+- Run `poetry run pre-commit install`
 
 ## Style guide
 
