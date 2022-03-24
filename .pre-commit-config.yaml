@@ -1,9 +1,9 @@
 repos:
 -   repo: https://github.com/ambv/black
-    rev: stable
+    rev: 22.1.0
     hooks:
     - id: black # use pyproject.toml to config
 -   repo: https://github.com/pycqa/flake8
-    rev: stable
+    rev: 4.0.1
     hooks:
-    - id: flake8  # use .flake8 file to config.
+    - id: flake8  # use .flake8 file to config
