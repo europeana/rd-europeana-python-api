@@ -19,6 +19,8 @@
   - [**Download all the files related to the project**](#download-all-the-files-related-to-the-project)
   - [**Create a Python virtual environment & install PyEuropeana and its dependencies**](#create-a-python-virtual-environment--install-pyeuropeana-and-its-dependencies)
   - [**Configure local development tools**](#configure-local-development-tools)
+- [**Style guide**](#style-guide)
+  - [**Actionable tips**](#actionable-tips)
 
 ## Different ways of contributing
 
