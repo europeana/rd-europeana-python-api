@@ -4,7 +4,6 @@ Pipfile*
 comments.txt
 timing.py
 *__pycache__*
-poetry.lock
 dist
 tests/aux*
 notebooks/tmp
