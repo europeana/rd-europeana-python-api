@@ -2,19 +2,19 @@ import unittest
 
 import pyeuropeana.apis as apis
 
-class TestEntity(unittest.TestCase):
 
+class TestEntity(unittest.TestCase):
     def test_suggest(self):
         """
         Test that at least one argument is being passed
         """
         with self.assertRaises(ValueError) as context:
             apis.entity.suggest()
-        self.assertTrue('No arguments passed' in str(context.exception))
+        self.assertTrue("No arguments passed" in str(context.exception))
 
         with self.assertRaises(ValueError) as context:
             apis.entity.suggest(
-                TYPE = 'agent',
+                TYPE="agent",
             )
         self.assertTrue('Argument "text" is needed' in str(context.exception))
 
@@ -24,16 +24,13 @@ class TestEntity(unittest.TestCase):
         """
         with self.assertRaises(ValueError) as context:
             apis.entity.retrieve()
-        self.assertTrue('No arguments passed' in str(context.exception))
-        
+        self.assertTrue("No arguments passed" in str(context.exception))
+
     def test_resolve(self):
         with self.assertRaises(ValueError) as context:
             apis.entity.resolve(2)
-        self.assertTrue('input uri must be a string' in str(context.exception))
+        self.assertTrue("input uri must be a string" in str(context.exception))
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
-
-

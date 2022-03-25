@@ -184,7 +184,7 @@ The Poetry shell that spawns after calling `poetry shell` also allows you to run
 
 ### Configure local development tools
 
-If you peek into the `pyproject.toml` file you might notice that we are listing several Python packages as development dependencies. We use Python packages such as **flake8**, **black** and **precommit** to speed up our development workflow while making improvements in code quality. flake8 is a linter that checks for code styleguide compliance, black is a formatter that formats your code according to a predefined guideline and precommit is a tool that allows you to run these two automatically each time you make a commit.
+If you peek into the `pyproject.toml` file you might notice that we are listing several Python packages as development dependencies. We use Python packages such as **flake8**, **black** and **pre-commit** to speed up our development workflow while making improvements in code quality. flake8 is a linter that checks for code styleguide compliance, black is a formatter that formats your code according to a predefined guideline and pre-commit is a tool that allows you to run these two automatically each time you make a commit.
 
 **It is highly suggested that you as a contributor use these tools while developing locally.** We automatically check for code styleguide compliance in our CI/CD pipeline. Therefore, using these tools while developing will help you contribute to the PyEuropeana project in a better way.
 
