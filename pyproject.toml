@@ -34,12 +34,6 @@ pre-commit = "^2"
 [tool.black]
 line-length = 88
 include = '\.pyi?$'
-extend-exclude = '''
-    .git
-    __pycache__
-    notebooks
-    docs
-'''
 
 [build-system]
 requires = ["poetry_core>=1.0.0"]

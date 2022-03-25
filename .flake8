@@ -1,9 +1,20 @@
 [flake8]
 exclude =
     .git,
+    .gitignore
+    .pre-commit-config.yaml
+    .readthedocs.yaml
+    CONTRIBUTING.md
+    LICENSE.md
+    poetry.lock
+    pyproject.toml
+    README.md
+    requirements.txt
     __pycache__,
     notebooks,
     docs,
-ignore = E203, E266, E501, W503, F403, F401
+    tests/aux_search.py
+
+ignore = E203, E266, E501, W503, F403, F401, W605
 max-line-length = 88
 max-complexity = 18

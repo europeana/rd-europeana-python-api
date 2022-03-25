@@ -6,7 +6,8 @@ import pandas as pd
 from PIL import Image
 from pyeuropeana.utils.edm_utils import europeana_id2filename
 
-def url2img(url,time_limit = 10):
+
+def url2img(url, time_limit=10):
 
     """
     Utility for obtaining a PIL Image object from an image url
@@ -33,23 +34,20 @@ def url2img(url,time_limit = 10):
 
     """
 
-    def worker(image_url,data_dict):
+    def worker(image_url, data_dict):
         try:
-            data_dict['image']  = Image.open(urllibrec.urlopen(image_url)).convert('RGB')
-        except:
-            data_dict['image']  = None
+            data_dict["image"] = Image.open(urllibrec.urlopen(image_url)).convert("RGB")
+        except Exception:
+            data_dict["image"] = None
 
     manager = Manager()
     data_dict = manager.dict()
 
-    action_process = Process(target=worker,args=(url,data_dict))
+    action_process = Process(target=worker, args=(url, data_dict))
     action_process.start()
-    action_process.join(timeout=time_limit) 
+    action_process.join(timeout=time_limit)
     action_process.terminate()
-    if 'image' in data_dict.keys():
-        return data_dict['image']
+    if "image" in data_dict.keys():
+        return data_dict["image"]
     else:
         return None
-
-
-
