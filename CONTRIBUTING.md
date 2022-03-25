@@ -193,6 +193,26 @@ Configuration files that customize our local development tools are already prese
 
 ## Style guide
 
+### Code style
+
+We subscribe mostly to the [style guide as proposed by the black team](https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html). This style guide is [PEP 8](https://peps.python.org/pep-0008/)-compliant and can be seen as a "*stricter subset of pep8*". We try to stick to lines of 88 characters whenever possible.
+
+As introduced in the previous section, **the PyEuropeana project relies on three tools to enforce its code style guide:** black, flake8 and pre-commit. In a perfect world our contributors make use of black and flake8 during development through pre-commit and compliance to these are checked in our CI/CD pipeline.
+
+By default the style guide is reinforced only for `.py` files found inside the folders `src/` and `tests/`. These folders make up the bulk of our codebase and we believe we are getting the most benefit with least hassle by targeting them with code style tools. **If you are making any contributions to the `src/` folder or the `tests/` folder, we expect you to follow our code style guide.** If you've followed [the previous section](#configure-local-development-tools), you have that base covered.
+
+The flake8 version that we use in our project is configured to play nicely with the black formatter. Its config options can be found inside the file `.flake8`. Our black formatter configuration can be found under the `[tool.black]` section of the `pyproject.toml` file and our pre-commit configuration is located inside `pre-commit-config.yaml`.
+
+####  Actionable tips
+
+Other than the steps described in the [previous section](#configure-local-development-tools) on setting up local code styling tools, there are a few things that you can do internalize our styling decisions and make compliance to them automatic:
+
+- Read [PEP 8](https://peps.python.org/pep-0008/) and [black's code style](https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html). PEP 8 is a seminal Python document that was written by key Python figures such as Guido van Rossum. It outlines a series of code style maxims that are used by many Python projects. The document written by the black team is based on PEP 8 and it explains how black works. Reading (or skimping through) both of these documents once will make sure that we're on the same page.
+- You can configure your code editor to do automatic linting. Some editors have built-in support or addons for linting tools such as flake8. You can enable such measures and then configure them by looking at the `.flake8` config file in the project root. [Here's how to setup flake8 in VSCode](https://code.visualstudio.com/docs/python/linting#_run-linting).
+- You can configure your code editor to add a visual mark (a *vertical ruler*) on the 88th character so that you know when you exceed 88 characters. VSCode supports this, and so does most editors.
+
+### Documentation style
+
 WIP
 
 ## Building the PyEuropeana API docs, reference docs and tutorials
@@ -200,6 +220,10 @@ WIP
 WIP
 
 ## Writing tests
+
+WIP
+
+## Extra: adding new dependencies to the project
 
 WIP
 
