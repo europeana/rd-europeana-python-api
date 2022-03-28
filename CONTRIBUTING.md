@@ -19,6 +19,11 @@
   - [**Download all the files related to the project**](#download-all-the-files-related-to-the-project)
   - [**Create a Python virtual environment & install PyEuropeana and its dependencies**](#create-a-python-virtual-environment--install-pyeuropeana-and-its-dependencies)
   - [**Configure local development tools**](#configure-local-development-tools)
+- [**Style guide**](#style-guide)
+  - [**Code style**](#code-style)
+    - [**Actionable tips**](#actionable-tips)
+  - [**Documentation style**](#documentation-style)
+- [**Extra: Adding new dependencies to the project**](#extra-adding-new-dependencies-to-the-project)
 
 ## Different ways of contributing
 
@@ -193,7 +198,49 @@ Configuration files that customize our local development tools are already prese
 
 ## Style guide
 
-WIP
+### Code style
+
+We subscribe mostly to the [style guide as proposed by the black team](https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html). This style guide is [PEP 8](https://peps.python.org/pep-0008/)-compliant and can be seen as a "*stricter subset of pep8*". We try to stick to lines of 88 characters whenever possible.
+
+As introduced in the previous section, **the PyEuropeana project relies on three tools to enforce its code style guide:** black, flake8 and pre-commit. In a perfect world our contributors make use of black and flake8 during development through pre-commit and compliance to these are checked in our CI/CD pipeline.
+
+![An illustration show the tools the PyEuropeana project uses to enforce its code style preferences.](docs/source/media_source/precommit-illustration-diagram_v1.png)
+
+By default the style guide is reinforced only for `.py` files found inside the folders `src/` and `tests/`. These folders make up the bulk of our codebase and we believe we are getting the most benefit with least hassle by targeting them with code style tools. **If you are making any contributions to the `src/` folder or the `tests/` folder, we expect you to follow our code style guide.** If you've followed [the previous section](#configure-local-development-tools), you have that base covered.
+
+The flake8 version that we use in our project is configured to play nicely with the black formatter. Its config options can be found inside the file `.flake8`. Our black formatter configuration can be found under the `[tool.black]` section of the `pyproject.toml` file and our pre-commit configuration is located inside `pre-commit-config.yaml`.
+
+
+**NOTE:** If, for some reason, you wish black to ignore a section of the code you've written while making contributions, you can. You need to precede and succeed the code section in question with `# fmt:off` and `# fmt:on` respectively. **This might be useful if you have a special type of syntax in mind that makes your code more understandable.** For example:
+
+```Python
+# fmt:off
+
+# the following syntax is reminescent of the matrix notation in linear algebra
+import numpy as np
+arr = np.Array([
+  [1, 3, 5, 7],
+  [9, 11, 13, 15],
+  [17, 19, 21, 23]
+])
+
+# fmt: on
+```
+
+**Please note that this does not make the snippet exempt from flake8 checks. An error will be raised both locally if you are using pre-commit and during pull request if your code does not agree with our flake8 configuration.**
+
+
+####  Actionable tips
+
+Other than the steps described in the [previous section](#configure-local-development-tools) on setting up local code styling tools, there are a few things that you can do internalize our styling decisions and make compliance to them automatic:
+
+- Read [PEP 8](https://peps.python.org/pep-0008/) and [black's code style](https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html). PEP 8 is a seminal Python document that was written by key Python figures such as Guido van Rossum. It outlines a series of code style maxims that are used by many Python projects. The document written by the black team is based on PEP 8 and it explains how black works. Reading (or skimping through) both of these documents once will make sure that we're on the same page.
+- You can configure your code editor to do automatic linting. Some editors have built-in support or addons for linting tools such as flake8. You can enable such measures and then configure them by looking at the `.flake8` config file in the project root. [Here's how to setup flake8 in VSCode](https://code.visualstudio.com/docs/python/linting#_run-linting).
+- You can configure your code editor to add a visual mark (a *vertical ruler*) on the 88th character so that you know when you exceed 88 characters. VSCode supports this, and so does most editors.
+
+### Documentation style
+
+We also utilize a very specific way of documenting our codebase and writing docstrings: NumPy's documentation style guide. An in-depth explanation of the documentation style guide can be found [here](https://numpydoc.readthedocs.io/en/latest/format.html), and a comprehensive example can be found [here](https://numpydoc.readthedocs.io/en/latest/example.html#example).
 
 ## Building the PyEuropeana API docs, reference docs and tutorials
 
@@ -202,6 +249,18 @@ WIP
 ## Writing tests
 
 WIP
+
+## Extra: Adding new dependencies to the project
+
+It might sometimes be the case that your contribution to the PyEuropeana project requires a new external package to be added as a dependency. Since we are using Poetry as a package manager, you must also add the packages you desire using Poetry. There are two ways to doing that:
+
+1. Using the Poetry CLI to add the package: `poetry install [PACKAGE_NAME]`. More information about this way can be found [**here**](https://python-poetry.org/docs/cli/#add).
+2. Updating the dependencies listed under `pyproject.toml`. A guide on that can be found [**here**](https://python-poetry.org/docs/pyproject/#dependencies-and-dev-dependencies).
+
+There are a few extra things that you should keep in mind while adding the dependencies:
+
+- You should mind the distinction in between dependencies that are required for the PyEuropeana package to run on our user's computer and the dependencies that are needed to develop the project. Poetry adds a way to distinguish the two and we want to keep that distinction so that we can ship leaner code. For example, the tool `pre-commit` is a *dev dependency* whereas the package *pandas* is a normal dependency. The `pyproject.toml` file has a separate header for dev dependencies. If you are using the CLI with the `poetry install` command, you can add the `--dev` flag to install a dependency as development dependency only.
+- Besides maintaining the `pyproject.toml` file, we are also maintaining a file called `poetry.lock`. This is a [Poetry-specific log](https://python-poetry.org/docs/basic-usage/#installing-with-poetrylock) that lists the exact versioning info of the project's dependency graph. Adding a new dependency also requires us to update this file. To update this file, please run first run `poetry update` and then `poetry install`.
 
 ## Extra: Releasing a version
 
