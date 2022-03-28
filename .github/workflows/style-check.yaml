@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3 # make pull request repo available inside the vm
-      - uses: actions/setup-python#v3 # vm already has python, but I want a specific version
+      - uses: actions/setup-python@v3 # vm already has python, but I want a specific version
         with:
           python-version: '^3.7'
       - run: python -m pip install flake8
