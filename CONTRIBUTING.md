@@ -201,9 +201,30 @@ We subscribe mostly to the [style guide as proposed by the black team](https://b
 
 As introduced in the previous section, **the PyEuropeana project relies on three tools to enforce its code style guide:** black, flake8 and pre-commit. In a perfect world our contributors make use of black and flake8 during development through pre-commit and compliance to these are checked in our CI/CD pipeline.
 
+![An illustration show the tools the PyEuropeana project uses to enforce its code style preferences.](docs/source/media_source/precommit-illustration-diagram_v1.png)
+
 By default the style guide is reinforced only for `.py` files found inside the folders `src/` and `tests/`. These folders make up the bulk of our codebase and we believe we are getting the most benefit with least hassle by targeting them with code style tools. **If you are making any contributions to the `src/` folder or the `tests/` folder, we expect you to follow our code style guide.** If you've followed [the previous section](#configure-local-development-tools), you have that base covered.
 
 The flake8 version that we use in our project is configured to play nicely with the black formatter. Its config options can be found inside the file `.flake8`. Our black formatter configuration can be found under the `[tool.black]` section of the `pyproject.toml` file and our pre-commit configuration is located inside `pre-commit-config.yaml`.
+
+
+**NOTE:** If, for some reason, you wish black to ignore a section of code you've written while making contributions, you can. You need to precede and succeed the code section in question with `# fmt:off` and `# fmt:on` respectively. **This might be useful if you have a special type of syntax in mind that makes your code more understandable.** For example:
+
+```Python
+# fmt:off
+
+import numpy as np
+arr = np.Array([
+  [1, 3, 5, 7],
+  [9, 11, 13, 15],
+  [17, 19, 21, 23]
+])
+
+# fmt: on
+```
+
+**Please note that this will cause flake8 to raise an error if your syntax does not fit in with our flake8 configurations.**
+
 
 ####  Actionable tips
 
