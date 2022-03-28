@@ -21,6 +21,7 @@
   - [**Configure local development tools**](#configure-local-development-tools)
 - [**Style guide**](#style-guide)
   - [**Actionable tips**](#actionable-tips)
+- [**Extra: Adding new dependencies to the project**](#extra-adding-new-dependencies-to-the-project)
 
 ## Different ways of contributing
 
@@ -208,11 +209,12 @@ By default the style guide is reinforced only for `.py` files found inside the f
 The flake8 version that we use in our project is configured to play nicely with the black formatter. Its config options can be found inside the file `.flake8`. Our black formatter configuration can be found under the `[tool.black]` section of the `pyproject.toml` file and our pre-commit configuration is located inside `pre-commit-config.yaml`.
 
 
-**NOTE:** If, for some reason, you wish black to ignore a section of code you've written while making contributions, you can. You need to precede and succeed the code section in question with `# fmt:off` and `# fmt:on` respectively. **This might be useful if you have a special type of syntax in mind that makes your code more understandable.** For example:
+**NOTE:** If, for some reason, you wish black to ignore a section of the code you've written while making contributions, you can. You need to precede and succeed the code section in question with `# fmt:off` and `# fmt:on` respectively. **This might be useful if you have a special type of syntax in mind that makes your code more understandable.** For example:
 
 ```Python
 # fmt:off
 
+# the following syntax is reminescent of the matrix notation in linear algebra
 import numpy as np
 arr = np.Array([
   [1, 3, 5, 7],
@@ -223,7 +225,7 @@ arr = np.Array([
 # fmt: on
 ```
 
-**Please note that this will cause flake8 to raise an error if your syntax does not fit in with our flake8 configurations.**
+**Please note that this does not make the snippet exempt from flake8 checks. An error will be raised both locally if you are using pre-commit and during pull request if your code does not agree with our flake8 configuration.**
 
 
 ####  Actionable tips
@@ -236,7 +238,7 @@ Other than the steps described in the [previous section](#configure-local-develo
 
 ### Documentation style
 
-WIP
+We also utilize a very specific way of documenting our codebase and writing docstrings: NumPy's documentation style guide. An in-depth explanation of the documentation style guide can be found [here](https://numpydoc.readthedocs.io/en/latest/format.html), and a comprehensive example can be found [here](https://numpydoc.readthedocs.io/en/latest/example.html#example).
 
 ## Building the PyEuropeana API docs, reference docs and tutorials
 
@@ -246,9 +248,17 @@ WIP
 
 WIP
 
-## Extra: adding new dependencies to the project
+## Extra: Adding new dependencies to the project
 
-WIP
+It might sometimes be the case that your contribution to the PyEuropeana project requires a new external package to be added as a dependency. Since we are using Poetry as a package manager, you must also add the packages you desire using Poetry. There are two ways to doing that:
+
+1. Using the Poetry CLI to add the package: `poetry install [PACKAGE_NAME]`. More information about this way can be found [**here**](https://python-poetry.org/docs/cli/#add).
+2. Updating the dependencies listed under `pyproject.toml`. A guide on that can be found [**here**](https://python-poetry.org/docs/pyproject/#dependencies-and-dev-dependencies).
+
+There are a few extra things that you should keep in mind while adding the dependencies:
+
+- You should mind the distinction in between dependencies that are required for the PyEuropeana package to run on our user's computer and the dependencies that are needed to develop the project. Poetry adds a way to distinguish the two and we want to keep that distinction so that we can ship leaner code. For example, the tool `pre-commit` is a *dev dependency* whereas the package *pandas* is a normal dependency. The `pyproject.toml` file has a separate header for dev dependencies. If you are using the CLI with the `poetry install` command, you can add the `--dev` flag to install a dependency as development dependency only.
+- Besides maintaining the `pyproject.toml` file, we are also maintaining a file called `poetry.lock`. This is a [Poetry-specific log](https://python-poetry.org/docs/basic-usage/#installing-with-poetrylock) that lists the exact versioning info of the project's dependency graph. Adding a new dependency also requires us to update this file. To update this file, please run first run `poetry update` and then `poetry install`.
 
 ## Extra: Releasing a version
 
