@@ -1,8 +1,10 @@
 import unittest
+import pytest
 
 from pyeuropeana.apis import record
 
 
+@pytest.mark.skip(reason="needs further work/data mocks because of API calls")
 class TestRecord(unittest.TestCase):
     def test_input_id(self):
         """

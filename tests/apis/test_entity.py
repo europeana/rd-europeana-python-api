@@ -1,8 +1,10 @@
 import unittest
+import pytest
 
 import pyeuropeana.apis as apis
 
 
+@pytest.mark.skip(reason="needs further work/data mocks because of API calls")
 class TestEntity(unittest.TestCase):
     def test_suggest(self):
         """
