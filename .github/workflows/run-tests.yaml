@@ -14,15 +14,17 @@ jobs:
         uses: actions/checkout@v3
       - name: Install Poetry to the worker
         run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-      - name: Make Poetry available to bash
-        run: source $HOME/.poetry/env
       - name: Install project dependencies
-        run: poetry install
+        run: |
+        source $HOME/.poetry/env
+        poetry install
   run-unit-tests:
     needs: setup
     runs-on: ubuntu-latest
     steps:
       - name: Run unit tests
-        run: poetry run pytest
+        run: |
+        source $HOME/.poetry/env
+        poetry run pytest
     
 
