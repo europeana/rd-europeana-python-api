@@ -1,8 +1,10 @@
 import unittest
+import pytest
 
 from pyeuropeana.apis import search
 
 
+@pytest.mark.skip(reason="needs further work/data mocks because of API calls")
 class TestSearch(unittest.TestCase):
     def test_args(self):
 
