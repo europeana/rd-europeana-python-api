@@ -30,6 +30,7 @@ fire = "^0.4"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2"
+pytest = "^7"
 
 [tool.black]
 line-length = 88
