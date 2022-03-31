@@ -7,7 +7,7 @@ on:
       - 'src/**'
       - 'tests/**'
 jobs:
-  setup:
+  run-unit-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the pull request
@@ -18,10 +18,6 @@ jobs:
         run: |
           source $HOME/.poetry/env
           poetry install
-  run-unit-tests:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
       - name: Run unit tests
         run: |
           source $HOME/.poetry/env
