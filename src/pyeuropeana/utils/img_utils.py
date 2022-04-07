@@ -1,11 +1,8 @@
 from typing import Union
-from pathlib import Path
 from multiprocessing import Process, Manager
 import urllib.request as urllibrec
 
-import pandas as pd
 from PIL import Image
-from pyeuropeana.utils.edm_utils import europeana_id2filename
 
 
 def url2img(url: str, time_limit: Union[int, float] = 10) -> Image.Image:
