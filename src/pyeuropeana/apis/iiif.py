@@ -100,10 +100,6 @@ def manifest(RECORD_ID):
     with urlopen(url) as response:
         body = response.read()
     return json.loads(body)
-    # return requests.get(
-    #     f"https://iiif.europeana.eu/presentation{RECORD_ID}/manifest",
-    #     params={"wskey": wskey},
-    # ).json()
 
 
 def annopage(**kwargs):
@@ -145,10 +141,6 @@ def annopage(**kwargs):
     with urlopen(url) as response:
         body = response.read()
     return json.loads(body)
-    # return requests.get(
-    #     f"https://iiif.europeana.eu/presentation{RECORD_ID}/annopage/{PAGE_ID}",
-    #     params={"wskey": wskey},
-    # ).json()
 
 
 def fulltext(**kwargs):
