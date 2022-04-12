@@ -1,5 +1,7 @@
 import requests
 import re
+from urllib.request import urlopen
+import json
 
 from ..utils.auth import get_api_key
 from ..utils.edm_utils import cursor_search
@@ -94,10 +96,14 @@ def manifest(RECORD_ID):
     europeana_id = re.findall("/\w*/\w*", RECORD_ID)
     if not europeana_id:
         raise ValueError("Not valid RECORD_ID")
-    return requests.get(
-        f"https://iiif.europeana.eu/presentation{RECORD_ID}/manifest",
-        params={"wskey": wskey},
-    ).json()
+    url = f"https://iiif.europeana.eu/presentation{RECORD_ID}/manifest?wskey={wskey}"
+    with urlopen(url) as response:
+        body = response.read()
+    return json.loads(body)
+    # return requests.get(
+    #     f"https://iiif.europeana.eu/presentation{RECORD_ID}/manifest",
+    #     params={"wskey": wskey},
+    # ).json()
 
 
 def annopage(**kwargs):
