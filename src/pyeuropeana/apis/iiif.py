@@ -140,10 +140,15 @@ def annopage(**kwargs):
         raise ValueError("Not valid RECORD_ID")
     if not isinstance(PAGE_ID, int):
         raise ValueError("PAGE_ID must be an int")
-    return requests.get(
-        f"https://iiif.europeana.eu/presentation{RECORD_ID}/annopage/{PAGE_ID}",
-        params={"wskey": wskey},
-    ).json()
+
+    url = f"https://iiif.europeana.eu/presentation{RECORD_ID}/annopage/{PAGE_ID}?wskey={wskey}"
+    with urlopen(url) as response:
+        body = response.read()
+    return json.loads(body)
+    # return requests.get(
+    #     f"https://iiif.europeana.eu/presentation{RECORD_ID}/annopage/{PAGE_ID}",
+    #     params={"wskey": wskey},
+    # ).json()
 
 
 def fulltext(**kwargs):
