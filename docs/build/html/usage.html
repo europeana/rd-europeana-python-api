@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Getting started &mdash; Europeana python interface 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -113,30 +112,30 @@
     text-align: unset;
 }
 </style>
-<section id="getting-started">
+<div class="section" id="getting-started">
 <h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline"></a></h1>
-<section id="installation">
+<div class="section" id="installation">
 <span id="id1"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
-<section id="using-pip">
+<div class="section" id="using-pip">
 <h3>Using pip<a class="headerlink" href="#using-pip" title="Permalink to this headline"></a></h3>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>pip install pyeuropeana
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$</span> pip install pyeuropeana
 </pre></div>
 </div>
-</section>
-<section id="from-source">
+</div>
+<div class="section" id="from-source">
 <h3>From source<a class="headerlink" href="#from-source" title="Permalink to this headline"></a></h3>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>git clone https://github.com/europeana/rd-europeana-python-api.git
-<span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span><span class="nb">cd</span> rd-europeana-python-api
-<span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>pip install .
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$</span> git clone https://github.com/europeana/rd-europeana-python-api.git
+<span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$</span> <span class="nb">cd</span> rd-europeana-python-api
+<span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$</span> pip install .
 </pre></div>
 </div>
-</section>
-</section>
-<section id="authentication">
+</div>
+</div>
+<div class="section" id="authentication">
 <span id="id2"></span><h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline"></a></h2>
 <p>Get your API key <a class="reference external" href="https://pro.europeana.eu/pages/get-api">here</a></p>
 <p>Set <code class="code docutils literal notranslate"><span class="pre">EUROPEANA_API_KEY</span></code> as an environment variable running the following command in the terminal</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span><span class="nb">export</span> <span class="nv">EUROPEANA_API_KEY</span><span class="o">=</span>yourapikey
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$</span> <span class="nb">export</span> <span class="nv">EUROPEANA_API_KEY</span><span class="o">=</span>yourapikey
 </pre></div>
 </div>
 <p>You can also set it from python with</p>
@@ -144,10 +143,10 @@
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;EUROPEANA_API_KEY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;yourapikey&#39;</span>
 </pre></div>
 </div>
-</section>
-<section id="quickstart">
+</div>
+<div class="section" id="quickstart">
 <span id="id3"></span><h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline"></a></h2>
-<section id="id4">
+<div class="section" id="id4">
 <h3><a class="reference external" href="https://pro.europeana.eu/page/search">Search API</a><a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
 <span class="kn">import</span> <span class="nn">pyeuropeana.utils</span> <span class="k">as</span> <span class="nn">utils</span>
@@ -172,8 +171,8 @@
 <span class="n">dataframe</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">search2df</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="id5">
+</div>
+<div class="section" id="id5">
 <h3><a class="reference external" href="https://pro.europeana.eu/page/record">Record API</a><a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
 
@@ -181,8 +180,8 @@
 <span class="n">data</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="s1">&#39;/79/resource_document_museumboerhaave_V35167&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="id6">
+</div>
+<div class="section" id="id6">
 <h3><a class="reference external" href="https://pro.europeana.eu/page/entity">Entity API</a><a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
 
@@ -203,8 +202,8 @@
 <span class="n">data</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">entity</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Leonardo_da_Vinci&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="id7">
+</div>
+<div class="section" id="id7">
 <h3><a class="reference external" href="https://pro.europeana.eu/page/iiif">IIIF API</a><a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
 
@@ -232,9 +231,9 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
            </div>
