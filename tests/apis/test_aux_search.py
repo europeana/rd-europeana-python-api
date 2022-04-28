@@ -6,7 +6,6 @@ if __name__ == "__main__":
 
     # utils.url2img('https://asdfmmb-web.adlibhosting.com/ais6/webapi/wwwopac.ashx?command=getcontent&server=images&value=bruiklenen/herinrichting/HM14-minigrail.jpg')
 
-
     # def get_facet_fields(response):
     #     return response['facets'][0]['fields']
 
@@ -25,12 +24,8 @@ if __name__ == "__main__":
 
     # utils.url2img
 
-
     # Search
-    resp = apis.search(
-    query = 'leonardo',
-    rows = 150
-    )
+    resp = apis.search(query="leonardo", rows=150)
 
     utils.search2df(resp)
 
@@ -66,10 +61,6 @@ if __name__ == "__main__":
     # )
 
     # df = utils.edm_utils.resp2df(resp)
-
-
-
-
 
     # result = apis.search(
     #     query = '*',

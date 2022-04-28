@@ -1,0 +1,17 @@
+repos:
+-   repo: https://github.com/ambv/black
+    rev: 22.3.0
+    hooks:
+    - id: black # use pyproject.toml to config except for "files"
+      files: ^(src/|tests/)
+      args:
+        - "--line-length=88"
+-   repo: https://github.com/pycqa/flake8
+    rev: 4.0.1
+    hooks:
+    - id: flake8  # use .flake8 file to config except for "files"
+      files: ^(src/|tests/)
+      args:
+      - "--max-line-length=88"
+      - "--max-complexity=18"
+      - "--ignore=E203,E266,E501,W503,F403,F401,W605"
