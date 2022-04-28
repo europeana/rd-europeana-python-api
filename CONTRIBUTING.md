@@ -249,6 +249,9 @@ We also utilize a very specific way of documenting our codebase and writing docs
 - We also expect any contributions to the actual Python code of the wrapper to be accompanied with relevant API documentation, provided in the form of docstrings. 
 
 - Nonetheless, to make any changes to the documentation you need to know how to build it.
+  
+
+NEED TO PROVIDE KEY IN THE TERMINAL
 
 ## Writing tests
 
