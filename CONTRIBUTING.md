@@ -242,9 +242,13 @@ Other than the steps described in the [previous section](#configure-local-develo
 
 We also utilize a very specific way of documenting our codebase and writing docstrings: NumPy's documentation style guide. An in-depth explanation of the documentation style guide can be found [here](https://numpydoc.readthedocs.io/en/latest/format.html), and a comprehensive example can be found [here](https://numpydoc.readthedocs.io/en/latest/example.html#example).
 
-## Building the PyEuropeana API docs, reference docs and tutorials
+## Writing and building the PyEuropeana API documentation and tutorials
 
-WIP
+- The PyEuropeana project has extensive API reference documentation and some illustrative tutorials that can be used to better understand the project. This documentation is hosted w/ ReadTheDocs, it can be found here
+- We welcome any attempts of improving the existing documentation in any form or scale. You can propose to fix typos, improve wording, add/remove things to clarify a section. Tutorials that show an usecase w/ the PyEuropeana package is of special importance to us, because we believe these can not only show our potential users how the package works, but also for what it can be used with.
+- We also expect any contributions to the actual Python code of the wrapper to be accompanied with relevant API documentation, provided in the form of docstrings. 
+
+- Nonetheless, to make any changes to the documentation you need to know how to build it.
 
 ## Writing tests
 
