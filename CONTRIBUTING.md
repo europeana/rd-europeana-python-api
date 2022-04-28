@@ -208,8 +208,7 @@ As introduced in the previous section, **the PyEuropeana project relies on three
 
 By default the style guide is reinforced only for `.py` files found inside the folders `src/` and `tests/`. These folders make up the bulk of our codebase and we believe we are getting the most benefit with least hassle by targeting them with code style tools. **If you are making any contributions to the `src/` folder or the `tests/` folder, we expect you to follow our code style guide.** If you've followed [the previous section](#configure-local-development-tools), you have that base covered.
 
-The flake8 version that we use in our project is configured to play nicely with the black formatter. Its config options can be found inside the file `.flake8`. Our black formatter configuration can be found under the `[tool.black]` section of the `pyproject.toml` file and our pre-commit configuration is located inside `pre-commit-config.yaml`.
-
+The flake8 version that we use in our project is configured to play nicely with the black formatter. Its config options, along with the config options for the black formatter, can be found inside the file `.pre-commit-config.yaml`.
 
 **NOTE:** If, for some reason, you wish black to ignore a section of the code you've written while making contributions, you can. You need to precede and succeed the code section in question with `# fmt:off` and `# fmt:on` respectively. **This might be useful if you have a special type of syntax in mind that makes your code more understandable.** For example:
 
@@ -242,9 +241,16 @@ Other than the steps described in the [previous section](#configure-local-develo
 
 We also utilize a very specific way of documenting our codebase and writing docstrings: NumPy's documentation style guide. An in-depth explanation of the documentation style guide can be found [here](https://numpydoc.readthedocs.io/en/latest/format.html), and a comprehensive example can be found [here](https://numpydoc.readthedocs.io/en/latest/example.html#example).
 
-## Building the PyEuropeana API docs, reference docs and tutorials
+## Writing and building the PyEuropeana API documentation and tutorials
 
-WIP
+- The PyEuropeana project has extensive API reference documentation and some illustrative tutorials that can be used to better understand the project. This documentation is hosted w/ ReadTheDocs, it can be found here
+- We welcome any attempts of improving the existing documentation in any form or scale. You can propose to fix typos, improve wording, add/remove things to clarify a section. Tutorials that show an usecase w/ the PyEuropeana package is of special importance to us, because we believe these can not only show our potential users how the package works, but also for what it can be used with.
+- We also expect any contributions to the actual Python code of the wrapper to be accompanied with relevant API documentation, provided in the form of docstrings. 
+
+- Nonetheless, to make any changes to the documentation you need to know how to build it.
+  
+
+NEED TO PROVIDE KEY IN THE TERMINAL
 
 ## Writing tests
 
