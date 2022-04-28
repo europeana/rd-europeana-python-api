@@ -208,8 +208,7 @@ As introduced in the previous section, **the PyEuropeana project relies on three
 
 By default the style guide is reinforced only for `.py` files found inside the folders `src/` and `tests/`. These folders make up the bulk of our codebase and we believe we are getting the most benefit with least hassle by targeting them with code style tools. **If you are making any contributions to the `src/` folder or the `tests/` folder, we expect you to follow our code style guide.** If you've followed [the previous section](#configure-local-development-tools), you have that base covered.
 
-The flake8 version that we use in our project is configured to play nicely with the black formatter. Its config options can be found inside the file `.flake8`. Our black formatter configuration can be found under the `[tool.black]` section of the `pyproject.toml` file and our pre-commit configuration is located inside `pre-commit-config.yaml`.
-
+The flake8 version that we use in our project is configured to play nicely with the black formatter. Its config options, along with the config options for the black formatter, can be found inside the file `.pre-commit-config.yaml`.
 
 **NOTE:** If, for some reason, you wish black to ignore a section of the code you've written while making contributions, you can. You need to precede and succeed the code section in question with `# fmt:off` and `# fmt:on` respectively. **This might be useful if you have a special type of syntax in mind that makes your code more understandable.** For example:
 
