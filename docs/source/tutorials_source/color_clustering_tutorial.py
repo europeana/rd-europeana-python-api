@@ -65,10 +65,6 @@ We aimed to make this tutorial very approachable. It does not require a deep kno
 Among the packages that we will be using today are [NumPy](https://numpy.org/), [Pandas](https://pandas.pydata.org/), [Pillow (PIL)](https://pillow.readthedocs.io/en/stable/), [Scikit-learn](https://scikit-learn.org/stable/) and [PyEuropeana](https://github.com/europeana/rd-europeana-python-api). We will use NumPy so that we can vectorize certain computations and get a speed boost. Pandas will be used to manipulate the vast amount of data and metadata we get from the Europeana API's. We will use an unsupervised machine learning algorithm from Scikit-learn known as *K-means clustering* to extract color palettes from individual images. PyEuropeana, our Python wrapper around Europeana API's, will be used to fetch data from Europeana.
 """
 
-# DELETE THIS IN LIVE VERSION
-!pip install https://github.com/europeana/rd-europeana-python-api/archive/master.zip
-# DELETE THIS IN LIVE VERSION
-
 import os
 from pathlib import Path
 
@@ -110,14 +106,8 @@ mpl.rcParams["text.color"] = "DBDDDB"
 
 What PyEuropeana does under the hood is sending HTTP requests formatted in a certain way to the Europeana API endpoints. Each request has to be signed with an API key to track usage and permissions. Therefore, before starting to use PyEuropeana, we need to get an API key. You can get yours [here](https://pro.europeana.eu/page/get-api).
 
-The functions that we call from PyEuropeana look into your environment variables to find your API key. If you wish to run this notebook locally, you can save your API key as an environment variable by modifying the code snippet below.
+The functions that we call from PyEuropeana look into your environment variables to find your API key. You should set it as an environment variable using a command line interface, a config file or Python itself before attempting to run the code below.
 """
-
-os.environ['EUROPEANA_API_KEY'] = 'YOUR_API_KEY_HERE' #please insert your api key in between ''
-
-# DELETE THIS IN LIVE VERSION
-os.environ['EUROPEANA_API_KEY'] = 'api2demo'
-# DELETE THIS IN LIVE VERSION
 
 """## Fetching data
 
