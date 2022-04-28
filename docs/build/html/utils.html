@@ -142,8 +142,29 @@
 <h2>url2img<a class="headerlink" href="#url2img" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="pyeuropeana.utils.img_utils.url2img">
-<span class="sig-prename descclassname"><span class="pre">pyeuropeana.utils.img_utils.</span></span><span class="sig-name descname"><span class="pre">url2img</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyeuropeana.utils.img_utils.url2img" title="Permalink to this definition"></a></dt>
-<dd><p>Utility for obtaining a PIL Image object from an image url</p>
+<span class="sig-prename descclassname"><span class="pre">pyeuropeana.utils.img_utils.</span></span><span class="sig-name descname"><span class="pre">url2img</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PIL.Image.Image</span></span></span><a class="headerlink" href="#pyeuropeana.utils.img_utils.url2img" title="Permalink to this definition"></a></dt>
+<dd><p>A utility function for obtaining a <code class="xref py py-obj docutils literal notranslate"><span class="pre">PIL.Image</span></code> object given an image URL.</p>
+<dl class="simple">
+<dt>url: str</dt><dd><p>The URL to which an HTTP request will be sent to retrieve the image.</p>
+</dd>
+<dt>time_limit: int or float, optional</dt><dd><p>How long to wait (in seconds) to retrieve the image until the request timeouts.
+When the request timeouts, the function returns None. Default is 10 seconds.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">PIL.Image</span></code></dt><dd><p>A Pillow Image object that is rendered in RGB mode.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>TypeError</dt><dd><p>Raises a TypeError if the argument passed to the parameter <cite>url</cite> is not a string.</p>
+</dd>
+<dt>TypeError</dt><dd><p>Raises a TypeError if the argument passed to the parameter <cite>time_limit</cite> is
+not an integer or a float.</p>
+</dd>
+</dl>
+<p>The <code class="xref py py-obj docutils literal notranslate"><span class="pre">PIL.Image</span></code> object that is returned when the function successfully
+retrieves the image at the given URL is rendered in RGB mode by default. To convert
+it to any other color mode, PIL utility methods can be utilized.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.apis</span> <span class="k">as</span> <span class="nn">apis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyeuropeana.utils</span> <span class="k">as</span> <span class="nn">utils</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">resp</span> <span class="o">=</span> <span class="n">apis</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
@@ -155,17 +176,6 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">img</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">url2img</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="simple">
-<dt>Args:</dt><dd><dl class="simple">
-<dt>url (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>)</dt><dd><p>Image url</p>
-</dd>
-<dt>time_limit (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>, optional)</dt><dd><p>Maximum time in seconds for getting the image, if longer the function returns None . Default is 10 seconds</p>
-</dd>
-</dl>
-</dd>
-<dt>Returns: <code class="xref py py-obj docutils literal notranslate"><span class="pre">PIL.Image</span></code></dt><dd><p>Image</p>
-</dd>
-</dl>
 </dd></dl>
 
 </section>

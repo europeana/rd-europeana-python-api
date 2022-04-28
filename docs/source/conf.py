@@ -10,25 +10,26 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-#import os
-#import sys
-#sys.path.insert(0, os.path.abspath('/home/jcejudo/rd-europeana-python-api/src'))
+# import os
+# import sys
+# sys.path.insert(0, os.path.abspath('/home/jcejudo/rd-europeana-python-api/src'))
 
 import pathlib
 import sys
+
 src_path = pathlib.Path(__file__).parents[2].resolve().as_posix()
-src_path = pathlib.Path(src_path).joinpath('src')
+src_path = pathlib.Path(src_path).joinpath("src")
 print(src_path)
 sys.path.append(src_path)
 
 # -- Project information -----------------------------------------------------
 
-project = 'Europeana python interface'
-copyright = '2022, Jose Eduardo Cejudo'
-author = 'Jose Eduardo Cejudo'
+project = "Europeana python interface"
+copyright = "2022, Jose Eduardo Cejudo"
+author = "Jose Eduardo Cejudo"
 
 # The full version, including alpha/beta/rc tags
-release = '0.1'
+release = "0.1"
 
 
 # -- General configuration ---------------------------------------------------
@@ -37,21 +38,21 @@ release = '0.1'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.duration',
-    'sphinx.ext.doctest',
-    'sphinx.ext.autodoc',
-    'sphinx_gallery.gen_gallery',
-    'nbsphinx'
+    "sphinx.ext.duration",
+    "sphinx.ext.doctest",
+    "sphinx.ext.autodoc",
+    "sphinx_gallery.gen_gallery",
+    "nbsphinx",
 ]
 
 sphinx_gallery_conf = {
-     'examples_dirs': ['tutorials_source'],
-     'gallery_dirs': ['tutorials'],  # path to where to save gallery generated output
-     'filename_pattern':'/tutorial_'
+    "examples_dirs": ["tutorials_source"],
+    "gallery_dirs": ["tutorials"],  # path to where to save gallery generated output
+    "filename_pattern": "/*",
 }
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -64,9 +65,9 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+html_theme = "sphinx_rtd_theme"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
