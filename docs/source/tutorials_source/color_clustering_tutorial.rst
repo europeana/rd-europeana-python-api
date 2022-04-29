@@ -2,8 +2,10 @@ Extracting color palettes from Art Nouveau posters using K-means clustering
 ===========================================================================
 
 
-.. note:: **Get this tutorial locally.**
+.. note:: **You can download this tutorial in the .ipynb format or the .py format.**
+
     :download:`Download Python source code <color_clustering_tutorial_files/color_clustering_tutorial.py>`
+
     :download:`Download as Jupyter Notebook <color_clustering_tutorial_files/color_clustering_tutorial.ipynb>`
 
 .. image:: color_clustering_tutorial_files/img-1.png
@@ -231,11 +233,10 @@ Basic queries with the ``apis.search()`` function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To make a request to Europeana’s Search API using Python, we can use the
-```search()`` function of the ``apis``
-module <https://rd-europeana-python-api.readthedocs.io/en/stable/apis.html#search>`__.
-This function requires passing as an argument a search term string to
-the parameter ``query`` at minimum. It returns a dictionary which
-contains metadata about the HTTP request and the actual CHO data.
+``search()`` function of the ``apis`` module. This function requires passing as an 
+argument a search term string to the parameter ``query`` at minimum. 
+It returns a dictionary which contains metadata about the HTTP request and the actual
+CHO data.
 
 Let’s call the ``apis.search()`` function with the string “Art Nouveau
 Poster” passed in as an argument to the parameter ``query``.
@@ -365,12 +366,9 @@ Using utility functions to transform and enrich raw responses
 Although you can work with this data in its raw form if you are
 determined enough, you do not have to. PyEuropeana comes with a set of
 utility functions that can be leveraged to shape the response data of a
-Search API call into a friendlier form. The function ```search2df`` of
-the ``utils``
-module <https://rd-europeana-python-api.readthedocs.io/en/stable/utils.html#search2df>`__
-does exactly this. This utility function can be used to transform the
-output of the ``apis.search()`` function into a `Pandas
-DataFrame <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html>`__,
+Search API call into a friendlier form. The function ``search2df`` of
+the ``utils`` module does exactly this. This utility function can be used to transform the
+output of the ``apis.search()`` function into a `Pandas DataFrame <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html>`__,
 a data structure that is very common in the Python ecosystem.
 
 The function ``utils.search2df`` has only two parameters: ``response``
@@ -642,10 +640,7 @@ that does exactly that. The function ``utils.url2img()`` uses the
 standard library and Pillow (PIL) to do exactly that.
 
 The
-```utils.url2img`` <https://rd-europeana-python-api.readthedocs.io/en/stable/utils.html#url2img>`__
-function accepts an URL as an argument and returns a
-```PIL.image`` <https://pillow.readthedocs.io/en/stable/reference/Image.html>`__
-object.
+``utils.url2img`` function accepts an URL as an argument and returns a ``PIL.image`` object.
 
 .. code:: python
 
@@ -684,9 +679,8 @@ Advanced queries with the ``apis.search() function``
 
 The only argument that we passed into the ``apis.search()`` function was
 the string ``"Art Nouveau Poster"`` for the ``query=...`` parameter. If
-you took a look at the `API docs for the ``apis.search()``
-function <https://rd-europeana-python-api.readthedocs.io/en/stable/apis.html#search>`__,
-you probably noticed that the function has many other parameters besides
+you took a look at the API docs for the ``apis.search()``
+function, you probably noticed that the function has many other parameters besides
 ``query``. These parameters allow you to send to the API a carefully
 crafted query. Through them, you get more relevant data that requires
 less processing on your end. When you utilize these parameters you can
