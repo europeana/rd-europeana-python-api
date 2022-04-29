@@ -7,8 +7,9 @@ build:
   jobs:
   # install poetry to the ubuntu vm & configure
     pre_create_environment:
-      - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-      - source $HOME/.poetry/env
+      - asdf plugin add poetry
+      - asdf install poetry latest
+      - asdf global poetry latest
       - poetry config virtualenvs.create false
   # install the actual package and its dependencies
     post_install:
