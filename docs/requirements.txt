@@ -1,6 +1,5 @@
 sphinx
 sphinx_rtd_theme
-furo
 sphinx-gallery
 nbsphinx
 matplotlib

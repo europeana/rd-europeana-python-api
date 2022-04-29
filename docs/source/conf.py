@@ -24,9 +24,9 @@ sys.path.append(src_path)
 
 # -- Project information -----------------------------------------------------
 
-project = "Europeana python interface"
+project = "PyEuropeana - Python Interface for Europeana APIs"
 copyright = "2022, Jose Eduardo Cejudo"
-author = "Jose Eduardo Cejudo"
+author = "Jose Eduardo Cejudo, Eren Janberk Genç"
 
 # The full version, including alpha/beta/rc tags
 release = "0.1"
