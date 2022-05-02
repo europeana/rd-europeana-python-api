@@ -4,12 +4,19 @@ build:
   os: "ubuntu-20.04"
   tools:
     python: "3.9"
+  jobs:
+  # install poetry to the ubuntu vm & configure
+  # I think asdf is kinda like an env manager used by ubuntu, I don't know why rtd uses it
+    pre_create_environment:
+      - asdf plugin add poetry
+      - asdf install poetry latest
+      - asdf global poetry latest
+      - poetry config virtualenvs.create false
+  # install the actual package and its dependencies
+    post_install:
+      - poetry install
 
+# build the documentation by looking at the conf.py file
 sphinx:
   builder: html
   configuration: docs/source/conf.py
-
-python:
-  install:
-    - requirements: docs/requirements.txt
-    - path: .
