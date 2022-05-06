@@ -256,7 +256,10 @@ In the following sections we will go through some more information (segmented by
 Most of the time there isn't anything special that you must do if you wish to write or edit docstrings **except following our [docstring style choices](#docstring-style).** Our Sphinx is set up to pick up and document the changes that you make to raw `.py` files. However, if you are writing the documentation for a wholly new module or sub-module, you need to take some extra steps to make sure that your new module or sub-module is watched over by Sphinx:
 
 - If you are writing a new module (something that would be the sibling of `src/apis` or `src/utils`), **you need to create a top-level `.rst` file with the name of the module for that module.** This `.rst` file would need to be located under `docs/source`, as a sibling of files such as `docs/source/utils.rst` and `docs/source/apis.rst`. Fill out the content of this `.rst` file by looking at [the relevant documentation on the Sphinx website](https://www.sphinx-doc.org/en/master/usage/quickstart.html#autodoc) or by studying files such as `docs/source/apis.rst` or `docs/source/utils.rst`.
+- When writing a new module, you also need to edit the file `docs/source/package.rst` with the relevant information. You can take hints from the file itself when making additions.
 - If you are writing a new sub-module under one of the existing modules (currently `apis` and `utils`), then you need edit the `.rst` file responsible for documenting that module. Once again, you can study the existing documentation files or look at [the relevant documentation on the Sphinx website](https://www.sphinx-doc.org/en/master/usage/quickstart.html#autodoc).
+
+After doing any docstring-related change, **we strongly suggest you to compile Sphinx locally to see if there are any problems.** Please check the [*compiling documentation locally using Sphinx*](#compiling-documentation-locally-using-sphinx) section for more info on how to do that.
 
 
 ### Writing illustrative tutorials
@@ -269,24 +272,39 @@ We have found that the best way to deliver tutorials mixed with narrative is thr
 
 If you have a Jupyter Notebook ready, you can take the following steps to transform it into a format that we can proudly display on our documentation:
 
-- First, **make sure that your notebook runs end to end on your local machine.** Make explicit any implicit knowledge that is required to make the tutorial run without problems. This includes:
+> **IMPORTANT NOTE:** The steps described below require the installation of one piece of software that we cannot present neither as a dependency nor as a dev dependency at the moment. Please see step two for more information. 
+
+- First, **make sure that your notebook runs end to end on your local machine.** Make explicit any implicit knowledge that is required to make the tutorial run without problems. This means:
   - Have a cell dedicated to imports
   - If anything needs to be supplied by the end user to run (such as API keys), state where an how they should be supplied.
-- Secondly, **get a `.py` version of your Jupyter Notebook.** This can be achieved through various utilities. Getting a `.py` export of your notebook file is supported by most notebook environments such as Jupyter Lab and Google Colab.
-- MAKE SURE U HAVE THE PACKAGE INSTALLED LOCALLY
-- PLACE JUPYTER FILE UNDER SOURCE
-- RUN THIS COMMAND
-- IF NOT, CREATE FOLDER. IF YES, BUT .PY AND .IPYNB INSIDE FOLDER
-- PLACE JUPYTER FILE UNDER FOLDER
-- MANUALLY CHECK RST FILE FOR ERRORS
-- ALSO, SEE IF IT COMPILES LOOK AT THIS
+- Secondly, **install Pandoc to the machine in which you will be doing development.** Pandoc is a CLI tool, and it is the only dependency related to documentation that we cannot ship along with the project. [You can refer to Pandoc's own documentation in order to do that.](https://pandoc.org/installing.html)
+- **Get a `.py` version of your Jupyter Notebook.** This can be achieved through various utilities. Getting a `.py` export of your notebook file is supported by most notebook environments such as Jupyter Lab and Google Colab.
+- Make sure that you have the PyEuropeana package installed locally with dev dependencies before continuing with the next steps. For more information about how to do that, check the [*Setting up and using your development environment*](#setting-up-and-using-your-development-environment) section.
+- Place the Jupyter Notebook file that belongs to your tutorial under `docs/source/tutorials_source`.
+- Open any terminal you can access Poetry from. Navigate to the folder you have just placed your file at (`docs/source/tutorials_source`).
+- Run the following command: `poetry run jupyter nbconvert --to rst [NAME_OF_YOUR_NOTEBOOK.rst]` where `[NAME_OF_YOUR_NOTEBOOK.rst]` is the name of the Jupyter Notebook file you've already created.
+- After running this command, you should have an `.rst` file with the same name as your `ipynb` and `.py` file. There might also be a folder called `[NAME_OF_YOUR_NOTEBOOK]_files` as a sibling of these files. If the folder does not exist, go ahead and create one. Move the `.py` file and the `.ipynb` file to this folder.
+- Manually check your `.rst` file for errors. You can take a look at [Sphinx's ReStructured Text documentation](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html) while doing that. Although this step might seem tedious, **it is much less time consuming than creating an `.rst` file from an `.ipynb` file by hand.**
+- After checking your `.rst` file, make the following addition to the start of the file:
+
+    ```rst
+    .. note:: **You can download this tutorial in the .ipynb format or the .py format.**
+
+    :download:`Download Python source code <[NAME_OF_YOUR_NOTEBOOK]_files/[NAME_OF_YOUR_NOTEBOOK].py>`
+
+    :download:`Download as Jupyter Notebook <[NAME_OF_YOUR_NOTEBOOK]_files/[NAME_OF_YOUR_NOTEBOOK].ipynb>`
+    ```
+    Do not forget to modify the placeholder names in between the square brackets.
+
+After completing the last step, you now have a fully Sphinx-compatible `.rst` file with links to `.ipynb` and `.rst` downloadables. **Before creating a pull request with your tutorial, we strongly suggest you to compile Sphinx locally to see if there are any problems.** Please check the [*compiling documentation locally using Sphinx*](#compiling-documentation-locally-using-sphinx) section for more info on how to do that.
 
 ### Any other documentation contribution
 
-You can also contribute to other parts of our documentation, such as our README and these contribution guidelines. Making a contribution to these require no additional changes except the documents themselves. You can likewise make changes to other pages present on Read the Docs that are not auto-generated API references or tutorials. **All of the other documentation that we have on Read the Docs have their own `.rst` file that is located under `docs/source`.** Changes to these `.rst` files will be reflected on our documentation website, provided that the Sphinx doesn't run into any errors (syntax etc.) while compiling them.
+You can also contribute to other parts of our documentation, such as our README and these contribution guidelines. Making a contribution to these require no additional changes except the documents themselves. You can likewise make changes to other pages present on Read the Docs that are not auto-generated API references or tutorials. **All of the other documentation that we have on Read the Docs have their own `.rst` file that is located under `docs/source`.** Changes to these `.rst` files will be reflected on our documentation website, provided that the Sphinx doesn't run into any errors (syntax errors etc.) while compiling them. To make sure that it doesn't, check the the [*compiling documentation locally using Sphinx*](#compiling-documentation-locally-using-sphinx) section.
 
 ### Compiling documentation locally using Sphinx
 
+WIP
 
 ## Writing tests
 
