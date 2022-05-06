@@ -22,7 +22,13 @@
 - [**Style guide**](#style-guide)
   - [**Code style**](#code-style)
     - [**Actionable tips**](#actionable-tips)
-  - [**Documentation style**](#documentation-style)
+  - [**Docstring style**](#docstring-style)
+- [**About PyEuropeana documentation**](#about-pyeuropeana-documentation)
+  - [**Writing docstrings**](#writing-docstrings)
+  - [**Writing illustrative tutorials](#writing-illustrative-tutorials)
+    - [**The format for illustrative tutorials**](#the-format-for-illustrative-tutorials)
+  - [**Any other documentation contribution**](#any-other-documentation-contribution)
+  - [**Compiling documentation locally using Sphinx**](#compiling-documentation-locally-using-sphinx)
 - [**Extra: Adding new dependencies to the project**](#extra-adding-new-dependencies-to-the-project)
 
 ## Different ways of contributing
@@ -247,7 +253,7 @@ The PyEuropeana project aims to maintain an extensive API reference that suffici
 
 We welcome any attempts to improve the existing documentation. You can propose to fix typos, improve wording, add/remove things to clarify a section, and so on. More importantly for us, you can submit a tightly-scoped tutorial that shows a cool proof-of-concept using the PyEuropeana package and various Python ecosystem tools. **Such contributions are of special importance to us because we believe these can not only show our users how PyEuropeana works, but also for what it can be used for.**
 
-**We also expect any contributions to the actual Python code of the wrapper to be accompanied with relevant API documentation, provided in the form of docstrings. These docstrings should confirm to the format that is outlined in the [*Docstring Style*](#docstring-style) section of the contribution guidelines.**
+**We also expect any contributions to the actual Python code of the wrapper to be accompanied with relevant API documentation, provided in the form of docstrings. These docstrings should conform to the format that is outlined in the [*Docstring Style*](#docstring-style) section of the contribution guidelines.**
 
 In the following sections we will go through some more information (segmented by documentation type) that will help you in contributing to PyEuropeana documentation.
 
@@ -270,7 +276,7 @@ As previously mentioned, **we are very eager to receive short narrative tutorial
 
 We have found that the best way to deliver tutorials mixed with narrative is through a notebook-like medium. For this end, **we prepare our own tutorials in Jupyter Notebook.** We then create an `.rst` version of this Jupyter Notebook, which we add to documentation source. Through these steps, **we can create a notebook-like tutorial that can be followed along either on the web or locally.**
 
-If you have a Jupyter Notebook ready, you can take the following steps to transform it into a format that we can proudly display on our documentation:
+If you have a Jupyter Notebook ready, you can take the following steps to transform it into a format that we can proudly display:
 
 > **IMPORTANT NOTE:** The steps described below require the installation of one piece of software that we cannot present neither as a dependency nor as a dev dependency at the moment. Please see step two for more information. 
 
@@ -282,8 +288,8 @@ If you have a Jupyter Notebook ready, you can take the following steps to transf
 - Make sure that you have the PyEuropeana package installed locally with dev dependencies before continuing with the next steps. For more information about how to do that, check the [*Setting up and using your development environment*](#setting-up-and-using-your-development-environment) section.
 - Place the Jupyter Notebook file that belongs to your tutorial under `docs/source/tutorials_source`.
 - Open any terminal you can access Poetry from. Navigate to the folder you have just placed your file at (`docs/source/tutorials_source`).
-- Run the following command: `poetry run jupyter nbconvert --to rst [NAME_OF_YOUR_NOTEBOOK.rst]` where `[NAME_OF_YOUR_NOTEBOOK.rst]` is the name of the Jupyter Notebook file you've already created.
-- After running this command, you should have an `.rst` file with the same name as your `ipynb` and `.py` file. There might also be a folder called `[NAME_OF_YOUR_NOTEBOOK]_files` as a sibling of these files. If the folder does not exist, go ahead and create one. Move the `.py` file and the `.ipynb` file to this folder.
+- Run the following command: `poetry run jupyter nbconvert --to rst [NAME_OF_YOUR_NOTEBOOK].rst` where `[NAME_OF_YOUR_NOTEBOOK]` is the name of the Jupyter Notebook file you've already created.
+- After running this command, you should have an `.rst` file with the same name as your `ipynb` and `.py` file. There might also be a folder called `[NAME_OF_YOUR_NOTEBOOK]_files` as a sibling of these files. If the folder does not exist, go ahead and create it. Move the `.py` file and the `.ipynb` file to this folder.
 - Manually check your `.rst` file for errors. You can take a look at [Sphinx's ReStructured Text documentation](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html) while doing that. Although this step might seem tedious, **it is much less time consuming than creating an `.rst` file from an `.ipynb` file by hand.**
 - After checking your `.rst` file, make the following addition to the start of the file:
 
@@ -309,7 +315,7 @@ We use Sphinx to compile our documentation (written as `.rst`) into HTML webpage
 - First, make sure that you have the PyEuropeana package installed locally with dev dependencies before continuing with the next steps. For more information about how to do that, check the [*Setting up and using your development environment*](#setting-up-and-using-your-development-environment) section.
 - Open a terminal you can access Poetry from and navigate to the `docs/` folder.
 - Run the following command: `poetry run make html`. This command uses GNU Make on systems with Make available (MacOS, Linux distros). In Windows environments, the file `docs/make.bat` is triggered instead.
-- If for some reason the command above returns an error, run this command instead: `poetry run sphinx build -b html sourcedir builddir`
+- If for some reason the command above returns an error, run this command instead: `poetry run sphinx-build -b html source build`
 
 A folder named `docs/build` will be created if any of the last two commands above run successfully. The contents of this folder are used by Read the Docs to display our documentation. You can explore this folder and the `.html` files under it by hand, or you can spin a quick local web server. To do so, open a terminal that has access to Python first. Navigate to `docs` then run the following command:
 
@@ -318,6 +324,8 @@ python -m http.server 8000
 ```
 
 You can then go to any browser access the files interactively at `http://localhost:8000/build/html/`
+
+> **IMPORTANT NOTE:** Please do not add `docs/build` to source control. Our `.gitignore` file is set to ignore this folder by default because it is dynamically generated at compile time. Do not change the `.gitignore` file to include it.
 
 ## Writing tests
 
