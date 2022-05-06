@@ -304,7 +304,20 @@ You can also contribute to other parts of our documentation, such as our README 
 
 ### Compiling documentation locally using Sphinx
 
-WIP
+We use Sphinx to compile our documentation (written as `.rst`) into HTML webpages that are displayed through Read the Docs. Although the have the CI/CD pipeline in place to test, build and publish the documentation files automatically, **it is highly advised that you check the compilation locally too.** You can follow the steps described below to do that:
+
+- First, make sure that you have the PyEuropeana package installed locally with dev dependencies before continuing with the next steps. For more information about how to do that, check the [*Setting up and using your development environment*](#setting-up-and-using-your-development-environment) section.
+- Open a terminal you can access Poetry from and navigate to the `docs/` folder.
+- Run the following command: `poetry run make html`. This command uses GNU Make on systems with Make available (MacOS, Linux distros). In Windows environments, the file `docs/make.bat` is triggered instead.
+- If for some reason the command above returns an error, run this command instead: `poetry run sphinx build -b html sourcedir builddir`
+
+A folder named `docs/build` will be created if any of the last two commands above run successfully. The contents of this folder are used by Read the Docs to display our documentation. You can explore this folder and the `.html` files under it by hand, or you can spin a quick local web server. To do so, open a terminal that has access to Python first. Navigate to `docs` then run the following command:
+
+```python
+python -m http.server 8000
+```
+
+You can then go to any browser access the files interactively at `http://localhost:8000/build/html/`
 
 ## Writing tests
 
