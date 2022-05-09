@@ -1,6 +1,6 @@
 # Contributing to PyEuropeana
 
-**Hello there!** We created this document as a way to communicate with potential contributors (that's you) and to establish a common ground over which we can keep on growing and solidifying the PyEuropeana project. If you made up your mind about being a contributor, **that's great!** Reading through this document can help you immensely and cut back on the time you need to contribute to PyEuropeana. If you are not sure about being a contributor yet or if you are just taking a look, then this document can still provide you some insights about how we go about developing PyEuropeana. 
+**Hello there!** We created this document as a way to communicate with potential contributors (that's you) and to establish a common ground over which we can keep on growing and solidifying the PyEuropeana project. If you made up your mind about being a contributor, **that's great!** Reading through this document can help you immensely and cut back on the time you spend on contributing to PyEuropeana. If you are not sure about being a contributor yet or if you are just taking a look, then this document can still provide you some insights about how we go about developing PyEuropeana. 
 
 ## Table of contents
 
@@ -22,7 +22,13 @@
 - [**Style guide**](#style-guide)
   - [**Code style**](#code-style)
     - [**Actionable tips**](#actionable-tips)
-  - [**Documentation style**](#documentation-style)
+  - [**Docstring style**](#docstring-style)
+- [**About PyEuropeana documentation**](#about-pyeuropeana-documentation)
+  - [**Writing docstrings**](#writing-docstrings)
+  - [**Writing illustrative tutorials](#writing-illustrative-tutorials)
+    - [**The format for illustrative tutorials**](#the-format-for-illustrative-tutorials)
+  - [**Any other documentation contribution**](#any-other-documentation-contribution)
+  - [**Compiling documentation locally using Sphinx**](#compiling-documentation-locally-using-sphinx)
 - [**Extra: Adding new dependencies to the project**](#extra-adding-new-dependencies-to-the-project)
 
 ## Different ways of contributing
@@ -124,7 +130,7 @@ The branches above not only differ in semantics but also in **how they are inter
 
 There are a few more things to keep in mind while working with our Git workflow besides the interactions patterns outlined above.
 
-- Collaborators from outside Europeana do not have branch manipulation rights in the GitHub repo. As an external contributor, you need to make a fork of the project using the GitHub interface before making any branches.
+- Collaborators from outside Europeana do not have branch manipulation rights in the GitHub repo. As an external contributor, you need to make a fork of the project before making any branches.
 - Use the prefixes outlined above when naming your branches along with short but informative names. *fix-bug* is not a good branch name, but *bug-duplicate-search-results* is. You can alternatively use issue numbers, issue names or even ticket numbers after the prefixes.
 - Always make your branch remotely available. This allows you to reference your branch on GitHub and for other people to see the current development efforts. When other people can see the current progress on a branch and contribute to it, collaboration and troubleshooting becomes easier.
 
@@ -168,7 +174,7 @@ You can download the source code of the project by:
 2. Using the GitHub Desktop Client
 3. Downloading the repo as a .zip file through our GitHub repository
 
-**Since we use Git and GitHub to enable distributed development the options one and two are the preffered options.** A detailed description of how to use Git is beyond the scope of this document. Instead you can refer to [this article](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) for a specific guide on how to `git clone` a Git repository.
+**Since we use Git and GitHub to enable distributed development the options one and two are the preferred options.** A detailed description of how to use Git is beyond the scope of this document. Instead you can refer to [this article](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) for a specific guide on how to `git clone` a Git repository.
 
 ### Create a Python virtual environment & Install PyEuropeana and its dependencies
 
@@ -237,20 +243,89 @@ Other than the steps described in the [previous section](#configure-local-develo
 - You can configure your code editor to do automatic linting. Some editors have built-in support or addons for linting tools such as flake8. You can enable such measures and then configure them by looking at the `.flake8` config file in the project root. [Here's how to setup flake8 in VSCode](https://code.visualstudio.com/docs/python/linting#_run-linting).
 - You can configure your code editor to add a visual mark (a *vertical ruler*) on the 88th character so that you know when you exceed 88 characters. VSCode supports this, and so does most editors.
 
-### Documentation style
+### Docstring style
 
 We also utilize a very specific way of documenting our codebase and writing docstrings: NumPy's documentation style guide. An in-depth explanation of the documentation style guide can be found [here](https://numpydoc.readthedocs.io/en/latest/format.html), and a comprehensive example can be found [here](https://numpydoc.readthedocs.io/en/latest/example.html#example).
 
-## Writing and building the PyEuropeana API documentation and tutorials
+## About PyEuropeana documentation
 
-- The PyEuropeana project has extensive API reference documentation and some illustrative tutorials that can be used to better understand the project. This documentation is hosted w/ ReadTheDocs, it can be found here
-- We welcome any attempts of improving the existing documentation in any form or scale. You can propose to fix typos, improve wording, add/remove things to clarify a section. Tutorials that show an usecase w/ the PyEuropeana package is of special importance to us, because we believe these can not only show our potential users how the package works, but also for what it can be used with.
-- We also expect any contributions to the actual Python code of the wrapper to be accompanied with relevant API documentation, provided in the form of docstrings. 
+The PyEuropeana project aims to maintain an extensive API reference that sufficiently documents all the functionality provided by the package. Besides this API reference, we also maintain more high-level documentation such as a README file, a general overview, an installation guide, these contribution guidelines and several tutorials that illustrate how PyEuropeana can be used. All of this documentation except the README file and the contribution guidelines can be found in our Read The Docs page. These are written in the form of `.rst` documents and compiled by Sphinx. The source files responsible for the Read the Docs documentation can be found under `docs/source`. The README file and the contribution guidelines can be found in our GitHub repo.
 
-- Nonetheless, to make any changes to the documentation you need to know how to build it.
-  
+We welcome any attempts to improve the existing documentation. You can propose to fix typos, improve wording, add/remove things to clarify a section, and so on. More importantly for us, you can submit a tightly-scoped tutorial that shows a cool proof-of-concept using the PyEuropeana package and various Python ecosystem tools. **Such contributions are of special importance to us because we believe these can not only show our users how PyEuropeana works, but also for what it can be used for.**
 
-NEED TO PROVIDE KEY IN THE TERMINAL
+**We also expect any contributions to the actual Python code of the wrapper to be accompanied with relevant API documentation, provided in the form of docstrings. These docstrings should conform to the format that is outlined in the [*Docstring Style*](#docstring-style) section of the contribution guidelines.**
+
+In the following sections we will go through some more information (segmented by documentation type) that will help you in contributing to PyEuropeana documentation.
+
+### Writing docstrings
+
+Most of the time there isn't anything special that you must do if you wish to write or edit docstrings **except following our [docstring style choices](#docstring-style).** Our Sphinx is set up to pick up and document the changes that you make to raw `.py` files. However, if you are writing the documentation for a wholly new module or sub-module, you need to take some extra steps to make sure that your new module or sub-module is watched over by Sphinx:
+
+- If you are writing a new module (something that would be the sibling of `src/apis` or `src/utils`), **you need to create a top-level `.rst` file with the name of the module for that module.** This `.rst` file would need to be located under `docs/source`, as a sibling of files such as `docs/source/utils.rst` and `docs/source/apis.rst`. Fill out the content of this `.rst` file by looking at [the relevant documentation on the Sphinx website](https://www.sphinx-doc.org/en/master/usage/quickstart.html#autodoc) or by studying files such as `docs/source/apis.rst` or `docs/source/utils.rst`.
+- When writing a new module, you also need to edit the file `docs/source/package.rst` with the relevant information. You can take hints from the file itself when making additions.
+- If you are writing a new sub-module under one of the existing modules (currently `apis` and `utils`), then you need edit the `.rst` file responsible for documenting that module. Once again, you can study the existing documentation files or look at [the relevant documentation on the Sphinx website](https://www.sphinx-doc.org/en/master/usage/quickstart.html#autodoc).
+
+After doing any docstring-related change, **we strongly suggest you to compile Sphinx locally to see if there are any problems.** Please check the [*compiling documentation locally using Sphinx*](#compiling-documentation-locally-using-sphinx) section for more info on how to do that.
+
+
+### Writing illustrative tutorials
+
+As previously mentioned, **we are very eager to receive short narrative tutorials that demonstrate an interesting use case which also involves PyEuropeana.** The best examples that we can give to what we are referring by this are the [tutorials that we've already written](https://rd-europeana-python-api.readthedocs.io/en/stable/index.html). If you are wondering whether an idea that you have might be suitable and wish to initiate discussion with the PyEuropeana community, feel free to open an issue using our [issue tips](#writing-a-meaningful-issue).
+
+#### The format for illustrative tutorials
+
+We have found that the best way to deliver tutorials mixed with narrative is through a notebook-like medium. For this end, **we prepare our own tutorials in Jupyter Notebook.** We then create an `.rst` version of this Jupyter Notebook, which we add to documentation source. Through these steps, **we can create a notebook-like tutorial that can be followed along either on the web or locally.**
+
+If you have a Jupyter Notebook ready, you can take the following steps to transform it into a format that we can proudly display:
+
+> **IMPORTANT NOTE:** The steps described below require the installation of one piece of software that we cannot present neither as a dependency nor as a dev dependency at the moment. Please see step two for more information. 
+
+- First, **make sure that your notebook runs end to end on your local machine.** Make explicit any implicit knowledge that is required to make the tutorial run without problems. This means:
+  - Have a cell dedicated to imports
+  - If anything needs to be supplied by the end user to run (such as API keys), state where an how they should be supplied.
+- Secondly, **install Pandoc to the machine in which you will be doing development.** Pandoc is a CLI tool, and it is the only dependency related to documentation that we cannot ship along with the project. [You can refer to Pandoc's own documentation in order to do that.](https://pandoc.org/installing.html)
+- **Get a `.py` version of your Jupyter Notebook.** This can be achieved through various utilities. Getting a `.py` export of your notebook file is supported by most notebook environments such as Jupyter Lab and Google Colab.
+- Make sure that you have the PyEuropeana package installed locally with dev dependencies before continuing with the next steps. For more information about how to do that, check the [*Setting up and using your development environment*](#setting-up-and-using-your-development-environment) section.
+- Place the Jupyter Notebook file that belongs to your tutorial under `docs/source/tutorials_source`.
+- Open any terminal you can access Poetry from. Navigate to the folder you have just placed your file at (`docs/source/tutorials_source`).
+- Run the following command: `poetry run jupyter nbconvert --to rst [NAME_OF_YOUR_NOTEBOOK].rst` where `[NAME_OF_YOUR_NOTEBOOK]` is the name of the Jupyter Notebook file you've already created.
+- After running this command, you should have an `.rst` file with the same name as your `ipynb` and `.py` file. There might also be a folder called `[NAME_OF_YOUR_NOTEBOOK]_files` as a sibling of these files. If the folder does not exist, go ahead and create it. Move the `.py` file and the `.ipynb` file to this folder.
+- Manually check your `.rst` file for errors. You can take a look at [Sphinx's ReStructured Text documentation](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html) while doing that. Although this step might seem tedious, **it is much less time consuming than creating an `.rst` file from an `.ipynb` file by hand.**
+- After checking your `.rst` file, make the following addition to the start of the file:
+
+    ```rst
+    .. note:: **You can download this tutorial in the .ipynb format or the .py format.**
+
+    :download:`Download Python source code <[NAME_OF_YOUR_NOTEBOOK]_files/[NAME_OF_YOUR_NOTEBOOK].py>`
+
+    :download:`Download as Jupyter Notebook <[NAME_OF_YOUR_NOTEBOOK]_files/[NAME_OF_YOUR_NOTEBOOK].ipynb>`
+    ```
+    Do not forget to modify the placeholder names in between the square brackets.
+
+After completing the last step, you now have a fully Sphinx-compatible `.rst` file with links to `.ipynb` and `.rst` downloadables. **Before creating a pull request with your tutorial, we strongly suggest you to compile Sphinx locally to see if there are any problems.** Please check the [*compiling documentation locally using Sphinx*](#compiling-documentation-locally-using-sphinx) section for more info on how to do that.
+
+### Any other documentation contribution
+
+You can also contribute to other parts of our documentation, such as our README and these contribution guidelines. Making a contribution to these require no additional changes except the documents themselves. You can likewise make changes to other pages present on Read the Docs that are not auto-generated API references or tutorials. **All of the other documentation that we have on Read the Docs have their own `.rst` file that is located under `docs/source`.** Changes to these `.rst` files will be reflected on our documentation website, provided that the Sphinx doesn't run into any errors (syntax errors etc.) while compiling them. To make sure that it doesn't, check the the [*compiling documentation locally using Sphinx*](#compiling-documentation-locally-using-sphinx) section.
+
+### Compiling documentation locally using Sphinx
+
+We use Sphinx to compile our documentation (written as `.rst`) into HTML webpages that are displayed through Read the Docs. Although the have the CI/CD pipeline in place to test, build and publish the documentation files automatically, **it is highly advised that you check the compilation locally too.** You can follow the steps described below to do that:
+
+- First, make sure that you have the PyEuropeana package installed locally with dev dependencies before continuing with the next steps. For more information about how to do that, check the [*Setting up and using your development environment*](#setting-up-and-using-your-development-environment) section.
+- Open a terminal you can access Poetry from and navigate to the `docs/` folder.
+- Run the following command: `poetry run make html`. This command uses GNU Make on systems with Make available (MacOS, Linux distros). In Windows environments, the file `docs/make.bat` is triggered instead.
+- If for some reason the command above returns an error, run this command instead: `poetry run sphinx-build -b html source build`
+
+A folder named `docs/build` will be created if any of the last two commands above run successfully. The contents of this folder are used by Read the Docs to display our documentation. You can explore this folder and the `.html` files under it by hand, or you can spin a quick local web server. To do so, open a terminal that has access to Python first. Navigate to `docs` then run the following command:
+
+```python
+python -m http.server 8000
+```
+
+You can then go to any browser access the files interactively at `http://localhost:8000/build/html/`
+
+> **IMPORTANT NOTE:** Please do not add `docs/build` to source control. Our `.gitignore` file is set to ignore this folder by default because it is dynamically generated at compile time. Do not change the `.gitignore` file to include it.
 
 ## Writing tests
 
