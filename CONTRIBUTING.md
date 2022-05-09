@@ -19,6 +19,7 @@
   - [**Download all the files related to the project**](#download-all-the-files-related-to-the-project)
   - [**Create a Python virtual environment & install PyEuropeana and its dependencies**](#create-a-python-virtual-environment--install-pyeuropeana-and-its-dependencies)
   - [**Configure local development tools**](#configure-local-development-tools)
+- [**Using Docker for development**](#using-docker-for-development)
 - [**Style guide**](#style-guide)
   - [**Code style**](#code-style)
     - [**Actionable tips**](#actionable-tips)
@@ -201,6 +202,29 @@ Configuration files that customize our local development tools are already prese
 
 - If you haven't already: open any terminal you can run Poetry from, navigate to the root of the PyEuropeana project, run `poetry shell`
 - Run `poetry run pre-commit install`
+
+
+## Using Docker for development
+
+With Docker, software can be run in a virtual OS as a container. A container is an instance of a Docker image, which can be considered as a set of 
+specifications for the virtual OS. This makes it easy to create and reproduce specific environments for running software. Find the installation instructions for Docker [here](https://docs.docker.com/get-docker/)
+
+We have prepared a [Dockerfile](Dockerfile) for creating a container with everything needed for running PyEuropeana. This file contains the instructions for building the Docker image, which can be done by executing:
+
+`docker build .`
+
+At the end of the log you should find the id of the image built as 
+
+` Successfully built <[image_id]> `
+
+Now we can run the container in interactive mode and mount the current directory as a volume, so changes made from the docker container will also be applied in the host system and vice versa. Depending on your host OS, you might need to specify the current working directory differently:
+
+- Powershell: `docker run -it -v ${PWD}:/code <[image_id]>`
+- CMD: `docker run -it -v "%cd%":/code <[image_id]>`
+- Linux: `docker run -it -v "%cd%":/code <[image_id]>`
+
+When executing this command you should be directed to a terminal within the container. Poetry and PyEuropeana are already installed, and the only thing left to do is to activate the poetry shell by executing `poetry shell`. 
+
 
 ## Style guide
 
