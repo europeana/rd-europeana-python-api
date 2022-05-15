@@ -37,14 +37,7 @@ extensions = [
     "sphinx.ext.duration",
     "sphinx.ext.doctest",
     "sphinx.ext.autodoc",
-    "sphinx_gallery.gen_gallery",
 ]
-
-sphinx_gallery_conf = {
-    "examples_dirs": ["tutorials_source"],
-    "gallery_dirs": ["tutorials"],  # path to where to save gallery generated output
-    "filename_pattern": "/*",
-}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]

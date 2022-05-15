@@ -34,10 +34,7 @@ pre-commit = "^2"
 pytest = "^7"
 nbconvert = "^6.5"
 sphinx = "^4.5"
-sphinx-gallery = "^0.10"
 sphinx-rtd-theme = "1.0.0"
-matplotlib = "^3.5.1"
-
 
 [build-system]
 requires = ["poetry_core>=1.0.0"]
