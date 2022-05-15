@@ -341,6 +341,8 @@ We use Sphinx to compile our documentation (written as `.rst`) into HTML webpage
 - Run the following command: `poetry run make html`. This command uses GNU Make on systems with Make available (MacOS, Linux distros). In Windows environments, the file `docs/make.bat` is triggered instead.
 - If for some reason the command above returns an error, run this command instead: `poetry run sphinx-build -b html source build`
 
+> **IMPORTANT NOTE:** We have CI/CD measures in place that get triggered whenever a new pull request concerning the `docs/` folder is made. This measure tests whether the project documentation builds successfully in a VM before accepting any pull request. Ideally, any contributions that touch the `docs/` folder should make sure that the CI/CD measure will give green light to the contribution. To test whether the documentation is built by Sphinx without any problems, run the sphinx builder in strict mode: `poetry run sphinx-build -W -b html source build`
+
 A folder named `docs/build` will be created if any of the last two commands above run successfully. The contents of this folder are used by Read the Docs to display our documentation. You can explore this folder and the `.html` files under it by hand, or you can spin a quick local web server. To do so, open a terminal that has access to Python first. Navigate to `docs` then run the following command:
 
 ```python
