@@ -6,7 +6,7 @@ on:
     paths:
       - 'docs/**'
 jobs:
-  check-doc-compilation
+  check-doc-compilation:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the pull request
