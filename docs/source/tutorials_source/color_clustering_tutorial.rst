@@ -20,8 +20,6 @@ author.*
 Introduction
 ------------
 
---------------
-
 In this tutorial, we will leverage Europeana APIs to gather data about
 and analyze various Art Nouveau posters. We will interact with the APIs
 using
@@ -111,8 +109,6 @@ and concepts:
 
 Setup
 -----
-
---------------
 
 Importing the required packages
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

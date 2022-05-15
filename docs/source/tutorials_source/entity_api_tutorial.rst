@@ -35,7 +35,7 @@ Install PyEuropeana with pip:
 
 .. code:: python
 
-    !pip install pyeuropeana
+    pip install pyeuropeana
 
 Europeana APIs require a key for authentication, find more information
 on how to get your API key
