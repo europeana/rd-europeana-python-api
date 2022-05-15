@@ -21,4 +21,4 @@ jobs:
         run: |
           source $HOME/.poetry/env
           cd docs
-          poetry run make html
+          poetry run sphinx-build -W -b html source build
