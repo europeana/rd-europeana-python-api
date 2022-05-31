@@ -1,0 +1,24 @@
+name: check-doc-compilation
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'docs/**'
+jobs:
+  check-doc-compilation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the pull request
+        uses: actions/checkout@v3
+      - name: Install Poetry to the worker
+        run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+      - name: Install project dependencies
+        run: |
+          source $HOME/.poetry/env
+          poetry install
+      - name: Compile documentation
+        run: |
+          source $HOME/.poetry/env
+          cd docs
+          poetry run sphinx-build -W -b html source build

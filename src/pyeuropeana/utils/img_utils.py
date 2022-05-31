@@ -11,7 +11,7 @@ def url2img(url: str, time_limit: Union[int, float] = 10) -> Image.Image:
     A utility function for obtaining a :obj:`PIL.Image` object given an image URL.
 
     Parameters
-    -----------
+
     url: str
       The URL to which an HTTP request will be sent to retrieve the image.
 
@@ -20,13 +20,13 @@ def url2img(url: str, time_limit: Union[int, float] = 10) -> Image.Image:
       When the request timeouts, the function returns None. Default is 10 seconds.
 
     Returns
-    --------
+
     :obj:`PIL.Image`
       A Pillow Image object that is rendered in RGB mode.
 
 
     Raises
-    -------
+
     TypeError
       Raises a TypeError if the argument passed to the parameter `url` is not a string.
 
@@ -35,13 +35,13 @@ def url2img(url: str, time_limit: Union[int, float] = 10) -> Image.Image:
         not an integer or a float.
 
     Notes
-    ------
+
     The :obj:`PIL.Image` object that is returned when the function successfully
     retrieves the image at the given URL is rendered in RGB mode by default. To convert
     it to any other color mode, PIL utility methods can be utilized.
 
     Examples
-    ---------
+
     >>> import pyeuropeana.apis as apis
     >>> import pyeuropeana.utils as utils
     >>> resp = apis.search(
