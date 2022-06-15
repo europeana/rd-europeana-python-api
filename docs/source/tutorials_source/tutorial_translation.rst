@@ -1,4 +1,3 @@
-
 .. note:: **You can download this tutorial in the .ipynb format or the .py format.**
 
   :download:`Download Python source code <tutorial_translation_files/tutorial_translation.py>`
@@ -54,7 +53,7 @@ packages in the notebook
     import pyeuropeana.utils as utils
     import pyter
 
-.. code:: python
+.. code:: ipython3
 
     #setting enviroment variable
     os.environ['EUROPEANA_API_KEY'] = 'api2demo'
@@ -65,7 +64,7 @@ Definition of the translation function
 In this section we define the function that will perform language
 translation of a piece of text.
 
-.. code:: python
+.. code:: ipython3
 
     def translate(txt, target):
         ''' This function performs automatic translation leveraging deep_translator
@@ -142,7 +141,7 @@ Let us take a look at the call response
      'success': True,
      'requestNumber': 999,
      'itemsCount': 10,
-     'totalResults': 615941,
+     'totalResults': 615910,
      'nextCursor': 'AoE/DS85MjAwMjI3L0JpYmxpb2dyYXBoaWNSZXNvdXJjZV8zMDAwMDczOTc0MDc0',
      'items': [{'completeness': 10,
        'country': ['Italy'],
@@ -2031,95 +2030,21 @@ a tabular form
 .. code:: python
 
     df_search=utils.search2df(response)
-    df_search.head(2) #visualizing 2 of 10 requested results in tabular form
+    df_search.columns
 
 
 
 
-.. raw:: html
+.. parsed-literal::
 
-    <div>
-    <style scoped>
-        .dataframe tbody tr th:only-of-type {
-            vertical-align: middle;
-        }
-    
-        .dataframe tbody tr th {
-            vertical-align: top;
-        }
-    
-        .dataframe thead th {
-            text-align: right;
-        }
-    </style>
-    <table border="1" class="dataframe">
-      <thead>
-        <tr style="text-align: right;">
-          <th></th>
-          <th>europeana_id</th>
-          <th>uri</th>
-          <th>type</th>
-          <th>image_url</th>
-          <th>country</th>
-          <th>description</th>
-          <th>title</th>
-          <th>creator</th>
-          <th>language</th>
-          <th>rights</th>
-          <th>provider</th>
-          <th>dataset_name</th>
-          <th>concept</th>
-          <th>concept_lang</th>
-          <th>description_lang</th>
-          <th>title_lang</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>0</th>
-          <td>/9200314/BibliographicResource_3000093755040_s...</td>
-          <td>http://data.europeana.eu/item/9200314/Bibliogr...</td>
-          <td>IMAGE</td>
-          <td>http://www.14-18.it/img/mappa/RML0358106_01/full</td>
-          <td>Italy</td>
-          <td>Manifesto che riporta due carte geografiche de...</td>
-          <td>L'insegnamento della carta geografica della gu...</td>
-          <td>None</td>
-          <td>it</td>
-          <td>http://rightsstatements.org/vocab/InC/1.0/</td>
-          <td>Central Institute for the Union Catalogue of I...</td>
-          <td>9200314_Ag_EU_TEL_a1192b_Collections_1914-1918</td>
-          <td>http://data.europeana.eu/concept/loc/sh85148236</td>
-          <td>{'de': 'Karte (Kartografie)', 'hi': 'मानचित्र'...</td>
-          <td>{'it': 'Manifesto che riporta due carte geogra...</td>
-          <td>{'it': 'L'insegnamento della carta geografica ...</td>
-        </tr>
-        <tr>
-          <th>1</th>
-          <td>/9200314/BibliographicResource_3000093755038_s...</td>
-          <td>http://data.europeana.eu/item/9200314/Bibliogr...</td>
-          <td>IMAGE</td>
-          <td>http://www.14-18.it/img/mappa/RML0195860_01/full</td>
-          <td>Italy</td>
-          <td>Manifesto che mostra al centro la carta geogra...</td>
-          <td>Croce rossa americana</td>
-          <td>Croce Rossa Americana</td>
-          <td>it</td>
-          <td>http://rightsstatements.org/vocab/InC/1.0/</td>
-          <td>Central Institute for the Union Catalogue of I...</td>
-          <td>9200314_Ag_EU_TEL_a1192b_Collections_1914-1918</td>
-          <td>http://data.europeana.eu/concept/loc/sh85148236</td>
-          <td>{'de': 'Karte (Kartografie)', 'hi': 'मानचित्र'...</td>
-          <td>{'it': 'Manifesto che mostra al centro la cart...</td>
-          <td>{'it': 'Croce rossa americana'}</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
+    Index(['europeana_id', 'uri', 'type', 'image_url', 'country', 'description',
+           'title', 'creator', 'language', 'rights', 'provider', 'dataset_name',
+           'concept', 'concept_lang', 'description_lang', 'title_lang'],
+          dtype='object')
 
 
 
-Comparing the headings of the table above with the original JSON file we
+Comparing the names of the columns above with the original JSON file we
 can notice that a subselection of fields has been performed by the
 ``search2df`` function. In the following section we will look to
 translate the text in the ``description`` field, one of the most
@@ -2237,7 +2162,7 @@ We get an idea by scanning the table above, and we can zoom in, for
 example on the second row, to fully visualize the original text and its
 translation.
 
-.. code:: python
+.. code:: ipython3
 
      list(df_translation.loc[1])
 
@@ -2298,7 +2223,8 @@ Italian and perform the translation
 .. code:: python
 
     df_search['description_en_it']=df_search['description_en'].apply(translate, target= 'it')
-    df_search.head(2) #visualize the first two rows of the result
+    df_search=df_search[['description','description_en','description_en_it']] # visualize only the needed columns
+    df_search.head(2)# visualize only the first two rows
 
 
 
@@ -2323,22 +2249,7 @@ Italian and perform the translation
       <thead>
         <tr style="text-align: right;">
           <th></th>
-          <th>europeana_id</th>
-          <th>uri</th>
-          <th>type</th>
-          <th>image_url</th>
-          <th>country</th>
           <th>description</th>
-          <th>title</th>
-          <th>creator</th>
-          <th>language</th>
-          <th>rights</th>
-          <th>provider</th>
-          <th>dataset_name</th>
-          <th>concept</th>
-          <th>concept_lang</th>
-          <th>description_lang</th>
-          <th>title_lang</th>
           <th>description_en</th>
           <th>description_en_it</th>
         </tr>
@@ -2346,43 +2257,13 @@ Italian and perform the translation
       <tbody>
         <tr>
           <th>0</th>
-          <td>/9200314/BibliographicResource_3000093755040_s...</td>
-          <td>http://data.europeana.eu/item/9200314/Bibliogr...</td>
-          <td>IMAGE</td>
-          <td>http://www.14-18.it/img/mappa/RML0358106_01/full</td>
-          <td>Italy</td>
           <td>Manifesto che riporta due carte geografiche de...</td>
-          <td>L'insegnamento della carta geografica della gu...</td>
-          <td>None</td>
-          <td>it</td>
-          <td>http://rightsstatements.org/vocab/InC/1.0/</td>
-          <td>Central Institute for the Union Catalogue of I...</td>
-          <td>9200314_Ag_EU_TEL_a1192b_Collections_1914-1918</td>
-          <td>http://data.europeana.eu/concept/loc/sh85148236</td>
-          <td>{'de': 'Karte (Kartografie)', 'hi': 'मानचित्र'...</td>
-          <td>{'it': 'Manifesto che riporta due carte geogra...</td>
-          <td>{'it': 'L'insegnamento della carta geografica ...</td>
           <td>Poster showing two geographical maps of Europe...</td>
           <td>Manifesto raffigurante due carte geografiche d...</td>
         </tr>
         <tr>
           <th>1</th>
-          <td>/9200314/BibliographicResource_3000093755038_s...</td>
-          <td>http://data.europeana.eu/item/9200314/Bibliogr...</td>
-          <td>IMAGE</td>
-          <td>http://www.14-18.it/img/mappa/RML0195860_01/full</td>
-          <td>Italy</td>
           <td>Manifesto che mostra al centro la carta geogra...</td>
-          <td>Croce rossa americana</td>
-          <td>Croce Rossa Americana</td>
-          <td>it</td>
-          <td>http://rightsstatements.org/vocab/InC/1.0/</td>
-          <td>Central Institute for the Union Catalogue of I...</td>
-          <td>9200314_Ag_EU_TEL_a1192b_Collections_1914-1918</td>
-          <td>http://data.europeana.eu/concept/loc/sh85148236</td>
-          <td>{'de': 'Karte (Kartografie)', 'hi': 'मानचित्र'...</td>
-          <td>{'it': 'Manifesto che mostra al centro la cart...</td>
-          <td>{'it': 'Croce rossa americana'}</td>
           <td>Poster showing in the center the geographical ...</td>
           <td>Manifesto che mostra al centro la carta geogra...</td>
         </tr>
@@ -2528,7 +2409,7 @@ the TER metrics, adding a column that holds the value for this metrics.
           <th>0</th>
           <td>Manifesto che riporta due carte geografiche de...</td>
           <td>Manifesto raffigurante due carte geografiche d...</td>
-          <td>0.343750</td>
+          <td>0.281250</td>
         </tr>
         <tr>
           <th>1</th>
@@ -2631,8 +2512,8 @@ Let us also add a column that holds the value for the BLEU metrics
           <th>0</th>
           <td>Manifesto che riporta due carte geografiche de...</td>
           <td>Manifesto raffigurante due carte geografiche d...</td>
-          <td>0.343750</td>
-          <td>0.492977</td>
+          <td>0.281250</td>
+          <td>0.525714</td>
         </tr>
         <tr>
           <th>1</th>
@@ -2750,11 +2631,11 @@ two metrics are strongly correlated as it is shown below
         <tr>
           <th>TER_score</th>
           <td>1.000000</td>
-          <td>-0.889361</td>
+          <td>-0.844842</td>
         </tr>
         <tr>
           <th>BLEU_score</th>
-          <td>-0.889361</td>
+          <td>-0.844842</td>
           <td>1.000000</td>
         </tr>
       </tbody>
@@ -2778,4 +2659,3 @@ objects with a description in Italian - Automatic translation from
 Italian to English of the retrieved metadata describing the CH object -
 Use of the RTT method in combination with the TER and BLEU score to
 estimate the quality of the obtained translations
-
