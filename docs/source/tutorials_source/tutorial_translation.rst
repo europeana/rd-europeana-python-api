@@ -6,7 +6,7 @@
   :download:`Download as Jupyter Notebook <tutorial_translation_files/tutorial_translation.ipynb>`
 
 Translation Tutorial
-===================
+====================
 
 
 Introduction
