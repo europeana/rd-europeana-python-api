@@ -1,14 +1,14 @@
 Extracting color palettes from Art Nouveau posters using K-means clustering
 ===========================================================================
 
-
 .. note:: **You can download this tutorial in the .ipynb format or the .py format.**
 
     :download:`Download Python source code <color_clustering_tutorial_files/color_clustering_tutorial.py>`
 
     :download:`Download as Jupyter Notebook <color_clustering_tutorial_files/color_clustering_tutorial.ipynb>`
-
+    
 .. image:: color_clustering_tutorial_files/img-1.png
+
 
 A poster by the artist Ludwig Hohlwein, accompanied by the color palette
 information extracted through the processes described in this notebook.
