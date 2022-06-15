@@ -53,7 +53,7 @@ packages in the notebook
     import pyeuropeana.utils as utils
     import pyter
 
-.. code:: ipython3
+.. code:: python
 
     #setting enviroment variable
     os.environ['EUROPEANA_API_KEY'] = 'api2demo'
@@ -64,7 +64,7 @@ Definition of the translation function
 In this section we define the function that will perform language
 translation of a piece of text.
 
-.. code:: ipython3
+.. code:: python
 
     def translate(txt, target):
         ''' This function performs automatic translation leveraging deep_translator
@@ -2162,7 +2162,7 @@ We get an idea by scanning the table above, and we can zoom in, for
 example on the second row, to fully visualize the original text and its
 translation.
 
-.. code:: ipython3
+.. code:: python
 
      list(df_translation.loc[1])
 
