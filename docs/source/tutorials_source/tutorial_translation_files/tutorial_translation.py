@@ -33,7 +33,7 @@ import pyter
 
 
 #setting enviroment variable
-os.environ['EUROPEANA_API_KEY'] = 'api2demo'
+os.environ['EUROPEANA_API_KEY'] = 'your_API_key' #replace with your API key
 
 
 # # Definition of the translation function
@@ -94,15 +94,15 @@ response = apis.search(
     )
 
 
-# Let us take a look at the call response
+# Let us take a look at the response
 
-# In[7]:
-
-
-response
+# In[38]:
 
 
-# The response is a rich and complex JSON file, which is essentially a list of nested dictionaries. The JSON format holds many different metadata fields, for example `itemCount` and `totalResults`. In many cases we are not interested in all the metadata fields, but in a subset, depending on the problem at hand. 
+dict(list(response.items())[0:5]) #visualizing the first few objetcs
+
+
+# The response  is a rich and complex JSON file, which is essentially a list of nested dictionaries. The JSON format holds many different metadata fields, for example `itemCount` and `totalResults`. In many cases we are not interested in all the metadata fields, but in a subset, depending on the problem at hand.  It is possible to visualize the full content of the file by typing `response`.
 # 
 # It would then be  useful if we could focus on a selection of the fields and access them in an easier to read  format than the JSON format, for example a table. The PyEuropeana module offers just that!
 
@@ -110,7 +110,7 @@ response
 
 # Here we use the function `search2df` within the utils module of PyEuropeana to select a  predetermined subset of  fields and cast them in a tabular form
 
-# In[8]:
+# In[39]:
 
 
 df_search=utils.search2df(response)
@@ -126,7 +126,7 @@ df_search.columns
 
 # We make a new column `description_en` and apply the function `translate` to the `description` column to translate it to English.
 
-# In[9]:
+# In[40]:
 
 
 df_search['description_en']=df_search['description'].apply(translate,target='en')
@@ -134,7 +134,7 @@ df_search['description_en']=df_search['description'].apply(translate,target='en'
 
 # Let us visualize only the original text and  the  English translation
 
-# In[10]:
+# In[41]:
 
 
 #We select only the original description in Italian and its automatic translation to English
@@ -144,7 +144,7 @@ df_translation
 
 # We get an idea by scanning the table above, and we can zoom in, for example on the second row, to fully visualize the original text and its translation.
 
-# In[11]:
+# In[42]:
 
 
 list(df_translation.loc[1])
@@ -160,7 +160,7 @@ list(df_translation.loc[1])
 
 # Let us thus add a new column to the dataframe, `description_en_it`, to hold the back translation of the `description` column from English to Italian and perform the translation
 
-# In[12]:
+# In[43]:
 
 
 df_search['description_en_it']=df_search['description_en'].apply(translate, target= 'it')
@@ -170,7 +170,7 @@ df_search.head(2)# visualize only the first two rows
 
 # Now, let us visualize the original text in Italian and the back translation to Italian
 
-# In[13]:
+# In[44]:
 
 
 df_translation_test=df_search[['description','description_en_it']]
@@ -179,13 +179,13 @@ df_translation_test
 
 # They look pretty similar but let us quantify our impressions by applying the TER metrics, adding a column that holds the value for this metrics.
 
-# In[14]:
+# In[45]:
 
 
 df_translation_test['TER_score']=df_translation_test.apply(lambda x: pyter.ter(x['description'].split( ), x['description_en_it'].split()), axis=1)
 
 
-# In[15]:
+# In[46]:
 
 
 df_translation_test
@@ -193,7 +193,7 @@ df_translation_test
 
 # Let us also add a column that holds the value for the BLEU metrics
 
-# In[16]:
+# In[47]:
 
 
 df_translation_test['BLEU_score']=df_translation_test.apply(lambda x: sentence_bleu([x['description'].split( )], x['description_en_it'].split()), axis=1)
@@ -204,7 +204,7 @@ df_translation_test
 # The TER metrics measures the amount of editing needed to bring the translation in line with the original reference, the **lower** the TER score the better the quality of the  translation. 
 # The BLEU score counts the number of overlapping n-grams between the reference and the candidate translation, the **higher** the BLEU score the better the quality of the translation. Given their different ways of measuring the quality of translations the two metrics could give in principle different results. In this case the two metrics are strongly correlated as it is shown below
 
-# In[17]:
+# In[48]:
 
 
 #correlation between Ter and Bleu scores
