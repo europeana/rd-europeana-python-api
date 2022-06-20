@@ -131,14 +131,13 @@ Let us take a look at the call response
 .. code:: python
 
    #visualizing the first few objetcs
-   dict(list(response.items())[0:5]) 
+   dict(list(response.items())[1:5]) 
 
 
 
 .. parsed-literal::
 
-   {'apikey': 'api2demo',
- 'success': True,
+  {'success': True,
  'requestNumber': 999,
  'itemsCount': 10,
  'totalResults': 615910}

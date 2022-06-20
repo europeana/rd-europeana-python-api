@@ -99,7 +99,7 @@ response = apis.search(
 # In[38]:
 
 
-dict(list(response.items())[0:5]) #visualizing the first few objetcs
+dict(list(response.items())[1:5]) #visualizing the first few objetcs
 
 
 # The response  is a rich and complex JSON file, which is essentially a list of nested dictionaries. The JSON format holds many different metadata fields, for example `itemCount` and `totalResults`. In many cases we are not interested in all the metadata fields, but in a subset, depending on the problem at hand.  It is possible to visualize the full content of the file by typing `response`.
