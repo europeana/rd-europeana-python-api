@@ -784,11 +784,14 @@ English, taking into account the limitations of RTT.
 Conclusions
 -----------
 
-In this tutorial we briefily covered the following topics - Introduction
-to metadata fields describing a CH object - Importance of having
-relevant metadata fields available in many languages - Use of the
-PyEuropeana module in combination with the Search API to retrieve CH
-objects with a description in Italian - Automatic translation from
-Italian to English of the retrieved metadata describing the CH object -
-Use of the RTT method in combination with the TER and BLEU score to
-estimate the quality of the obtained translations
+In this tutorial we briefily covered the following topics:
+
+- Introduction to metadata fields describing a CH object 
+
+- Importance of having relevant metadata fields available in many languages 
+
+- Use of the PyEuropeana module in combination with the Search API to retrieve CH objects with a description in Italian 
+
+- Automatic translation from Italian to English of the retrieved metadata describing the CH object
+
+- Use of the RTT method in combination with the TER and BLEU score to estimate the quality of the obtained translations
