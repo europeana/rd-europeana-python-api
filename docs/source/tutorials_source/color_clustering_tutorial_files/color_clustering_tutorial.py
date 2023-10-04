@@ -36,16 +36,6 @@ The goals of this tutorial are twofold:
 - To introduce Europeana's Search API using the PyEuropeana package.
 - To inspire the reader about the things that can be done by using Europeana's vast Cultural Heritage Object (CHO) data and metadata.
 
-### Who is this tutorial for?
-
-This tutorial might interest anyone who is interested in using digital images as the subject of quantitative, computational analysis. More specifically, it can interest:
-
-- Data scientists that are interested in image analysis
-- Machine learning engineers that work with computer vision (see the [Saint George on a Bike](https://www.youtube.com/watch?v=ZbUEs0SULKQ&t=154s) project)
-- Digital humanists (see the work of [Lev Manovich](http://lab.culturalanalytics.info/))
-- Art historians 
-- Quantitative social scientists
-- Computational artists (see [Electric Dreams of Ukiyo](http://www.obvious-art.com/ukiyo/))
 
 ### What do I need to know before following along?
 
