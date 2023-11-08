@@ -12,7 +12,6 @@ build:
       - asdf install poetry latest
       - asdf global poetry latest
       - poetry config virtualenvs.create false
-      - pip install sphinx-rtd-theme
   # install the actual package and its dependencies
     post_install:
       - poetry install
